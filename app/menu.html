@@ -1,0 +1,44 @@
+<ons-page style="background-color: white" ng-controller="CalendarListCtrl">
+
+    <ul class="topcoat-list" ng-repeat="calendar in calendars">
+
+        <ons-list-item
+                class="topcoat-list__item--tappable topcoat-list__item__line-height"
+                ng-click="calendar.selected = !calendar.selected">
+
+            <label class="topcoat-checkbox">
+                <input type="checkbox" ng-model="calendar.selected">
+                <div class="topcoat-checkbox__checkmark"></div>
+                {{ calendar.name }}
+            </label>
+
+        </ons-list-item>
+
+    </ul>
+
+    <!--
+
+    ons.slidingMenu.toggleMenu();
+            ons.slidingMenu.setAbovePage('page1.html')
+
+    <label class="topcoat-checkbox">
+  <input type="checkbox">
+  <div class="topcoat-checkbox__checkmark"></div>
+  OFF
+</label>
+<br>
+<label class="topcoat-checkbox">
+  <input type="checkbox" checked="checked">
+  <div class="topcoat-checkbox__checkmark"></div>
+  ON
+</label>
+<br>
+<label class="topcoat-checkbox">
+  <input type="checkbox" disabled>
+  <div class="topcoat-checkbox__checkmark"></div>
+  Disabled
+</label>
+
+    -->
+
+</ons-page>

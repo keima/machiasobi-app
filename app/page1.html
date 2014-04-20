@@ -1,0 +1,46 @@
+<ons-page class="center" ng-controller="ShinmachiEastCtrl">
+    <ons-navigator-toolbar
+            title="Page 1">
+    </ons-navigator-toolbar>
+
+    <div class="topcoat-button-bar" style="width: 100%">
+        <div class="topcoat-button-bar__item">
+            <button class="topcoat-button-bar__button">One</button>
+        </div>
+        <div class="topcoat-button-bar__item">
+            <button class="topcoat-button-bar__button">Two</button>
+        </div>
+        <div class="topcoat-button-bar__item">
+            <button class="topcoat-button-bar__button">Three</button>
+        </div>
+    </div>
+
+    <ons-radio-button
+            ng-model="level"
+            value="Easy"
+            right-label="Easy"
+            name="level-group">
+    </ons-radio-button>
+
+    <ons-radio-button
+            ng-model="level"
+            value="Medium"
+            right-label="Medium"
+            name="level-group">
+    </ons-radio-button>
+
+    <ons-radio-button
+            ng-model="level"
+            value="Hard"
+            right-label="Hard"
+            name="level-group">
+    </ons-radio-button>
+
+    <h1>Page 1</h1>
+    <ons-button ng-click="ons.navigator.pushPage('page2.html')">
+        Push Page 2
+    </ons-button>
+
+    {{ test }}
+
+</ons-page>

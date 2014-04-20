@@ -1,0 +1,24 @@
+{
+  "name": "machiappli",
+  "version": "0.0.0",
+  "authors": [
+    "Kouta Imanaka <keima@p-side.net>"
+  ],
+  "license": "All rights Reserved.",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "onsenui": "~1.0.4",
+    "angular-ui-calendar": "~0.8.0",
+    "lodash": "~2.4.1",
+    "angular-touch": "~1.2.16",
+    "momentjs": "~2.6.0",
+    "restangular": "~1.3.1"
+  }
+}

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ja" ng-app="myApp">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>machi * appli</title>
+
+    <link rel="stylesheet" href="styles/app.css"/>
+    <link rel="stylesheet" href="bower_components/onsenui/build/css/onsenui.css">
+    <link rel="stylesheet" href="bower_components/onsenui/build/css/topcoat-mobile-onsen-ios7.css">
+
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/fullcalendar/fullcalendar.css" />
+    <!-- endbower -->
+
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/onsenui/build/js/onsenui.js"></script>
+    <script src="bower_components/jquery-ui/ui/jquery-ui.js"></script>
+    <script src="bower_components/fullcalendar/fullcalendar.js"></script>
+    <script src="bower_components/angular-ui-calendar/src/calendar.js"></script>
+    <script src="bower_components/lodash/dist/lodash.compat.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/momentjs/moment.js"></script>
+    <script src="bower_components/restangular/dist/restangular.js"></script>
+    <!-- endbower -->
+
+</head>
+<body>
+
+<ons-sliding-menu
+        behind-page="menu.html"
+        above-page="navigator.html"></ons-sliding-menu>
+
+<!-- injector:js -->
+<script src="scripts/app.js"></script>
+<script src="scripts/controller.js"></script>
+<script src="scripts/controllers/CalendarListCtrl.js"></script>
+<script src="scripts/controllers/CalendarViewCtrl.js"></script>
+<script src="scripts/controllers/shinmachiEast.js"></script>
+<script src="scripts/directive.js"></script>
+<script src="scripts/directives/buttonBar.js"></script>
+<script src="scripts/service.js"></script>
+<!-- endinjector -->
+
+</body>
+</html>
