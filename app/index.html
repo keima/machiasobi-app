@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>machi * appli</title>
 
-    <link rel="stylesheet" href="styles/app.css"/>
-    <link rel="stylesheet" href="styles/twitter.css"/>
+    <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+
     <link rel="stylesheet" href="bower_components/onsenui/build/css/onsenui.css">
     <link rel="stylesheet" href="bower_components/onsenui/build/css/topcoat-mobile-onsen-ios7.css">
 
@@ -14,7 +15,11 @@
     <link rel="stylesheet" href="bower_components/fullcalendar/fullcalendar.css" />
     <!-- endbower -->
 
+    <!-- build:css({.tmp,app}) styles/main.css -->
+    <link rel="stylesheet" href="styles/app.css"/>
+    <link rel="stylesheet" href="styles/twitter.css"/>
     <link rel="stylesheet" href="styles/calendar.css"/>
+    <!-- endbuild -->
 
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -38,6 +43,7 @@
         behind-page="menu.html"
         above-page="navigator.html"></ons-sliding-menu>
 
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
 <!-- injector:js -->
 <script src="scripts/app.js"></script>
 <script src="scripts/controller.js"></script>
@@ -49,6 +55,7 @@
 <script src="scripts/directives/buttonBar.js"></script>
 <script src="scripts/service.js"></script>
 <!-- endinjector -->
+<!-- endbuild -->
 
 </body>
 </html>
