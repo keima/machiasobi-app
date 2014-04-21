@@ -1,12 +1,27 @@
-<div ng-controller="CalendarViewCtrl">
-    <div class="topcoat-button-bar" style="width: 100%;margin:5px 0;">
+<div ng-controller="CalendarViewCtrl" class="full-height">
+    <div class="topcoat-button-bar" style="width: 100%;padding:5px;">
         <div class="topcoat-button-bar__item" ng-repeat="period in periods"
-                ng-class="{active: selected == $index}">
+             ng-class="{active: selected == $index}">
             <button class="topcoat-button-bar__button"
-                    ng-click="setSelected($index)">{{ period.name }}</button>
+                    ng-click="setSelected($index)">{{ period.name }}
+            </button>
         </div>
     </div>
 
-    {{ selected }}
+    <!-- 凡例表示 -->
+    <div class="row">
+        <div ng-repeat="calendar in calendars"
+             class="col-33 legend gcal-{{ calendar.shortName }}"
+             ng-class="{ 'gcal-{{ calendar.shortName }}'  : calendar.selected }">{{ calendar.name }}
+        </div>
+    </div>
+
+    <div
+            ui-calendar="calendarConfig"
+            ng-model="eventSources"
+            calendar="myCalendar"
+            class="span8 calendar full-height"
+            id="calendar">
+    </div>
 
 </div>

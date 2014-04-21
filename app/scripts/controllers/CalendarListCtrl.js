@@ -1,5 +1,11 @@
 angular.module('myApp.controller.calendarListCtrl', [])
   .controller('CalendarListCtrl',
   function ($scope, $rootScope) {
-//    $scope.calendars = $rootScope.calendars;
+
+    $scope.checkInverse = function(index) {
+      console.log(index);
+      $scope.calendars[index].selected = !$scope.calendars[index].selected;
+      $rootScope.$broadcast('eventSourceIsChanged');
+    }
+
   });

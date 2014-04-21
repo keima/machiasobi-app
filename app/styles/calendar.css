@@ -1,0 +1,54 @@
+/* Calendar Cell Design */
+
+/*
+fc-event(gcal-***)
+|- fc-event-inner
+|  |- fc-event-time
+|  \- fc-event-title
+\- fc-event-bg
+*/
+
+.legend {
+    color: #FFFFFF;
+    font-weight: bold;
+    text-shadow: 1px 1px 0px #676767;
+    text-align: center;
+}
+
+.fc-event-title {
+    font-weight: bold;
+    text-shadow: 1px 1px 0px #676767;
+}
+.fc-event-vert .fc-event-bg {
+    background: none;
+    opacity: 1;
+}
+
+.gcal-shinmachi {
+    background-color: #FF7755;
+}
+
+.gcal-ryougoku {
+    background-color: #FF5599;
+}
+
+.gcal-boardwalk {
+    background-color: #FFDD55;
+}
+
+.gcal-cinema1 {
+    background-color: #46d046;
+}
+
+.gcal-cinema2 {
+    background-color: #9955FF;
+}
+
+.gcal-poppo {
+    background-color: #55DDFF;
+}
+
+/* Other */
+table.fc-agenda-days thead {
+    display: none;
+}
