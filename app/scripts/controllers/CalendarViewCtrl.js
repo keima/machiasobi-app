@@ -36,7 +36,8 @@ angular.module('myApp.controller.calendarViewCtrl', [])
     // SUPER-DIRTY-HACK!!!!!!!!
     $timeout(function(){
       var _calendar = $('#calendar');
-      $scope.calendarConfig.height = _calendar.height() - 100;
+      $scope.calendarConfig.height = _calendar.height() - $('#legends').height() - $('#dateSelector').height();
+      console.log($scope.calendarConfig.height);
       _calendar.fullCalendar('render');
     }, 200);
 

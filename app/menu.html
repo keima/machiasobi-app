@@ -1,9 +1,10 @@
 <ons-page style="background-color: white" ng-controller="CalendarListCtrl">
 
-    <ul class="topcoat-list" ng-repeat="calendar in calendars">
+    <ul class="topcoat-list">
 
         <ons-list-item
                 class="topcoat-list__item--tappable topcoat-list__item__line-height"
+                ng-repeat="calendar in calendars"
                 ng-click="checkInverse($index)">
 
             <label class="topcoat-checkbox">
@@ -16,29 +17,10 @@
 
     </ul>
 
-    <!--
-
-    ons.slidingMenu.toggleMenu();
-            ons.slidingMenu.setAbovePage('page1.html')
-
-    <label class="topcoat-checkbox">
-  <input type="checkbox">
-  <div class="topcoat-checkbox__checkmark"></div>
-  OFF
-</label>
-<br>
-<label class="topcoat-checkbox">
-  <input type="checkbox" checked="checked">
-  <div class="topcoat-checkbox__checkmark"></div>
-  ON
-</label>
-<br>
-<label class="topcoat-checkbox">
-  <input type="checkbox" disabled>
-  <div class="topcoat-checkbox__checkmark"></div>
-  Disabled
-</label>
-
-    -->
+    <div class="topcoat-navigation-bar topcoat-navigation-bar--bottom">
+        <div class="topcoat-navigation-bar__line-height" style="text-align:center">
+            {{ appName }} - {{ appVersion }}
+        </div>
+    </div>
 
 </ons-page>

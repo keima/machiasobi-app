@@ -13,6 +13,7 @@ angular.module('myApp',
   .run(
   function ($rootScope) {
     $rootScope.appName = "マチ★アプリ";
+    $rootScope.appVersion = "ver.0.1.0 beta";
 
     $rootScope.periods = [
       {

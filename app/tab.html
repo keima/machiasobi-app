@@ -1,5 +1,7 @@
 <div ng-controller="CalendarViewCtrl" class="full-height">
-    <div class="topcoat-button-bar" style="width: 100%;padding:5px;">
+    <div class="topcoat-button-bar"
+         id="dateSelector"
+         style="width: 100%;padding:5px;">
         <div class="topcoat-button-bar__item" ng-repeat="period in periods"
              ng-class="{active: selected == $index}">
             <button class="topcoat-button-bar__button"
@@ -9,7 +11,8 @@
     </div>
 
     <!-- 凡例表示 -->
-    <div class="row">
+    <div class="row"
+            id="legends">
         <div ng-repeat="calendar in calendars"
              class="col-33 legend gcal-{{ calendar.shortName }}"
              ng-class="{ 'gcal-{{ calendar.shortName }}'  : calendar.selected }">{{ calendar.name }}
@@ -20,7 +23,8 @@
             ui-calendar="calendarConfig"
             ng-model="eventSources"
             calendar="myCalendar"
-            class="span8 calendar full-height"
+            class="span8 calendar"
+            style="height:100%"
             id="calendar">
     </div>
 
