@@ -117,7 +117,12 @@ angular.module('myApp',
 //        return view;
 //      },
 
+      viewRender: function() {
+        console.log('viewRender');
+      },
+
       viewDisplay: function() {
+        // viewDisplay is deprecated. -> viewRender
         console.log('viewDisplay');
       },
 
