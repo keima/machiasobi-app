@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function (grunt) {
+module.exports = function(grunt) {
 
   require('load-grunt-tasks')(grunt);
   require('time-grunt')(grunt);
@@ -16,8 +16,15 @@ module.exports = function (grunt) {
     /* grunt-contrib-watch */
     watch: {
       js: {
-        files: ['<%= yeoman.app %>/scripts/**/*.js'],
-        tasks: ['injector'],
+        files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
+//        tasks: ['injector'],
+        options: {
+          livereload: true
+        }
+      },
+      css: {
+        files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
+//        tasks: ['injector'],
         options: {
           livereload: true
         }
@@ -35,7 +42,6 @@ module.exports = function (grunt) {
         },
         files: [
           '<%= yeoman.app %>/{,*/}*.html',
-          '<%= yeoman.app %>/styles/{,*/}*.css',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
       }
@@ -122,7 +128,7 @@ module.exports = function (grunt) {
       },
       app: {
         files: {
-          '<%= yeoman.app %>/index.html': ['<%= yeoman.app %>/scripts/{,*/}*.js']
+          '<%= yeoman.app %>/index.html': ['<%= yeoman.app %>/scripts/{,*/}*.js', '<%= yeoman.app %>/styles/{,*/}*.css']
         }
       }
     },
@@ -143,7 +149,15 @@ module.exports = function (grunt) {
     useminPrepare: {
       html: '<%= yeoman.app %>/index.html',
       options: {
-        dest: '<%= yeoman.dist %>'
+        dest: '<%= yeoman.dist %>',
+        flow: {
+          // default : { steps: { 'js': ['concat', 'uglifyjs'], 'css': ['concat', 'cssmin']}, post: {}}
+          steps: {
+            'js': ['concat'],
+            'css': ['concat', 'cssmin']
+          },
+          post: {}
+        }
       }
     },
 
@@ -203,9 +217,14 @@ module.exports = function (grunt) {
         files: [
           {
             expand: true,
-            cwd: '.tmp/concat/scripts',
-            src: '*.js',
-            dest: '.tmp/concat/scripts'
+            src: ['<%= yeoman.dist %>/scripts/main.js'],
+            dest: '<%= yeoman.dist %>/scripts'
+
+            /*
+             cwd: '.tmp/concat/scripts',
+             src: '*.js',
+             dest: '.tmp/concat/scripts'
+             */
           }
         ]
       }
@@ -261,7 +280,7 @@ module.exports = function (grunt) {
 
   });
 
-  grunt.registerTask('serve', function (target) {
+  grunt.registerTask('serve', function(target) {
     if (target === 'dist') {
       return grunt.task.run(['build', 'connect:dist:keepalive']);
     }
@@ -283,9 +302,9 @@ module.exports = function (grunt) {
     'concat',
     'ngmin',
     'copy:dist',
-    'cdnify',
+//    'cdnify',
     'cssmin',
-    'uglify',
+//    'uglify',
     'rev',
     'usemin',
     'htmlmin'

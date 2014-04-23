@@ -1,0 +1,14 @@
+/* Event View design */
+
+.scroller {
+    padding-bottom: 50px;
+}
+
+.markdown {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.markdown li {
+    text-align: left;
+}

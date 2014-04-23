@@ -9,15 +9,19 @@ fc-event(gcal-***)
 */
 
 .legend {
-    color: #FFFFFF;
+    color: #353535;
     font-weight: bold;
-    text-shadow: 1px 1px 0px #676767;
+    text-shadow: 1px 1px 0 #cbcbcb;
     text-align: center;
 }
 
+.fc-event-time {
+    color: #000000;
+}
 .fc-event-title {
+    color: #353535;
     font-weight: bold;
-    text-shadow: 1px 1px 0px #676767;
+    text-shadow: 1px 1px 0 #cbcbcb;
 }
 .fc-event-vert .fc-event-bg {
     background: none;
@@ -25,27 +29,31 @@ fc-event(gcal-***)
 }
 
 .gcal-shinmachi {
-    background-color: #FF7755;
+    background-color: #90ee90;
 }
 
 .gcal-ryougoku {
-    background-color: #FF5599;
+    background-color: #87ceeb;
 }
 
 .gcal-boardwalk {
-    background-color: #FFDD55;
+    background-color: #dda0dd;
 }
 
 .gcal-cinema1 {
-    background-color: #46d046;
+    background-color: #deb887;
 }
 
 .gcal-cinema2 {
-    background-color: #9955FF;
+    background-color: #ffc0cb;
 }
 
 .gcal-poppo {
-    background-color: #55DDFF;
+    background-color: #f0e68c;
+}
+
+.gcal-announce {
+    background-color: #c0c0c0;
 }
 
 /* Other */

@@ -8,6 +8,7 @@ angular.module('myApp',
     'ui.calendar',
     'ui.bootstrap',
     'onsen.directives',
+    'btford.markdown',
     'myApp.service',
     'myApp.controller',
     'myApp.filter'
@@ -15,7 +16,7 @@ angular.module('myApp',
   .run(
   function ($rootScope) {
     $rootScope.appName = "マチ★アプリ";
-    $rootScope.appVersion = "ver.0.2.0";
+    $rootScope.appVersion = "ver.0.3.0";
 
     /*
      $rootScope.periods = [
