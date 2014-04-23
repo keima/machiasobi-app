@@ -2,34 +2,37 @@
 
 angular.module('myApp',
   [
+    'ngSanitize',
     'ngTouch',
     'restangular',
     'ui.calendar',
     'ui.bootstrap',
     'onsen.directives',
     'myApp.service',
-    'myApp.controller'
+    'myApp.controller',
+    'myApp.filter'
   ])
   .run(
   function ($rootScope) {
     $rootScope.appName = "マチ★アプリ";
-    $rootScope.appVersion = "ver.0.1.0 beta";
+    $rootScope.appVersion = "ver.0.2.0";
 
-    $rootScope.periods = [
-      {
-        name: '10月12日(土)',
-        date: moment([2013, 10, 12])
-      },
-      {
-        name: '10月13日(日)',
-        date: moment([2013, 10, 13])
-      },
-      {
-        name: '10月14日(月)',
-        date: moment([2013, 10, 14])
-      }
-    ];
-/*
+    /*
+     $rootScope.periods = [
+     {
+     name: '10月12日(土)',
+     date: moment([2013, 10, 12])
+     },
+     {
+     name: '10月13日(日)',
+     date: moment([2013, 10, 13])
+     },
+     {
+     name: '10月14日(月)',
+     date: moment([2013, 10, 14])
+     }
+     ];*/
+
     $rootScope.periods = [
       {
         name: '5月3日(土)',
@@ -44,7 +47,6 @@ angular.module('myApp',
         date: moment([2014, 5, 5])
       }
     ];
-    */
 
 
     $rootScope.calendars = [
@@ -101,11 +103,12 @@ angular.module('myApp',
       month: $rootScope.periods[0].date.get('month') - 1,
       date: $rootScope.periods[0].date.get('date'),
 
-      eventClick: null,
-      eventDrop: null,
-      eventResize: null,
+//      eventClick: function( event, jsEvent, view ) {
+//        console.log(event);
+//        $rootScope.ons.screen.presentPage('event.html');
+//      },
 
-      eventRender:function(event,element){
+      eventRender: function (event, element) {
 //        console.log(event,element);
 
         // override href param
@@ -117,16 +120,16 @@ angular.module('myApp',
 //        return view;
 //      },
 
-      viewRender: function() {
+      viewRender: function () {
         console.log('viewRender');
       },
 
-      viewDisplay: function() {
+      viewDisplay: function () {
         // viewDisplay is deprecated. -> viewRender
         console.log('viewDisplay');
       },
 
-      windowResize: function() {
+      windowResize: function () {
         console.log('windowResize');
       }
 

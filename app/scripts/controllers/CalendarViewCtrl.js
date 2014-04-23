@@ -1,9 +1,20 @@
 angular.module('myApp.controller.calendarViewCtrl', [])
   .controller('CalendarViewCtrl',
-  function($scope, $timeout, Calendar) {
+  function($scope, $timeout, Calendar, EventStore) {
 
     $scope.eventSources = Calendar.buildSources($scope.calendars);
     var originEventSources = _.cloneDeep($scope.eventSources);
+
+    // set click callback
+    $scope.calendarConfig.eventClick = function(event, jsEvent, view){
+      console.log(event);
+      console.log(jsEvent);
+      console.log(view);
+
+      EventStore.save(event);
+
+      $scope.ons.screen.presentPage('event.html');
+    };
 
     $scope.setSelected = function(id) {
       $scope.selected = id;
@@ -29,15 +40,12 @@ angular.module('myApp.controller.calendarViewCtrl', [])
       });
 
       _.compact($scope.eventSources);
-      console.log($scope.eventSources);
-
     });
 
     // SUPER-DIRTY-HACK!!!!!!!!
     $timeout(function(){
       var _calendar = $('#calendar');
       $scope.calendarConfig.height = _calendar.height() - $('#legends').height() - $('#dateSelector').height();
-      console.log($scope.calendarConfig.height);
       _calendar.fullCalendar('render');
     }, 200);
 

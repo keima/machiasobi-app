@@ -1,0 +1,22 @@
+<ons-page class="center" ng-controller="EventViewCtrl">
+    <ons-scroller class="center">
+        <h1>{{ event.title }}</h1>
+
+        <h2>開催期間</h2>
+
+        <p>
+            {{ event.start | date:'MM月dd日 HH:mm' }} から {{ event.end | date:'MM月dd日 HH:mm' }}<br>
+        </p>
+
+        <div ng-show="event.description">
+            <h2>概要:</h2>
+
+            <p ng-bind-html="event.description"></p>
+        </div>
+
+        <ons-button
+                ng-click="ons.screen.dismissPage()">
+            閉じる
+        </ons-button>
+    </ons-scroller>
+</ons-page>
