@@ -60,40 +60,53 @@ angular.module('myApp',
 
     $rootScope.calendars = [
       {
+        name: 'お知らせ',
+        shortName: 'announce',
+        calendarId: 'p-side.net_cbtlph70nn0hdpm7u58v4rjp8g@group.calendar.google.com',
+        selected: true,
+        sticky: true
+      },
+      {
         name: '新町橋東公園',
         shortName: 'shinmachi', // css: gcal-shinmachi
         calendarId: 'p-side.net_ctrq60t4vsvfavejbkdmbhv3k4@group.calendar.google.com',
-        selected: true
+        selected: true,
+        sticky: false
       },
       {
         name: '両国橋南公園',
         shortName: 'ryougoku',
         calendarId: 'p-side.net_timelrcritenrfmn86lco3qt9o@group.calendar.google.com',
-        selected: true
+        selected: true,
+        sticky: false
       },
       {
         name: 'ボードウォーク',
         shortName: 'boardwalk',
         calendarId: 'p-side.net_2i5ibois4v1cqi780cgt18ip8k@group.calendar.google.com',
-        selected: true
+        selected: true,
+        sticky: false
       },
       {
         name: 'CINEMA #1',
         shortName: 'cinema1',
         calendarId: 'p-side.net_7cg9ke36afhpjvmpvc77eb9oo8@group.calendar.google.com',
-        selected: true
+        selected: true,
+        sticky: false
       },
       {
         name: 'CINEMA #2',
         shortName: 'cinema2',
         calendarId: 'p-side.net_bhonp02nnbsbkq44i6o0f1jvc8@group.calendar.google.com',
-        selected: true
+        selected: true,
+        sticky: false
       },
       {
         name: 'ポッポ街',
         shortName: 'poppo',
         calendarId: 'p-side.net_0jj3pc9gbvp36qfm9nqltle94g@group.calendar.google.com',
-        selected: true
+        selected: true,
+        sticky: false
       }
     ];
 
