@@ -11,8 +11,9 @@ fc-event(gcal-***)
 .legend {
     color: #353535;
     font-weight: bold;
-    text-shadow: 1px 1px 0 #cbcbcb;
+    /*text-shadow: 1px 1px 0 rgba(255,255,255,25);*/
     text-align: center;
+    white-space: nowrap;
 }
 
 .fc-event-time {
@@ -21,7 +22,7 @@ fc-event(gcal-***)
 .fc-event-title {
     color: #353535;
     font-weight: bold;
-    text-shadow: 1px 1px 0 #cbcbcb;
+    /*text-shadow: 1px 1px 0 #cbcbcb;*/
 }
 .fc-event-vert .fc-event-bg {
     background: none;
@@ -53,7 +54,8 @@ fc-event(gcal-***)
 }
 
 .gcal-announce {
-    background-color: #c0c0c0;
+    border: 2px dotted #ff0000;
+    background-color: #ff9999;
 }
 
 /* Other */

@@ -20,6 +20,10 @@ angular.module('myApp.service',
       });
     };
 
+    var getEventObject = function(calendarId, eventId) {
+      return Restangular.all('calendars').all(calendarId).all('events').get(eventId);
+    };
+
     var getUrl = function (calId, shortName) {
       return {
         url: 'http://www.google.com/calendar/feeds/' + calId + '/public/basic',
@@ -41,6 +45,7 @@ angular.module('myApp.service',
 
     return {
       get: getCalendarObject,
+      getEvent: getEventObject,
       buildSources: buildSources
     };
 

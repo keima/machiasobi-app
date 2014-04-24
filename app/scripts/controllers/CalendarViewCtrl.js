@@ -8,20 +8,17 @@ angular.module('myApp.controller.calendarViewCtrl', [])
       $scope.ons.screen.presentPage('tutorial.html');
     }
 
+    $scope.selected = 0;
     $scope.eventSources = Calendar.buildSources($scope.calendars);
     var originEventSources = _.cloneDeep($scope.eventSources);
 
-    // set click callback
+    // イベントのクリックリスナ
     $scope.calendarConfig.eventClick = function(event, jsEvent, view){
-      console.log(event);
-      console.log(jsEvent);
-      console.log(view);
-
       EventStore.save(event);
-
       $scope.ons.screen.presentPage('event.html');
     };
 
+    // 日付ボタンバーのクリックイベント TODO:名前。。。
     $scope.setSelected = function(id) {
       $scope.selected = id;
     };
@@ -33,8 +30,6 @@ angular.module('myApp.controller.calendarViewCtrl', [])
     });
 
     $scope.$on('eventSourceIsChanged', function() {
-      console.log('eventSourceIsChanged');
-
       // 全消し
       $scope.eventSources.splice(0, $scope.eventSources.length);
 
@@ -44,17 +39,15 @@ angular.module('myApp.controller.calendarViewCtrl', [])
           $scope.eventSources.push(originEventSources[index]);
         }
       });
-
-      _.compact($scope.eventSources);
+      console.log('eventSourceIsChanged', $scope.eventSources);
     });
 
     // SUPER-DIRTY-HACK!!!!!!!!
+    // カレンダーの高さを 画面高 - もろもろのパーツ しつつレンダリングする
     $timeout(function(){
       var _calendar = $('#calendar');
       $scope.calendarConfig.height = _calendar.height() - $('#legends').height() - $('#dateSelector').height();
       _calendar.fullCalendar('render');
     }, 200);
-
-    $scope.selected = 0;
 
   });

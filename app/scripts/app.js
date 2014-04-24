@@ -125,14 +125,7 @@ angular.module('myApp',
       month: $rootScope.periods[0].date.get('month') - 1,
       date: $rootScope.periods[0].date.get('date'),
 
-//      eventClick: function( event, jsEvent, view ) {
-//        console.log(event);
-//        $rootScope.ons.screen.presentPage('event.html');
-//      },
-
       eventRender: function (event, element) {
-//        console.log(event,element);
-
         // override href param
         element.removeAttr('href');
       },
@@ -141,15 +134,6 @@ angular.module('myApp',
 //        console.log("View Changed: ", view.visStart, view.visEnd, view.start, view.end);
 //        return view;
 //      },
-
-      viewRender: function () {
-        console.log('viewRender');
-      },
-
-      viewDisplay: function () {
-        // viewDisplay is deprecated. -> viewRender
-        console.log('viewDisplay');
-      },
 
       windowResize: function () {
         console.log('windowResize');
