@@ -9,6 +9,14 @@
     margin: 0 auto;
 }
 
+.markdown ul {
+    text-align: left;
+}
+
 .markdown li {
     text-align: left;
+}
+
+.markdown img {
+    max-width: 90%;
 }

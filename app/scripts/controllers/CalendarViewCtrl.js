@@ -1,6 +1,12 @@
 angular.module('myApp.controller.calendarViewCtrl', [])
   .controller('CalendarViewCtrl',
-  function($scope, $timeout, Calendar, EventStore) {
+  function($scope,$rootScope, $timeout, Calendar, EventStore) {
+
+    // チュートリアル表示
+    if (!$rootScope.lastVersion) {
+      $rootScope.lastVersion = $rootScope.semver;
+      $scope.ons.screen.presentPage('tutorial.html');
+    }
 
     $scope.eventSources = Calendar.buildSources($scope.calendars);
     var originEventSources = _.cloneDeep($scope.eventSources);

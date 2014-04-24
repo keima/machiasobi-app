@@ -1,0 +1,17 @@
+<ons-page class="center" ng-controller="TutorialViewCtrl">
+    <ons-scroller class="center">
+        <ons-button
+                type="large"
+                ng-click="dismiss()">
+           この画面を閉じる
+        </ons-button>
+
+        <div btf-markdown ng-include="'tutorial.md'" class="markdown"></div>
+
+        <ons-button
+                type="large"
+                ng-click="ons.screen.dismissPage()">
+            マチ★アプリを使う！
+        </ons-button>
+    </ons-scroller>
+</ons-page>

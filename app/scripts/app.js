@@ -5,6 +5,7 @@ angular.module('myApp',
     'ngSanitize',
     'ngTouch',
     'restangular',
+    'angularLocalStorage',
     'ui.calendar',
     'ui.bootstrap',
     'onsen.directives',
@@ -14,9 +15,16 @@ angular.module('myApp',
     'myApp.filter'
   ])
   .run(
-  function ($rootScope) {
+  function ($rootScope, storage) {
+    var semver = $rootScope.semver = {
+      major: 0,
+      minor: 4,
+      patch: 0
+    };
     $rootScope.appName = "マチ★アプリ";
-    $rootScope.appVersion = "ver.0.3.0";
+    $rootScope.appVersion = "ver." + semver.major + "." + semver.minor + "." + semver.patch;
+
+    storage.bind($rootScope, 'lastVersion', {defaultValue: null});
 
     /*
      $rootScope.periods = [
