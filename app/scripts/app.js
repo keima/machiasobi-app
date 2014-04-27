@@ -19,7 +19,7 @@ angular.module('myApp',
     var semver = $rootScope.semver = {
       major: 0,
       minor: 4,
-      patch: 0
+      patch: 1
     };
     $rootScope.appName = "マチ★アプリ";
     $rootScope.appVersion = "ver." + semver.major + "." + semver.minor + "." + semver.patch;
@@ -105,6 +105,13 @@ angular.module('myApp',
         name: 'ポッポ街',
         shortName: 'poppo',
         calendarId: 'p-side.net_0jj3pc9gbvp36qfm9nqltle94g@group.calendar.google.com',
+        selected: true,
+        sticky: false
+      },
+      {
+        name: 'その他会場',
+        shortName: 'other',
+        calendarId: 'p-side.net_bldk04ogtu79o74hdvdm22pobk@group.calendar.google.com',
         selected: true,
         sticky: false
       }

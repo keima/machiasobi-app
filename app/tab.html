@@ -17,8 +17,7 @@
     <!-- 凡例表示 -->
     <div class="row" id="legends">
         <div ng-repeat="calendar in calendars"
-             ng-if="calendar.sticky == false"
-             class="col-33 legend gcal-{{ calendar.shortName }}"
+             class="col-25 legend gcal-{{ calendar.shortName }}"
              ng-class="{ 'gcal-{{ calendar.shortName }}'  : calendar.selected }">{{ calendar.name }}
         </div>
     </div>
