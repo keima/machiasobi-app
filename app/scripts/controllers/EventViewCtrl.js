@@ -13,6 +13,10 @@ angular.module('myApp.controller.eventViewCtrl', [])
     $scope.toggleFavorite = function() {
       Favorite.toggleFavorite(calendarId, eventId);
       $scope.isFavorite = !$scope.isFavorite;
+
+      if ($scope.isFavorite) {
+        ga('send', 'event', 'Favorite', $scope.event.title);
+      }
     };
 
   });

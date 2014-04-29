@@ -139,6 +139,7 @@ angular.module('myApp',
         element.removeAttr('href');
 
         if (Favorite.isFavorite(event.id)) {
+//          console.log(event);
           element.addClass('favorited');
         }
       },

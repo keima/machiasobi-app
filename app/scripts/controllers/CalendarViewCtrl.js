@@ -6,6 +6,7 @@ angular.module('myApp.controller.calendarViewCtrl', [])
     if (!$rootScope.lastVersion) {
       $rootScope.lastVersion = $rootScope.semver;
       $scope.ons.screen.presentPage('tutorial.html');
+      $scope.ons.screen.presentPage('changelog.html');
     }
 
     $scope.selected = 0;
@@ -40,7 +41,9 @@ angular.module('myApp.controller.calendarViewCtrl', [])
         }
       });
 
-      $scope.eventSources.push($scope.favEvents);
+      if (_.isEmpty($scope.eventSources)) {
+        $scope.eventSources.push($scope.favEvents);
+      }
 
       console.log('eventSourceIsChanged', $scope.eventSources);
     });

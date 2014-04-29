@@ -14,10 +14,9 @@
 
             <label class="topcoat-checkbox">
                 <input type="checkbox" ng-model="calendar.selected">
-
                 <div class="topcoat-checkbox__checkmark"></div>
-                {{ calendar.name }}
             </label>
+            {{ calendar.name }}
 
         </ons-list-item>
 
@@ -30,13 +29,10 @@
                 ng-click="showOnlyFavorite()">
 
             <label class="topcoat-switch">
-                <input type="checkbox" class="topcoat-switch__input">
-
+                <input type="checkbox" class="topcoat-switch__input" ng-model="isOnlyFavorite">
                 <div class="topcoat-switch__toggle"></div>
             </label>
-                <span class="topcoat-list__item__line-height">
-                    ふぁぼったイベントだけ見る
-                </span>
+            ふぁぼったイベントだけ見る(BETA)
 
         </ons-list-item>
 

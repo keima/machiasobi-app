@@ -6,7 +6,8 @@ angular.module('myApp.service',
     RestangularProvider.setBaseUrl('https://www.googleapis.com/calendar/v3');
     RestangularProvider.setDefaultRequestParams({key: "AIzaSyBmnikoDvMTokwjPLjvLfPHNWry85ab_mA"});
   })
-  .service('Calendar', function (Restangular) {
+  .service('Calendar',
+  function (Restangular) {
 
 //    $scope.items = Calendar.get($scope.calendars[0].calendarId, moment('2013-10-01T23:42:40+09:00'), moment('2013-10-30T23:42:40+09:00'));
 
@@ -34,7 +35,7 @@ angular.module('myApp.service',
       };
     };
 
-    var extractCalendarId = function(calendarUrl){
+    var extractCalendarId = function (calendarUrl) {
       var pattern = /http:\/\/www.google.com\/calendar\/feeds\/(.*@group.calendar.google.com)\/public\/basic/;
 
       var calendarId = calendarUrl.match(pattern);
@@ -77,15 +78,67 @@ angular.module('myApp.service',
 
   })
   .service('Favorite',
-  function (FavoriteStore) {
+  function (FavoriteStore, Calendar, $rootScope, $q) {
+
+    var getClassName = function(calendarId){
+      var calendar = _.find($rootScope.calendars, {calendarId: calendarId});
+
+      if (_.isEmpty(calendar)) {
+        return '';
+      }
+
+      return 'gcal-' + calendar.shortName;
+    };
 
     var isFavorite = function (eventId) {
       var favs = FavoriteStore.get();
       return !_.isEmpty(_.find(favs, {eventId: eventId}));
     };
 
+    var getEvents = function () {
+      var promises = [];
+      var favs = FavoriteStore.get();
+
+      favs.forEach(function (value) {
+
+        var promise = Calendar.getEvent(value.calendarId, value.eventId)
+          .then(function (result) {
+            // Convert UI-Calendar Object
+            var event = {
+              id: value.eventId,
+              title: result.summary,
+              description: result.description,
+              start: result.start.dateTime,
+              end: result.end.dateTime,
+              className: getClassName(value.calendarId),
+              sourceUrl: "http://www.google.com/calendar/feeds/" + value.calendarId + "/public/basic",
+              source: {
+                url: "http://www.google.com/calendar/feeds/" + value.calendarId + "/public/basic"
+              }
+            };
+
+            if ('dateTime' in result.start) {
+              event.start = result.start.dateTime;
+              event.end = result.end.dateTime;
+              event.allDay = false;
+            } else if ('date' in result.start) {
+              event.start = moment(result.start.date).toDate();
+              event.end = moment(result.end.date).add('days', -1).endOf('day').toDate();
+              event.allDay = true;
+            }
+
+            return event;
+          });
+
+        promises.push(promise);
+      });
+
+      return $q.all(promises);
+    };
+
     return {
       isFavorite: isFavorite,
+      getEvents: getEvents,
       toggleFavorite: function (calendarId, eventId) {
 
         var fav = {eventId: eventId, calendarId: calendarId};
