@@ -39,6 +39,9 @@ angular.module('myApp.controller.calendarViewCtrl', [])
           $scope.eventSources.push(originEventSources[index]);
         }
       });
+
+      $scope.eventSources.push($scope.favEvents);
+
       console.log('eventSourceIsChanged', $scope.eventSources);
     });
 

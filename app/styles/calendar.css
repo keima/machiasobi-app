@@ -16,6 +16,10 @@ fc-event(gcal-***)
     white-space: nowrap;
 }
 
+.favorited {
+    border: 2px dotted #d9d900;
+}
+
 .fc-event-time {
     color: #000000;
 }

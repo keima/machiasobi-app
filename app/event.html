@@ -8,6 +8,15 @@
 
         <h1>{{ event.title }}</h1>
 
+        <ons-button type="quiet" ng-click="toggleFavorite()">
+            <span ng-hide="isFavorite">
+                <ons-icon icon="star-o" size="lg"></ons-icon>ふぁぼる
+            </span>
+            <span ng-show="isFavorite">
+                <ons-icon icon="star" size="lg"></ons-icon>ふぁぼ解除
+            </span>
+        </ons-button>
+
         <h2>開催期間</h2>
 
         <p>

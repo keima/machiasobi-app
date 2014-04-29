@@ -14,6 +14,7 @@
 
             <label class="topcoat-checkbox">
                 <input type="checkbox" ng-model="calendar.selected">
+
                 <div class="topcoat-checkbox__checkmark"></div>
                 {{ calendar.name }}
             </label>
@@ -24,6 +25,20 @@
             機能
         </h3>
 
+        <ons-list-item
+                class="topcoat-list__item--tappable topcoat-list__item__line-height"
+                ng-click="showOnlyFavorite()">
+
+            <label class="topcoat-switch">
+                <input type="checkbox" class="topcoat-switch__input">
+
+                <div class="topcoat-switch__toggle"></div>
+            </label>
+                <span class="topcoat-list__item__line-height">
+                    ふぁぼったイベントだけ見る
+                </span>
+
+        </ons-list-item>
 
     </ons-list>
 

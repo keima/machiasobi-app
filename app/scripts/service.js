@@ -20,8 +20,11 @@ angular.module('myApp.service',
       });
     };
 
-    var getEventObject = function(calendarId, eventId) {
-      return Restangular.all('calendars').all(calendarId).all('events').get(eventId);
+    var getEventObject = function (calendarId, eventId) {
+
+      var eid = eventId.split('@')[0];
+
+      return Restangular.all('calendars').all(calendarId).all('events').get(eid);
     };
 
     var getUrl = function (calId, shortName) {
@@ -29,6 +32,14 @@ angular.module('myApp.service',
         url: 'http://www.google.com/calendar/feeds/' + calId + '/public/basic',
         className: 'gcal-' + shortName
       };
+    };
+
+    var extractCalendarId = function(calendarUrl){
+      var pattern = /http:\/\/www.google.com\/calendar\/feeds\/(.*@group.calendar.google.com)\/public\/basic/;
+
+      var calendarId = calendarUrl.match(pattern);
+
+      return calendarId[1]; // 1 is result of regexp.
     };
 
     var buildSources = function (calendars) {
@@ -44,8 +55,9 @@ angular.module('myApp.service',
     };
 
     return {
-      get: getCalendarObject,
+      getEvents: getCalendarObject,
       getEvent: getEventObject,
+      extractCalendarId: extractCalendarId,
       buildSources: buildSources
     };
 
@@ -55,12 +67,81 @@ angular.module('myApp.service',
     var event = {};
 
     return {
-      save: function(data) {
+      save: function (data) {
         event = _.cloneDeep(data);
       },
-      load: function() {
+      load: function () {
         return event;
       }
     };
 
+  })
+  .service('Favorite',
+  function (FavoriteStore) {
+
+    var isFavorite = function (eventId) {
+      var favs = FavoriteStore.get();
+      return !_.isEmpty(_.find(favs, {eventId: eventId}));
+    };
+
+    return {
+      isFavorite: isFavorite,
+      toggleFavorite: function (calendarId, eventId) {
+
+        var fav = {eventId: eventId, calendarId: calendarId};
+
+        if (isFavorite(eventId)) {
+          FavoriteStore.remove(fav)
+        } else {
+          FavoriteStore.add(fav);
+        }
+      }
+    };
+  })
+  .service('FavoriteStore',
+  function (storage) {
+    /* Data Structure
+     * favs = [
+     *   {
+     *     evantId: EVENT_ID,
+     *     calendarId: calendar_ID
+     *   },
+     *   ...
+     * ]
+     */
+
+    var STORE_NAME = 'favoriteList';
+
+    var favs = [];
+
+    var getList = function () {
+      if (_.isEmpty(favs)) {
+        favs = storage.get(STORE_NAME);
+      }
+
+      if (_.isNull(favs)) {
+        favs = [];
+      }
+
+      return favs;
+    };
+
+    return {
+      add: function (fav) {
+        favs = getList();
+
+        favs.push(fav);
+
+        storage.set(STORE_NAME, favs);
+      },
+      remove: function (fav) {
+        favs = getList();
+
+        favs = _.reject(favs, fav);
+
+        storage.set(STORE_NAME, favs);
+      },
+      get: getList
+
+    };
   });

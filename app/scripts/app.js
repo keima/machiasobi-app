@@ -15,7 +15,7 @@ angular.module('myApp',
     'myApp.filter'
   ])
   .run(
-  function ($rootScope, storage) {
+  function ($rootScope, storage, Favorite) {
     var semver = $rootScope.semver = {
       major: 0,
       minor: 4,
@@ -57,6 +57,7 @@ angular.module('myApp',
       }
     ];
 
+    $rootScope.favEvents = [];
 
     $rootScope.calendars = [
       {
@@ -124,6 +125,7 @@ angular.module('myApp',
       slotMinutes: 15,
       editable: false,
       defaultView: 'agendaDay',
+      allDaySlot: true,
       allDayText: '終日',
       axisFormat: 'HH:mm',
       slotEventOverlap: false, // イベントの重なりを切る
@@ -135,6 +137,10 @@ angular.module('myApp',
       eventRender: function (event, element) {
         // override href param
         element.removeAttr('href');
+
+        if (Favorite.isFavorite(event.id)) {
+          element.addClass('favorited');
+        }
       },
 
 //      viewRender: function(view, element) {
