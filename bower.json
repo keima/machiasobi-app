@@ -26,5 +26,8 @@
     "angular-sanitize": "~1.2.16",
     "angular-markdown-directive": "~0.3.0",
     "angularLocalStorage": "~0.1.7"
+  },
+  "resolutions": {
+    "jquery": "~2.1.0"
   }
 }

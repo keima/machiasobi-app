@@ -1,5 +1,11 @@
 <ons-page class="center" ng-controller="EventViewCtrl">
     <ons-scroller class="center">
+        <ons-button
+                type="large"
+                ng-click="ons.screen.dismissPage()">
+            閉じる
+        </ons-button>
+
         <h1>{{ event.title }}</h1>
 
         <h2>開催期間</h2>
@@ -15,6 +21,7 @@
         </div>
 
         <ons-button
+                type="large"
                 ng-click="ons.screen.dismissPage()">
             閉じる
         </ons-button>
