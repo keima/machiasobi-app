@@ -4,9 +4,15 @@ angular.module('myApp.controller.calendarViewCtrl', [])
 
     // チュートリアル表示
     if (!$rootScope.lastVersion) {
-      $rootScope.lastVersion = $rootScope.semver;
       $scope.ons.screen.presentPage('tutorial.html');
+    } else {
+      if ($rootScope.lastVersion.major <= 0 &&
+        $rootScope.lastVersion.minor < 5) {
+        $scope.ons.screen.presentPage('tutorial.html');
+      }
     }
+    $rootScope.lastVersion = $rootScope.semver;
+
 
     $scope.selected = 0;
     $scope.eventSources = Calendar.buildSources($scope.calendars);

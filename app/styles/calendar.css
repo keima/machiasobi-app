@@ -29,6 +29,11 @@ fc-event(gcal-***)
     opacity: 1;
 }
 
+.fc-event-hori {
+    height: 30px;
+    white-space: nowrap;
+}
+
 .gcal-shinmachi {
     background-color: #90ee90;
 }
