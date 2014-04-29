@@ -124,6 +124,7 @@ angular.module('myApp',
       slotMinutes: 15,
       editable: false,
       defaultView: 'agendaDay',
+      allDaySlot: false,
       allDayText: '終日',
       axisFormat: 'HH:mm',
       slotEventOverlap: false, // イベントの重なりを切る

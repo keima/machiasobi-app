@@ -5,6 +5,10 @@ angular.module('myApp.controller.calendarListCtrl', [])
     $scope.checkInverse = function(index) {
       $scope.calendars[index].selected = !$scope.calendars[index].selected;
       $rootScope.$broadcast('eventSourceIsChanged');
-    }
+    };
+
+    $scope.toggleAllDay = function() {
+      $rootScope.calendarConfig.allDaySlot = !$rootScope.calendarConfig.allDaySlot;
+    };
 
   });

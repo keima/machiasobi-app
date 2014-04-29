@@ -24,6 +24,20 @@
             機能
         </h3>
 
+        <ons-list-item
+                class="topcoat-list__item--tappable topcoat-list__item__line-height"
+                ng-click="toggleAllDay()">
+            <label class="topcoat-switch">
+                <input type="checkbox" class="topcoat-switch__input"
+                        ng-model="calendarConfig.allDaySlot">
+                <div class="topcoat-switch__toggle"></div>
+            </label>
+            <span class="topcoat-list__item__line-height">
+                終日イベントを表示する
+            </span>
+        </ons-list-item>
+
+
 
     </ons-list>
 
