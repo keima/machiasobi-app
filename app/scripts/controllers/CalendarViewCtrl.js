@@ -7,8 +7,8 @@ angular.module('myApp.controller.calendarViewCtrl', [])
       $scope.ons.screen.presentPage('tutorial.html');
     } else {
       if ($rootScope.lastVersion.major <= 0 &&
-        $rootScope.lastVersion.minor < 5) {
-        $scope.ons.screen.presentPage('tutorial.html');
+        $rootScope.lastVersion.minor < 6) {
+        $scope.ons.screen.presentPage('changelog.html');
       }
     }
     $rootScope.lastVersion = $rootScope.semver;
@@ -45,6 +45,11 @@ angular.module('myApp.controller.calendarViewCtrl', [])
           $scope.eventSources.push(originEventSources[index]);
         }
       });
+
+      if (_.isEmpty($scope.eventSources)) {
+        $scope.eventSources.push($scope.favEvents);
+      }
+
       console.log('eventSourceIsChanged', $scope.eventSources);
     });
 

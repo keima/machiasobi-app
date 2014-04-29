@@ -14,9 +14,10 @@
 
             <label class="topcoat-checkbox">
                 <input type="checkbox" ng-model="calendar.selected">
+
                 <div class="topcoat-checkbox__checkmark"></div>
-                {{ calendar.name }}
             </label>
+            {{ calendar.name }}
 
         </ons-list-item>
 
@@ -29,15 +30,25 @@
                 ng-click="toggleAllDay()">
             <label class="topcoat-switch">
                 <input type="checkbox" class="topcoat-switch__input"
-                        ng-model="calendarConfig.allDaySlot">
+                       ng-model="calendarConfig.allDaySlot">
+
                 <div class="topcoat-switch__toggle"></div>
             </label>
-            <span class="topcoat-list__item__line-height">
-                終日イベントを表示する
-            </span>
+            終日イベントを表示する
         </ons-list-item>
 
+        <ons-list-item
+                class="topcoat-list__item--tappable topcoat-list__item__line-height"
+                ng-click="showOnlyFavorite()">
 
+            <label class="topcoat-switch">
+                <input type="checkbox" class="topcoat-switch__input" ng-model="isOnlyFavorite">
+
+                <div class="topcoat-switch__toggle"></div>
+            </label>
+            ふぁぼったイベントだけ見る(BETA)
+
+        </ons-list-item>
 
     </ons-list>
 

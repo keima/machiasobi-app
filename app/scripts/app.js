@@ -15,10 +15,10 @@ angular.module('myApp',
     'myApp.filter'
   ])
   .run(
-  function ($rootScope, storage) {
+  function ($rootScope, storage, Favorite) {
     var semver = $rootScope.semver = {
       major: 0,
-      minor: 5,
+      minor: 6,
       patch: 0
     };
     $rootScope.appName = "マチ★アプリ";
@@ -57,6 +57,7 @@ angular.module('myApp',
       }
     ];
 
+    $rootScope.favEvents = [];
 
     $rootScope.calendars = [
       {
@@ -136,6 +137,11 @@ angular.module('myApp',
       eventRender: function (event, element) {
         // override href param
         element.removeAttr('href');
+
+        if (Favorite.isFavorite(event.id)) {
+//          console.log(event);
+          element.addClass('favorited');
+        }
       },
 
 //      viewRender: function(view, element) {

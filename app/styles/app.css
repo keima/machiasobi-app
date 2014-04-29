@@ -318,3 +318,8 @@ a {
     background-color:#000000; 
     color:#FFFFFF; 
 }
+
+.topcoat-switch {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
