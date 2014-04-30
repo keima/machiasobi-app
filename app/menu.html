@@ -1,5 +1,4 @@
 <ons-page style="background-color: white" ng-controller="CalendarListCtrl">
-
     <ons-list>
 
         <h3 class="topcoat-list__header">
@@ -50,12 +49,11 @@
 
         </ons-list-item>
 
-    </ons-list>
-
-    <div class="topcoat-navigation-bar topcoat-navigation-bar--bottom">
-        <div class="topcoat-navigation-bar__line-height" style="text-align:center">
+        <ons-list-item
+                style="text-align:center"
+                class="topcoat-list__item__line-height">
             {{ appName }} - {{ appVersion }}
-        </div>
-    </div>
+        </ons-list-item>
 
+    </ons-list>
 </ons-page>
