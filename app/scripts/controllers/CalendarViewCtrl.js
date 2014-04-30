@@ -55,10 +55,12 @@ angular.module('myApp.controller.calendarViewCtrl', [])
 
     // SUPER-DIRTY-HACK!!!!!!!!
     // カレンダーの高さを 画面高 - もろもろのパーツ しつつレンダリングする
-    $timeout(function(){
+    var renderCalendar = function(){
       var _calendar = $('#calendar');
       $scope.calendarConfig.height = _calendar.height() - $('#legends').height() - $('#dateSelector').height();
       _calendar.fullCalendar('render');
-    }, 200);
+    };
+    $timeout(renderCalendar, 200);
+    $scope.$on('ReRenderCalendar', renderCalendar);
 
   });
