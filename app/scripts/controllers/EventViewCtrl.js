@@ -1,6 +1,6 @@
 angular.module('myApp.controller.eventViewCtrl', [])
   .controller('EventViewCtrl',
-  function($scope, $filter, EventStore, Favorite, Calendar) {
+  function($scope, $rootScope, EventStore, Favorite, Calendar) {
     $scope.event = EventStore.load();
 
     var eventId = $scope.event.id;
@@ -13,9 +13,11 @@ angular.module('myApp.controller.eventViewCtrl', [])
     $scope.toggleFavorite = function() {
       Favorite.toggleFavorite(calendarId, eventId);
       $scope.isFavorite = !$scope.isFavorite;
+      $rootScope.$broadcast('ReRenderCalendar');
 
       if ($scope.isFavorite) {
-        ga('send', 'event', 'Favorite', $scope.event.title);
+        var trackerName = ga.getAll()[0].get('name');
+        ga(trackerName + '.send', 'event', 'Favorite', $scope.event.title);
       }
     };
 
