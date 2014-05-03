@@ -2,6 +2,25 @@ angular.module('myApp.controller.calendarViewCtrl', [])
   .controller('CalendarViewCtrl',
   function($scope,$rootScope, $timeout, Calendar, EventStore) {
 
+    /**
+     * Return selected id
+     * @param current
+     * @param periods
+     */
+    var defaultSelected = function(current, periods) {
+      console.log(current.startOf('day').toISOString());
+      console.log(periods[0].date.startOf('day').toISOString());
+      if (current.isSame(periods[0].date,'day')) {
+        return 0;
+      } else if (current.isSame(periods[1].date,'day')) {
+        return 1;
+      } else if (current.isSame(periods[2].date,'day')) {
+        return 2;
+      } else {
+        return 0;
+      }
+    };
+
     // チュートリアル表示
     if (!$rootScope.lastVersion) {
       $scope.ons.screen.presentPage('tutorial.html');
@@ -13,8 +32,7 @@ angular.module('myApp.controller.calendarViewCtrl', [])
     }
     $rootScope.lastVersion = $rootScope.semver;
 
-
-    $scope.selected = 0;
+    $scope.selected = defaultSelected(moment(), $rootScope.periods);
     $scope.eventSources = Calendar.buildSources($scope.calendars);
     var originEventSources = _.cloneDeep($scope.eventSources);
 
