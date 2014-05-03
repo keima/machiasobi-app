@@ -11,6 +11,7 @@ angular.module('myApp',
     'btford.markdown',
     'myApp.service',
     'myApp.controller',
+    'myApp.directive',
     'myApp.filter'
   ])
   .run(
