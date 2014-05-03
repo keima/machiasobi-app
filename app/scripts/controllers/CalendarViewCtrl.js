@@ -31,7 +31,7 @@ angular.module('myApp.controller.calendarViewCtrl', [])
 
     $scope.$watch('selected', function(value) {
       $scope.calendarConfig.year = $scope.periods[value].date.year();
-      $scope.calendarConfig.month = $scope.periods[value].date.months() - 1;
+      $scope.calendarConfig.month = $scope.periods[value].date.months();
       $scope.calendarConfig.date = $scope.periods[value].date.date();
     });
 

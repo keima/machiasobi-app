@@ -45,15 +45,15 @@ angular.module('myApp',
     $rootScope.periods = [
       {
         name: '5月3日(土)',
-        date: moment([2014, 5, 3])
+        date: moment('2014-05-03')
       },
       {
         name: '5月4日(日)',
-        date: moment([2014, 5, 4])
+        date: moment('2014-05-04')
       },
       {
         name: '5月5日(月)',
-        date: moment([2014, 5, 5])
+        date: moment('2014-05-05')
       }
     ];
 
@@ -131,7 +131,7 @@ angular.module('myApp',
       slotEventOverlap: false, // イベントの重なりを切る
 
       year: $rootScope.periods[0].date.get('year'),
-      month: $rootScope.periods[0].date.get('month') - 1,
+      month: $rootScope.periods[0].date.get('month'),
       date: $rootScope.periods[0].date.get('date'),
 
       eventRender: function (event, element) {
