@@ -31,7 +31,7 @@ module.exports = function(grunt) {
       },
       jsTest: {
         files: ['<%= yeoman.test %>/spec/{,*/}*.js'],
-        tasks: ['newer:jshint:test', 'karma']
+        tasks: ['karma']
       },
       gruntfile: {
         files: ['Gruntfile.js']
@@ -275,8 +275,14 @@ module.exports = function(grunt) {
         'imagemin',
         'svgmin'
       ]
-    }
+    },
 
+    karma: {
+      unit: {
+        configFile: 'karma.conf.js',
+        singleRun: true
+      }
+    }
 
   });
 
