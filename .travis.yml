@@ -1,0 +1,21 @@
+language: node_js
+node_js:
+  - "0.10"
+before_install:
+  - npm install -g bower grunt-cli
+install:
+  - npm install
+  - bower install
+script:
+  - grunt build
+deploy:
+  provider: gcs
+  access_key_id:
+    secure: "h5dmDonRz5qZd5uyaguxrjPvewoDMn9KDEb0ISBdgvSw4oW59a7yFp/nbABkoMDYxS8BjxHy33T8wwjuiYsPEjHwOcBsry79oYUGxeD7p5HjClkYE/Z/yY5K57Tj3OzsoHTuFL+9ebJp3AgO31zZ16g0YntgxpJT1Ij/cwZkI4Y="
+  secret_access_key:
+    secure: "InIRsqLlMguCDpsy3OhIVliVlRR1Pp1Snvdj5N7+eLDjKaI7GyV3q02fm2wgy+X32WTDL6LNR6N3hYTU7HeHGREfcbVeWlHz83MWDb2MoaXaSByyJcGO7SgZtfgZ+MU1lc7Hy6J26DtGQEivCm6su0dH76QPlSxU6BWCCBLHD7k="
+  bucket: machi.p-side.net
+  skip_cleanup: true
+  edge: true
+  on:
+    tags: true

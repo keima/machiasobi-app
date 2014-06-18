@@ -1,5 +1,7 @@
 # Machiasobi-app
 
+[![Build Status](https://travis-ci.org/keima/machiasobi-app.svg?branch=master)](https://travis-ci.org/keima/machiasobi-app)
+
 ## Requirements
 
 - node
@@ -19,4 +21,3 @@
 ## Author
 
 keima (@pside)
-
