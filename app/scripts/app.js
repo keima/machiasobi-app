@@ -19,7 +19,7 @@ angular.module('myApp',
     var semver = $rootScope.semver = {
       major: 0,
       minor: 6,
-      patch: 4
+      patch: 5
     };
     $rootScope.appName = "マチ★アプリ";
     $rootScope.appVersion = "ver." + semver.major + "." + semver.minor + "." + semver.patch;
