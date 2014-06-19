@@ -15,6 +15,7 @@ deploy:
   secret_access_key:
     secure: "InIRsqLlMguCDpsy3OhIVliVlRR1Pp1Snvdj5N7+eLDjKaI7GyV3q02fm2wgy+X32WTDL6LNR6N3hYTU7HeHGREfcbVeWlHz83MWDb2MoaXaSByyJcGO7SgZtfgZ+MU1lc7Hy6J26DtGQEivCm6su0dH76QPlSxU6BWCCBLHD7k="
   bucket: machi.p-side.net
+  local-dir: dist
   skip_cleanup: true
   edge: true
   on:
