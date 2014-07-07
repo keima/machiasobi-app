@@ -18,8 +18,8 @@ angular.module('myApp',
   function ($rootScope, storage, Favorite) {
     var semver = $rootScope.semver = {
       major: 0,
-      minor: 6,
-      patch: 5
+      minor: 7,
+      patch: 0
     };
     $rootScope.appName = "マチ★アプリ";
     $rootScope.appVersion = "ver." + semver.major + "." + semver.minor + "." + semver.patch;
