@@ -6,8 +6,7 @@ angular.module('myApp.service',
     RestangularProvider.setBaseUrl('https://www.googleapis.com/calendar/v3');
     RestangularProvider.setDefaultRequestParams({key: "AIzaSyBmnikoDvMTokwjPLjvLfPHNWry85ab_mA"});
   })
-  .service('Calendar',
-  function (Restangular) {
+  .service('Calendar', function (Restangular) {
 
 //    $scope.items = Calendar.get($scope.calendars[0].calendarId, moment('2013-10-01T23:42:40+09:00'), moment('2013-10-30T23:42:40+09:00'));
 
@@ -77,10 +76,9 @@ angular.module('myApp.service',
     };
 
   })
-  .service('Favorite',
-  function (FavoriteStore, Calendar, $rootScope, $q) {
+  .service('Favorite', function (FavoriteStore, Calendar, $rootScope, $q) {
 
-    var getClassName = function(calendarId){
+    var getClassName = function (calendarId) {
       var calendar = _.find($rootScope.calendars, {calendarId: calendarId});
 
       if (_.isEmpty(calendar)) {
@@ -151,8 +149,7 @@ angular.module('myApp.service',
       }
     };
   })
-  .service('FavoriteStore',
-  function (storage) {
+  .service('FavoriteStore', function (storage) {
     /* Data Structure
      * favs = [
      *   {

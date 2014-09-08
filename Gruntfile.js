@@ -116,7 +116,7 @@ module.exports = function(grunt) {
       app: {
         src: '<%= yeoman.app %>/index.html',
         ignorePath: '<%= yeoman.app %>/',
-        exclude: [/underscore/]
+        exclude: [/underscore/,/fullcalendar\.js/]
       }
     },
 

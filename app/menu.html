@@ -1,57 +1,33 @@
 <ons-page style="background-color: white" ng-controller="CalendarListCtrl">
     <ons-list>
 
-        <h3 class="topcoat-list__header">
+        <ons-list-header>
             カレンダーのON/OFF
-        </h3>
+        </ons-list-header>
 
         <ons-list-item
-                class="topcoat-list__item--tappable topcoat-list__item__line-height"
                 ng-repeat="calendar in calendars"
                 ng-if="calendar.sticky === false"
                 ng-click="checkInverse($index)">
-
-            <label class="topcoat-checkbox">
-                <input type="checkbox" ng-model="calendar.selected">
-
-                <div class="topcoat-checkbox__checkmark"></div>
-            </label>
-            {{ calendar.name }}
-
+            <ons-switch modifier="list-item" ng-model="calendar.selected"></ons-switch>
+            {{calendar.selected}}:{{ calendar.name }}
         </ons-list-item>
 
-        <h3 class="topcoat-list__header">
+        <ons-list-header>
             機能
-        </h3>
+        </ons-list-header>
 
-        <ons-list-item
-                class="topcoat-list__item--tappable topcoat-list__item__line-height"
-                ng-click="toggleAllDay()">
-            <label class="topcoat-switch">
-                <input type="checkbox" class="topcoat-switch__input"
-                       ng-model="calendarConfig.allDaySlot">
-
-                <div class="topcoat-switch__toggle"></div>
-            </label>
+        <ons-list-item ng-click="toggleAllDay()">
+            <ons-switch modifier="list-item" ng-model="calendarConfig.allDaySlot"></ons-switch>
             終日イベントを表示する
         </ons-list-item>
 
-        <ons-list-item
-                class="topcoat-list__item--tappable topcoat-list__item__line-height"
-                ng-click="showOnlyFavorite()">
-
-            <label class="topcoat-switch">
-                <input type="checkbox" class="topcoat-switch__input" ng-model="isOnlyFavorite">
-
-                <div class="topcoat-switch__toggle"></div>
-            </label>
-            ふぁぼったイベントだけ見る(BETA)
-
+        <ons-list-item ng-click="showOnlyFavorite()">
+            <ons-switch modifier="list-item" ng-model="isOnlyFavorite"></ons-switch>
+            ふぁぼったイベントだけ見る
         </ons-list-item>
 
-        <ons-list-item
-                style="text-align:center"
-                class="topcoat-list__item__line-height">
+        <ons-list-item style="text-align:center">
             {{ appName }} - {{ appVersion }}
         </ons-list-item>
 

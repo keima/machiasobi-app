@@ -1,13 +1,15 @@
 /* Calendar Cell Design */
 
-/*
-fc-event(gcal-***)
-|- fc-event-inner
-|  |- fc-event-time
-|  \- fc-event-title
-\- fc-event-bg
-*/
+/* v2
+a. fc-day-grid-event fc-event fc-start fc-end gcal-***** // allday
+a. fc-time-grid-event fc-event fc-start fc-end gcal-***** // event
+|- div. fc-content
+|  |- div. fc-time
+|  \- div. fc-title
+\- div. fc-bg
+ */
 
+/* 凡例部分(FullCalendar範囲外) */
 .legend {
     color: #353535;
     font-weight: bold;
@@ -16,28 +18,39 @@ fc-event(gcal-***)
     white-space: nowrap;
 }
 
-.favorited .fc-event-title:before {
+/* ふぁぼ機能インジケータ */
+.favorited .fc-title:before {
     color: #a90016;
     content: "★";
     text-shadow: 0 0 2px yellow;
 }
 
-.fc-event-time {
+/* FullCalendar Event Item */
+.fc-time {
     color: #000000;
 }
-.fc-event-title {
+.fc-title {
     color: #353535;
     font-weight: bold;
     /*text-shadow: 1px 1px 0 #cbcbcb;*/
 }
-.fc-event-vert .fc-event-bg {
+.fc-bg {
     background: none;
     opacity: 1;
 }
 
-.fc-event-hori {
+.fc-day-grid-event {
     height: 30px;
     white-space: nowrap;
+}
+
+/* カラー定義 */
+.gcal-bizan {
+    background-color: #85C8AA;
+}
+
+.gcal-pagoda {
+    background-color: #FFB01C;
 }
 
 .gcal-shinmachi {
@@ -46,6 +59,10 @@ fc-event(gcal-***)
 
 .gcal-ryougoku {
     background-color: #87ceeb;
+}
+
+.gcal-arcade {
+    background-color: #bffff0;
 }
 
 .gcal-boardwalk {
@@ -69,11 +86,11 @@ fc-event(gcal-***)
 }
 
 .gcal-announce {
-    border: 2px dotted #ff0000;
+    /*border: 2px dotted #ff0000;*/
     background-color: #ff9999;
 }
 
 /* Other */
-table.fc-agenda-days thead {
+div.fc-agendaDay-view thead {
     display: none;
 }

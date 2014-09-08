@@ -1,6 +1,19 @@
 <ons-page class="center" ng-controller="TwitterOfficialCtrl">
-    <ons-navigator-toolbar title="公式アカウントまとめ">
-    </ons-navigator-toolbar>
+    <ons-toolbar>
+        <div class="left">
+            <ons-back-button>
+                戻る
+            </ons-back-button>
+        </div>
+        <div class="center">
+            Twitter
+        </div>
+        <div class="right">
+            <ons-toolbar-button ng-click="ons.navigator.pushPage('help.html')">
+                <ons-icon icon="ion-information-circled" size="lg"></ons-icon>
+            </ons-toolbar-button>
+        </div>
+    </ons-toolbar>
 
     <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/pside/machiasobi-official"
        data-widget-id="458265392213786625">Tweets from https://twitter.com/pside/machiasobi-official</a>

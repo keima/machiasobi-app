@@ -9,13 +9,13 @@
     <link rel="shortcut icon" href="./favicon.png">
 
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
     <!-- build:css({.tmp,app}) styles/vendor.css -->
     <link rel="stylesheet" href="bower_components/onsenui/build/css/onsenui.css">
-    <link rel="stylesheet" href="bower_components/onsenui/build/css/topcoat-mobile-onsen-ios7.css">
-    <link rel="stylesheet" href="bower_components/onsenui/build/css/onsenui.css">
+    <link rel="stylesheet" href="bower_components/onsenui/build/css/onsen-css-components.css">
 
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/fullcalendar/fullcalendar.css" />
+    <link rel="stylesheet" href="bower_components/fullcalendar/dist/fullcalendar.css" />
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -24,7 +24,11 @@
     <link rel="stylesheet" href="styles/animation.css">
     <link rel="stylesheet" href="styles/app.css">
     <link rel="stylesheet" href="styles/calendar.css">
+    <link rel="stylesheet" href="styles/list.css">
     <link rel="stylesheet" href="styles/markdown.css">
+    <link rel="stylesheet" href="styles/navigation-bar.css">
+    <link rel="stylesheet" href="styles/other.css">
+    <link rel="stylesheet" href="styles/page.css">
     <link rel="stylesheet" href="styles/twitter.css">
     <!-- endinjector -->
     <!-- endbuild -->
@@ -34,19 +38,20 @@
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/onsenui/build/js/onsenui.js"></script>
-    <script src="bower_components/angular-touch/angular-touch.js"></script>
-    <script src="bower_components/jquery-ui/ui/jquery-ui.js"></script>
-    <script src="bower_components/fullcalendar/fullcalendar.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/momentjs/moment.js"></script>
     <script src="bower_components/angular-ui-calendar/src/calendar.js"></script>
     <script src="bower_components/lodash/dist/lodash.compat.js"></script>
-    <script src="bower_components/momentjs/moment.js"></script>
     <script src="bower_components/restangular/dist/restangular.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-markdown-directive/markdown.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angularLocalStorage/src/angularLocalStorage.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
     <!-- endbower -->
     <script src="bower_components/showdown/compressed/showdown.js"></script>
+    <script src="scripts/external/fullcalendar.js"></script>
+    <script src="bower_components/fullcalendar/dist/gcal.js"></script>
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/main.js -->
@@ -59,7 +64,6 @@
     <script src="scripts/controllers/TutorialViewCtrl.js"></script>
     <script src="scripts/controllers/TwitterCtrl.js"></script>
     <script src="scripts/directive.js"></script>
-    <script src="scripts/external/gcal-jp.js"></script>
     <script src="scripts/filter.js"></script>
     <script src="scripts/service.js"></script>
     <!-- endinjector -->
@@ -68,19 +72,27 @@
 <body>
 
 <!-- Google Tag Manager -->
-<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-KRPVKF"
-                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-KRPVKF');</script>
+<noscript>
+    <iframe src="//www.googletagmanager.com/ns.html?id=GTM-KRPVKF"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<script>(function (w, d, s, l, i) {
+    w[l] = w[l] || [];
+    w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+    var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+    j.async = true;
+    j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+    f.parentNode.insertBefore(j, f);
+})(window, document, 'script', 'dataLayer', 'GTM-KRPVKF');</script>
 <!-- End Google Tag Manager -->
 
 <ons-screen>
-<ons-sliding-menu
-        behind-page="menu.html"
-        above-page="navigator.html"></ons-sliding-menu>
+    <ons-sliding-menu
+            behind-page="menu.html"
+            above-page="calendar.html"
+            side="left">
+    </ons-sliding-menu>
 </ons-screen>
 
 </body>
