@@ -1,6 +1,7 @@
-# .idea
 app/bower_components
 node_modules
 dist
 .tmp
-workspace.xml
+.idea/workspace.xml
+.idea/libraries/
+.idea/scopes/
