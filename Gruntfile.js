@@ -8,7 +8,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
 
     yeoman: {
-      app: require('./bower.json').appPath || 'app',
+      app: 'app',
       dist: 'dist',
       test: 'test'
     },
@@ -153,7 +153,7 @@ module.exports = function(grunt) {
         flow: {
           // default : { steps: { 'js': ['concat', 'uglifyjs'], 'css': ['concat', 'cssmin']}, post: {}}
           steps: {
-            'js': ['concat'],
+            'js': ['concat', 'uglifyjs'],
             'css': ['concat', 'cssmin']
           },
           post: {}
@@ -212,34 +212,19 @@ module.exports = function(grunt) {
       }
     },
 
-    ngmin: {
+    ngAnnotate: {
       dist: {
         files: [
-          {
-            expand: true,
-            src: ['<%= yeoman.dist %>/scripts/main.js'],
-            dest: '<%= yeoman.dist %>/scripts'
-
-            /*
-             cwd: '.tmp/concat/scripts',
-             src: '*.js',
-             dest: '.tmp/concat/scripts'
-             */
-          }
+          {src: '.tmp/concat/scripts/main.js', dest: '.tmp/concat/scripts/main.js'},
+          {src: '.tmp/concat/scripts/vendor.js', dest: '.tmp/concat/scripts/vendor.js'}
         ]
-      }
-    },
-
-    cdnify: {
-      dist: {
-        html: ['<%= yeoman.dist %>/index.html']
       }
     },
 
     copy: {
       dist: {
         files: [
-          {
+          { // そのままコピーするもの
             expand: true,
             dot: true,
             cwd: '<%= yeoman.app %>',
@@ -248,10 +233,7 @@ module.exports = function(grunt) {
               '*.{ico,png,txt}',
               '.htaccess',
               '*.html',
-              'partials/{,*/}*.html',
-//              'bower_components/**/*',
-              'images/{,*/}*.{webp}',
-              'fonts/*'
+              'images/{,*/}*.{webp}'
             ]
           },
           {
@@ -259,14 +241,23 @@ module.exports = function(grunt) {
             cwd: '.tmp/images',
             dest: '<%= yeoman.dist %>/images',
             src: ['generated/*']
+          },
+          {
+            expand: true,
+            cwd: '<%= yeoman.app %>',
+            dest: '<%= yeoman.dist %>',
+            src: [
+              'bower_components/onsenui/build/css/{font_awesome,ionicons}/css/*.min.css',
+              'bower_components/onsenui/build/css/{font_awesome,ionicons}/fonts/*.{otf,eot,svg,ttf,woff}'
+            ]
           }
         ]
       },
       styles: {
         expand: true,
         cwd: '<%= yeoman.app %>/styles',
-        dest: '.tmp/styles/',
-        src: '{,*/}*.css'
+        src: '{,*/}*.css',
+        dest: '.tmp/styles/'
       }
     },
 
@@ -306,11 +297,10 @@ module.exports = function(grunt) {
     'concurrent:dist',
     'autoprefixer',
     'concat',
-    'ngmin',
+    'ngAnnotate',
     'copy:dist',
-//    'cdnify',
     'cssmin',
-//    'uglify',
+    'uglify',
     'rev',
     'usemin',
     'htmlmin'
