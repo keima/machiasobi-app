@@ -1,4 +1,4 @@
-<ons-page class="center" ng-controller="TwitterOfficialCtrl">
+<ons-page class="center" ng-controller="TwitterOfficialCtrl as ctrl">
     <ons-toolbar>
         <div class="left">
             <ons-back-button>
@@ -15,15 +15,11 @@
         </div>
     </ons-toolbar>
 
-    <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/pside/machiasobi-official"
+    <a class="twitter-timeline"
+       href="https://twitter.com/pside/machiasobi-official"
+       height="{{ ctrl.contentHeight }}"
+       data-dnt="true"
+       data-chrome="noheader nofooter noborders"
        data-widget-id="458265392213786625">Tweets from https://twitter.com/pside/machiasobi-official</a>
-    <script>!function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
-        if (!d.getElementById(id)) {
-            js = d.createElement(s);
-            js.id = id;
-            js.src = p + "://platform.twitter.com/widgets.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }
-    }(document, "script", "twitter-wjs");</script>
+
 </ons-page>
