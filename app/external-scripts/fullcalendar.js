@@ -6,7 +6,7 @@
 
 (function(factory) {
 	if (typeof define === 'function' && define.amd) {
-		define([ 'jquery', 'moment' ], factory);
+		define([ 'jquery', '../bower_components/moment/moment' ], factory);
 	}
 	else {
 		factory(jQuery, moment);
