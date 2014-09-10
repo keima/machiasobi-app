@@ -9,8 +9,8 @@
                 ng-repeat="calendar in calendars"
                 ng-if="calendar.sticky === false"
                 ng-click="checkInverse($index)">
-            <ons-switch modifier="list-item" ng-model="calendar.selected"></ons-switch>
-            {{calendar.selected}}:{{ calendar.name }}
+            <ons-switch modifier="list-item" checked ng-model="calendar.selected"></ons-switch>
+            {{ calendar.name }}
         </ons-list-item>
 
         <ons-list-header>
