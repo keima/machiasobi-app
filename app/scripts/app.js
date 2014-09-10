@@ -20,7 +20,7 @@ angular.module('myApp',
     $rootScope.semver = semVer = {
       major: 0,
       minor: 8,
-      patch: 0
+      patch: 1
     };
     $rootScope.appName = "マチ★アプリ";
     $rootScope.volName = "vol.13";
