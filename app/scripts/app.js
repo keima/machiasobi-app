@@ -15,45 +15,31 @@ angular.module('myApp',
     'myApp.filter'
   ])
   .run(
-  function ($rootScope, storage, Favorite) {
-    var semver = $rootScope.semver = {
+  function ($rootScope, $window, storage, Favorite) {
+    var semVer;
+    $rootScope.semver = semVer = {
       major: 0,
-      minor: 7,
+      minor: 8,
       patch: 0
     };
     $rootScope.appName = "マチ★アプリ";
-    $rootScope.appVersion = "ver." + semver.major + "." + semver.minor + "." + semver.patch;
+    $rootScope.volName = "vol.13";
+    $rootScope.appVersion = "ver." + semVer.major + "." + semVer.minor + "." + semVer.patch;
 
     storage.bind($rootScope, 'lastVersion', {defaultValue: null});
 
-    /*
-     $rootScope.periods = [
-     {
-     name: '10月12日(土)',
-     date: moment([2013, 10, 12])
-     },
-     {
-     name: '10月13日(日)',
-     date: moment([2013, 10, 13])
-     },
-     {
-     name: '10月14日(月)',
-     date: moment([2013, 10, 14])
-     }
-     ];*/
-
     $rootScope.periods = [
       {
-        name: '5月3日(土)',
-        date: moment('2014-05-03')
+        name: '10月11日(土)',
+        date: moment('2014-10-11T00:00:00+09:00')
       },
       {
-        name: '5月4日(日)',
-        date: moment('2014-05-04')
+        name: '10月12日(日)',
+        date: moment('2014-10-12T00:00:00+09:00')
       },
       {
-        name: '5月5日(月)',
-        date: moment('2014-05-05')
+        name: '10月13日(月)',
+        date: moment('2014-10-13T00:00:00+09:00')
       }
     ];
 
@@ -63,34 +49,71 @@ angular.module('myApp',
       {
         name: 'お知らせ',
         shortName: 'announce',
+        layout: '100%', // col-100
         calendarId: 'p-side.net_cbtlph70nn0hdpm7u58v4rjp8g@group.calendar.google.com',
         selected: true,
         sticky: true
       },
       {
-        name: '新町橋東公園',
-        shortName: 'shinmachi', // css: gcal-shinmachi
-        calendarId: 'p-side.net_ctrq60t4vsvfavejbkdmbhv3k4@group.calendar.google.com',
+        name: '眉山林間ステージ',
+        shortName: 'bizan', // css: gcal-shinmachi
+        layout: '33%',
+        calendarId: 'p-side.net_m9s9a5ut02n6ap1s6prdj92ss4@group.calendar.google.com',
         selected: true,
         sticky: false
       },
       {
-        name: '両国橋南公園',
-        shortName: 'ryougoku',
-        calendarId: 'p-side.net_timelrcritenrfmn86lco3qt9o@group.calendar.google.com',
+        name: 'パゴダ広場',
+        shortName: 'pagoda',
+        layout: '34%',
+        calendarId: 'p-side.net_jdav9j70k7orjdq0djiudpv9cg@group.calendar.google.com',
+        selected: true,
+        sticky: false
+      },
+      {
+        name: '新町橋東公園',
+        shortName: 'shinmachi',
+        layout: '33%',
+        calendarId: 'p-side.net_ctrq60t4vsvfavejbkdmbhv3k4@group.calendar.google.com',
+        selected: true,
+        sticky: false
+      },
+//      {
+//        name: '両国橋南公園',
+//        shortName: 'ryougoku',
+//        layout: 'col-33',
+//        calendarId: 'p-side.net_timelrcritenrfmn86lco3qt9o@group.calendar.google.com',
+//        selected: true,
+//        sticky: false
+//      },
+      {
+        name: '商店街アーケード',
+        shortName: 'arcade',
+        layout: '33%',
+        calendarId: 'p-side.net_oclfdoi9f11vifccu3t081e260@group.calendar.google.com',
         selected: true,
         sticky: false
       },
       {
         name: 'ボードウォーク',
         shortName: 'boardwalk',
+        layout: '34%',
         calendarId: 'p-side.net_2i5ibois4v1cqi780cgt18ip8k@group.calendar.google.com',
+        selected: true,
+        sticky: false
+      },
+      {
+        name: 'ポッポ街',
+        shortName: 'poppo',
+        layout: '33%',
+        calendarId: 'p-side.net_0jj3pc9gbvp36qfm9nqltle94g@group.calendar.google.com',
         selected: true,
         sticky: false
       },
       {
         name: 'CINEMA #1',
         shortName: 'cinema1',
+        layout: '33%',
         calendarId: 'p-side.net_7cg9ke36afhpjvmpvc77eb9oo8@group.calendar.google.com',
         selected: true,
         sticky: false
@@ -98,20 +121,15 @@ angular.module('myApp',
       {
         name: 'CINEMA #2',
         shortName: 'cinema2',
+        layout: '34%',
         calendarId: 'p-side.net_bhonp02nnbsbkq44i6o0f1jvc8@group.calendar.google.com',
-        selected: true,
-        sticky: false
-      },
-      {
-        name: 'ポッポ街',
-        shortName: 'poppo',
-        calendarId: 'p-side.net_0jj3pc9gbvp36qfm9nqltle94g@group.calendar.google.com',
         selected: true,
         sticky: false
       },
       {
         name: 'その他会場',
         shortName: 'other',
+        layout: '33%',
         calendarId: 'p-side.net_bldk04ogtu79o74hdvdm22pobk@group.calendar.google.com',
         selected: true,
         sticky: false
@@ -120,38 +138,38 @@ angular.module('myApp',
 
     $rootScope.calendarConfig = {
       header: false,
-      height: 9999,
-      firstHour: 8,
-      slotMinutes: 15,
+      height: 1000, // dummy value
+      defaultDate: $rootScope.periods[0].date,
+      timezone: 'Asia/Tokyo',//false,//s'UTC',//'local',//'Asia/Tokyo',
+
+      scrollTime: '8:00:00',
+      slotDuration: '00:15:00',
+
       editable: false,
+
       defaultView: 'agendaDay',
-      allDaySlot: false,
+
+      allDaySlot: true,
       allDayText: '終日',
+
       axisFormat: 'HH:mm',
       slotEventOverlap: false, // イベントの重なりを切る
-
-      year: $rootScope.periods[0].date.get('year'),
-      month: $rootScope.periods[0].date.get('month'),
-      date: $rootScope.periods[0].date.get('date'),
 
       eventRender: function (event, element) {
         // override href param
         element.removeAttr('href');
 
         if (Favorite.isFavorite(event.id)) {
-//          console.log(event);
           element.addClass('favorited');
         }
       },
-
-//      viewRender: function(view, element) {
-//        console.log("View Changed: ", view.visStart, view.visEnd, view.start, view.end);
-//        return view;
-//      },
-
       windowResize: function () {
         console.log('windowResize');
       }
-
     };
+
+    // rootScopeいじっておいて、どこでもng-clickでリンクを開けるようにする
+    $rootScope.openLink = function(url) {
+      $window.open(url);
+    }
   });

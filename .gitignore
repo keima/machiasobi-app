@@ -1,5 +1,6 @@
-.idea
+# .idea
 app/bower_components
 node_modules
 dist
 .tmp
+workspace.xml

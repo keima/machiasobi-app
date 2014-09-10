@@ -1,15 +1,13 @@
 angular.module('myApp.controller.calendarViewCtrl', [])
   .controller('CalendarViewCtrl',
-  function ($scope, $rootScope, $timeout, Calendar, EventStore) {
+  function ($scope, $rootScope, $window, $timeout, Calendar, EventStore) {
 
     /**
      * Return selected id
-     * @param current
-     * @param periods
+     * @param current Moment
+     * @param periods Moment
      */
     var defaultSelected = function (current, periods) {
-      console.log(current.startOf('day').toISOString());
-      console.log(periods[0].date.startOf('day').toISOString());
       if (current.isSame(periods[0].date, 'day')) {
         return 0;
       } else if (current.isSame(periods[1].date, 'day')) {
@@ -21,15 +19,16 @@ angular.module('myApp.controller.calendarViewCtrl', [])
       }
     };
 
-    // チュートリアル表示
-    if (!$rootScope.lastVersion) {
-      $scope.ons.screen.presentPage('tutorial.html');
-    } else {
-      if ($rootScope.lastVersion.major <= 0 &&
-        $rootScope.lastVersion.minor < 6) {
-        $scope.ons.screen.presentPage('changelog.html');
-      }
-    }
+//    // チュートリアル表示
+//    if (!$rootScope.lastVersion) {
+//      $scope.ons.screen.presentPage('tutorial.html');
+//    } else {
+//      if ($rootScope.lastVersion.major <= 0 &&
+//        $rootScope.lastVersion.minor < 6) {
+//        $scope.ons.screen.presentPage('changelog.html');
+//      }
+//    }
+
     $rootScope.lastVersion = $rootScope.semver;
 
     $scope.selectedDateId = defaultSelected(moment(), $rootScope.periods);
@@ -56,9 +55,7 @@ angular.module('myApp.controller.calendarViewCtrl', [])
     };
 
     $scope.$watch('selectedDateId', function (value) {
-      $scope.calendarConfig.year = $scope.periods[value].date.year();
-      $scope.calendarConfig.month = $scope.periods[value].date.months();
-      $scope.calendarConfig.date = $scope.periods[value].date.date();
+      $scope.calendarConfig.defaultDate = $scope.periods[value].date;
     });
 
     $scope.$on('eventSourceIsChanged', function () {
@@ -75,15 +72,13 @@ angular.module('myApp.controller.calendarViewCtrl', [])
       if (_.isEmpty($scope.eventSources)) {
         $scope.eventSources.push($scope.favEvents);
       }
-
-      console.log('eventSourceIsChanged', $scope.eventSources);
     });
 
     // SUPER-DIRTY-HACK!!!!!!!!
     // カレンダーの高さを 画面高 - もろもろのパーツ しつつレンダリングする
     var renderCalendar = function () {
       var _calendar = $('#calendar');
-      $scope.calendarConfig.height = _calendar.height() - $('#legends').height() - $('#dateSelector').height();
+      $scope.calendarConfig.height = $window.innerHeight - $('#calendar-header-area').height() - 44;
       _calendar.fullCalendar('render');
     };
     $timeout(renderCalendar, 200);

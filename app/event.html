@@ -1,38 +1,48 @@
-<ons-page class="center" ng-controller="EventViewCtrl">
-    <ons-scroller class="center">
-        <ons-button
-                type="large"
-                ng-click="ons.screen.dismissPage()">
-            閉じる
-        </ons-button>
+<ons-page
+        ng-controller="EventViewCtrl"
+        ng-device-backbutton="ons.screen.dismissPage()">
 
-        <h1>{{ event.title }}</h1>
+    <ons-toolbar>
+        <div class="left">
+            <ons-back-button ng-click="ons.screen.dismissPage()">
+                閉じる
+            </ons-back-button>
+        </div>
+        <div class="center">{{ event.title }}</div>
+    </ons-toolbar>
 
-        <ons-button type="quiet" ng-click="toggleFavorite()">
+    <!-- 修正する
+    <ons-button type="quiet" ng-click="toggleFavorite()">
             <span ng-hide="isFavorite">
                 <ons-icon icon="star-o" size="lg"></ons-icon>ふぁぼる
             </span>
             <span ng-show="isFavorite">
                 <ons-icon icon="star" size="lg"></ons-icon>ふぁぼ解除
             </span>
-        </ons-button>
+    </ons-button>
+    -->
 
-        <h2>開催期間</h2>
+    <ons-list>
+        <ons-list-header>イベント名</ons-list-header>
+        <ons-list-item>
+            <p>{{ event.title }}</p>
+        </ons-list-item>
 
-        <p>
-            {{ event.start | date:'MM月dd日 HH:mm' }} から {{ event.end | date:'MM月dd日 HH:mm' }}<br>
-        </p>
+        <ons-list-header>開催期間</ons-list-header>
+        <ons-list-item ng-hide="event.allDay">
+            開始日時 : {{ event.start.toDate() | date:'MM月dd日 HH:mm' }}
+        </ons-list-item>
+        <ons-list-item ng-hide="event.allDay">
+            終了日時 : {{ event.end.toDate() | date:'MM月dd日 HH:mm' }}
+        </ons-list-item>
+        <ons-list-item ng-show="event.allDay">
+            <p>終日<br>イベント会場の開始・終了時刻をご確認下さい</p>
+        </ons-list-item>
 
-        <div ng-show="event.description">
-            <h2>概要</h2>
-
+        <ons-list-header ng-show="event.description">イベント概要</ons-list-header>
+        <ons-list-item ng-show="event.description">
             <div btf-markdown="event.description" class="markdown" target-blank></div>
-        </div>
+        </ons-list-item>
 
-        <ons-button
-                type="large"
-                ng-click="ons.screen.dismissPage()">
-            閉じる
-        </ons-button>
-    </ons-scroller>
+    </ons-list>
 </ons-page>

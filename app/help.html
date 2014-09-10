@@ -1,56 +1,70 @@
-<ons-page class="center">
-    <ons-navigator-toolbar
-            title="このアプリについて">
-    </ons-navigator-toolbar>
-
-    <ons-scroller class="center">
-        <h1>マチ<span style="color: #a90016">★</span>アプリ</h1>
-
-        <p>
-            マチ★アソビを攻略せよ。
-        </p>
-
-        <p>
-            マチ★アソビのイベント一覧を日時別、場所別に表示します。<br>
-            加えて、公式Twitterを一覧したりすることが出来るなどの機能を有しております。
-        </p>
-
-        <h2>免責事項</h2>
-
-        <p>
-            <strong>このアプリおよびアプリの製作者は「マチ★アソビ」の主催者とは関係がございません。</strong><br>
-            このアプリで提供されている情報について、正しい情報を提供することを心がけておりますが、
-            これら情報の真偽の保証はできかねます。利用者様の判断の上でご利用下さい。
-        </p>
-
-        <p>
-            このアプリに関するご意見などは下記作成者までご連絡をお願いします。<br>
-            「マチ★アソビ」の主催者へ問い合わせをしないようお願いいたします。
-        </p>
-
-        <div>
-            <ons-button
-                    ng-click="ons.screen.presentPage('tutorial.html');">
-                チュートリアルを見る
-            </ons-button>
+<ons-page>
+    <ons-toolbar>
+        <div class="left">
+            <ons-back-button>
+                戻る
+            </ons-back-button>
         </div>
-
-        <div>
-            <ons-button
-                    ng-click="ons.screen.presentPage('changelog.html');">
-                更新履歴を見る
-            </ons-button>
+        <div class="center">
+            このアプリについて
         </div>
+    </ons-toolbar>
 
-        <address>
-            <h4>作成者</h4>
-            <a href="https://twitter.com/pside" target="_blank">@pside</a><br>
+    <ons-list>
+        <ons-list-item>
+            <h1>マチ<span style="color: #a90016">★</span>アプリ</h1>
 
-            <h4>ご協力頂いた皆様</h4>
-            工作船 明石<br>
+            <p>
+                マチ★アソビのイベント一覧を日時別、場所別に表示します。<br>
+                加えて、公式Twitterを一覧したりすることが出来るなどの機能を有しております。
+            </p>
+        </ons-list-item>
 
-            <h4>Special Thanks</h4>
-            マチ★アソビに関わる全ての皆様
-        </address>
-    </ons-scroller>
+        <ons-list-header>
+            免責事項
+        </ons-list-header>
+
+        <ons-list-item>
+            <p>
+                <strong>このアプリおよびアプリの製作者は「マチ★アソビ」の主催者とは関係がございません。</strong><br>
+                このアプリで提供されている情報について、正しい情報を提供することを心がけておりますが、
+                これら情報の真偽の保証はできかねます。利用者様の判断の上でご利用下さい。
+            </p>
+
+            <p>
+                このアプリに関するご意見などは下記作成者までご連絡をお願いします。<br>
+                「マチ★アソビ」の主催者へ問い合わせをしないようお願いいたします。
+            </p>
+        </ons-list-item>
+
+        <ons-list-header>
+            その他の情報
+        </ons-list-header>
+
+        <ons-list-item modifier="chevron"
+                       ng-click="ons.screen.presentPage('tutorial.html');">
+            チュートリアル
+        </ons-list-item>
+
+        <ons-list-item modifier="chevron"
+                       ng-click="ons.screen.presentPage('changelog.html');">
+            更新履歴
+        </ons-list-item>
+
+        <ons-list-header>
+            作者情報
+        </ons-list-header>
+
+        <ons-list-item modifier="chevron"
+                       ng-click="openLink('https://twitter.com/pside')">
+            製作・管理 : @pside
+        </ons-list-item>
+
+        <ons-list-header>
+            スペシャルサンクス
+        </ons-list-header>
+
+        <ons-list-item>工作船 明石</ons-list-item>
+        <ons-list-item>マチ★アソビに関わるスタッフ・自警・ボランティア、その他多くの皆様</ons-list-item>
+    </ons-list>
 </ons-page>

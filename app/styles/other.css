@@ -1,0 +1,23 @@
+.page-padding {
+    padding: 10px;
+}
+
+.topcoat-button--large--cta:active {
+    background-color:#000000;
+    color:#FFFFFF;
+}
+
+.topcoat-switch {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.col-100 {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 100%;
+    -moz-box-flex: 0;
+    -moz-flex: 0 0 100%;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
