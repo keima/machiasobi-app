@@ -847,7 +847,7 @@ function Calendar(element, instanceOptions) {
 
 
 	function fetchAndRenderEvents() {
-		fetchEvents(currentView.start, currentView.end);
+		fetchEvents(currentView.startRaw, currentView.endRaw);
 			// ... will call reportEvents
 			// ... which will call renderEvents
 	}
@@ -8376,15 +8376,16 @@ $.extend(AgendaDayView.prototype, {
 
 	render: function(date) {
 
-    this.intervalStart = date.clone().stripTime();
-    this.intervalEnd = this.intervalStart.clone().add(1, 'days');
+    this.start = this.intervalStart = date.clone().stripTime();
+    this.end = this.intervalEnd = this.start.clone().add(1, 'days');
 
-		this.start = date.clone();
-		this.end = this.start.clone().add(1, 'days');
+    // save raw date for fetch gcal
+    this.startRaw = date.clone();
+    this.endRaw = this.startRaw.clone().add(1, 'days');
 
-		this.title = this.calendar.formatDate(this.start, this.opt('titleFormat'));
+    this.title = this.calendar.formatDate(this.start, this.opt('titleFormat'));
 
-		AgendaView.prototype.render.call(this, 1); // call the super-method
+    AgendaView.prototype.render.call(this, 1); // call the super-method
 	}
 
 });
