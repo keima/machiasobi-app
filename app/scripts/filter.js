@@ -1,7 +1,10 @@
 angular.module('myApp.filter', [])
-  .filter('br', [function(){
-    // $filter('br')($scope.event.description);
-    return function(text){
+/**
+ * 改行を br タグに置き換えます。
+ * 使い方: $filter('br')($scope.event.description);
+ */
+  .filter('br', [function () {
+    return function (text) {
       return text.replace(/[\n\r]/g, "<br>");
     };
   }]);

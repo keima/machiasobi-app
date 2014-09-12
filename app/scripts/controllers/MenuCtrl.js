@@ -1,6 +1,6 @@
-angular.module('myApp.controller.calendarListCtrl', [])
-  .controller('CalendarListCtrl',
-  function ($scope, $rootScope, Calendar, Favorite, FavoriteStore) {
+angular.module('myApp.controller.menuCtrl', [])
+  .controller('MenuCtrl',
+  function ($scope, $rootScope, Calendar, Favorite) {
 
     $scope.isOnlyFavorite = false;
 

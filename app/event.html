@@ -1,10 +1,9 @@
 <ons-page
-        ng-controller="EventViewCtrl"
-        ng-device-backbutton="ons.screen.dismissPage()">
+        ng-controller="EventViewCtrl">
 
     <ons-toolbar>
         <div class="left">
-            <ons-back-button ng-click="ons.screen.dismissPage()">
+            <ons-back-button ng-click="closePage()">
                 閉じる
             </ons-back-button>
         </div>
@@ -37,6 +36,12 @@
         </ons-list-item>
         <ons-list-item ng-show="event.allDay">
             <p>終日<br>イベント会場の開始・終了時刻をご確認下さい</p>
+        </ons-list-item>
+
+        <ons-list-header>共有</ons-list-header>
+        <ons-list-item ng-click="shareTwitter()">
+            <ons-icon icon="fa-twitter"></ons-icon>
+            Twitterでシェアする！
         </ons-list-item>
 
         <ons-list-header ng-show="event.description">イベント概要</ons-list-header>

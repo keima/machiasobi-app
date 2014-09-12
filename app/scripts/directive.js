@@ -1,5 +1,8 @@
 angular.module('myApp.directive', [])
-  // @see http://stackoverflow.com/questions/20099784/open-links-in-new-window-using-angularjs
+/**
+ * aタグのリンクを新しいタブで開くようにします。
+ * @see http://stackoverflow.com/questions/20099784/open-links-in-new-window-using-angularjs
+ */
   .directive('targetBlank', function () {
     return {
       restrict: 'A',
