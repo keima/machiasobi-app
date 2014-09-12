@@ -5,3 +5,7 @@ dist
 .idea/workspace.xml
 .idea/libraries/
 .idea/scopes/
+.idea
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
