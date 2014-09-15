@@ -1,44 +1,44 @@
 angular.module('myApp.controller.calendarViewCtrl', [])
   .controller('CalendarViewCtrl',
-  function ($scope, $rootScope, $window, $timeout, Calendar, EventStore) {
+  function ($scope, $rootScope, $window, $timeout, $location, Calendar, EventStore) {
 
     /**
      * Return selected id
      * @param current Moment
      * @param periods Moment
      */
-    var defaultSelected = function (current, periods) {
-      if (current.isSame(periods[0].date, 'day')) {
+    var getDefaultSelectedId = function (current, periods) {
+      var last = periods.length - 1;
+      if (current.isBefore(periods[0].date, 'day')) {
         return 0;
-      } else if (current.isSame(periods[1].date, 'day')) {
-        return 1;
-      } else if (current.isSame(periods[2].date, 'day')) {
-        return 2;
-      } else {
-        return 0;
+      } else if (current.isAfter(periods[last].date, 'day')) {
+        return last;
       }
+
+      periods.forEach(function(period, index) {
+        if (current.isSame(period.date, 'day')) {
+          return index;
+        }
+      });
+
+      // fail safe...
+      return 0;
     };
 
-//    // チュートリアル表示
-//    if (!$rootScope.lastVersion) {
-//      $scope.ons.screen.presentPage('tutorial.html');
-//    } else {
-//      if ($rootScope.lastVersion.major <= 0 &&
-//        $rootScope.lastVersion.minor < 6) {
-//        $scope.ons.screen.presentPage('changelog.html');
-//      }
-//    }
+    // Tutorial.show...
 
-    $rootScope.lastVersion = $rootScope.semver;
-
-    $scope.selectedDateId = defaultSelected(moment(), $rootScope.periods);
+    $scope.selectedDateId = getDefaultSelectedId(moment(), $rootScope.periods);
     $scope.eventSources = Calendar.buildSources($scope.calendars);
     var originEventSources = _.cloneDeep($scope.eventSources);
 
     // イベントのクリックリスナ
     $scope.calendarConfig.eventClick = function (event, jsEvent, view) {
       EventStore.save(event);
-      $scope.ons.screen.presentPage('event.html');
+      var calendarId = Calendar.extractCalendarId(event.source.url);
+      var shortName = Calendar.findShortNameByCalendarId(calendarId);
+      var eventId = Calendar.extractEventId(event.id);
+
+      $location.path('/calendar/' + shortName + '/' + eventId);
     };
 
     // 日付ボタンバーのクリックイベント
@@ -53,6 +53,7 @@ angular.module('myApp.controller.calendarViewCtrl', [])
       });
       $rootScope.$broadcast('eventSourceIsChanged');
     };
+
 
     $scope.$watch('selectedDateId', function (value) {
       $scope.calendarConfig.defaultDate = $scope.periods[value].date;

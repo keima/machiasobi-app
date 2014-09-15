@@ -1,4 +1,4 @@
-<ons-page style="background-color: white" ng-controller="CalendarListCtrl">
+<ons-page ng-controller="MenuCtrl" style="background-color: white">
     <ons-list>
 
         <ons-list-header>
@@ -22,10 +22,12 @@
             終日イベントを表示する
         </ons-list-item>
 
+        <!-- 非表示
         <ons-list-item ng-click="showOnlyFavorite()">
             <ons-switch modifier="list-item" ng-model="isOnlyFavorite"></ons-switch>
             ふぁぼったイベントだけ見る
         </ons-list-item>
+        -->
 
         <ons-list-item style="text-align:center">
             {{ appName }} - {{ appVersion }}

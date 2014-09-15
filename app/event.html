@@ -1,10 +1,9 @@
 <ons-page
-        ng-controller="EventViewCtrl"
-        ng-device-backbutton="ons.screen.dismissPage()">
+        ng-controller="EventViewCtrl">
 
     <ons-toolbar>
         <div class="left">
-            <ons-back-button ng-click="ons.screen.dismissPage()">
+            <ons-back-button ng-click="closePage()">
                 閉じる
             </ons-back-button>
         </div>
@@ -39,10 +38,27 @@
             <p>終日<br>イベント会場の開始・終了時刻をご確認下さい</p>
         </ons-list-item>
 
+        <ons-list-header>共有</ons-list-header>
+        <ons-list-item ng-click="shareTwitter()">
+            <ons-icon icon="fa-twitter"></ons-icon>
+            Twitterでシェアする！
+        </ons-list-item>
+
         <ons-list-header ng-show="event.description">イベント概要</ons-list-header>
         <ons-list-item ng-show="event.description">
             <div btf-markdown="event.description" class="markdown" target-blank></div>
         </ons-list-item>
 
+        <ons-list-header>免責事項</ons-list-header>
+        <ons-list-item>
+            <p>記載されている出演者等のお名前は 敬称略、順不同 とさせて頂きます。</p>
+        </ons-list-item>
+        <ons-list-item>
+            <p>
+                掲載されているイベント情報は予告なく修正・削除する場合がございます。
+                また、イベント情報は正確な情報を伝えるようにしていますが、
+                当サイトの情報により生じた如何なる問題についても、当サイト運営者は責任を負いかねます。
+            </p>
+        </ons-list-item>
     </ons-list>
 </ons-page>
