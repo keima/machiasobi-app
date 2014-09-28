@@ -4,9 +4,9 @@ angular.module('myApp',
   [
     'ngSanitize',
     'ngTouch',
-    'ngRoute',
     'restangular',
     'angularLocalStorage',
+    'ui.router',
     'ui.calendar',
     'onsen.directives',
     'btford.markdown',
@@ -17,52 +17,75 @@ angular.module('myApp',
     'myApp.filter'
   ])
   .constant('myAppSemVer', {
-    major: 0,
-    minor: 9,
+    major: 1,
+    minor: 0,
     patch: 0
   })
-  .config(function ($routeProvider, $locationProvider) {
-    $locationProvider.html5Mode(false).hashPrefix('!');
+  .config(function ($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise('/');
 
-    $routeProvider
-      .when('/calendar', {
-        template: '',
-        controller: function ($scope) {
-          console.log($scope.ons.screen.isEmpty());
-          if (!$scope.ons.screen.isEmpty()) {
-            $scope.ons.screen.dismissPage();
-          }
-        }
+    $stateProvider
+      .state('root', {
+        url: '/',
+        templateUrl: 'partials/root/main.html',
+        controller: 'RootCtrl'
       })
-      .when('/calendar/:calendarShortName', {
-        template: '',
-        controller: function () {
-          // このIDのカレンダーだけ表示とか？
-          // あとマッチしなかったら / にリダイレクトとか？
-        }
+
+      // Calendar
+      .state('calendar', {
+        url: '/calendar',
+        templateUrl: 'partials/calendar/main.html'
       })
-      .when('/calendar/:calendarShortName/:eventId', {
-        template: '',
-        controller: function ($scope, $routeParams, EventStore, Calendar) {
-          var shortName = $routeParams.calendarShortName;
+      .state('calendar.detail', {
+        url: '/:calendarShortName/:eventId',
+        template: '', // empty template
+        controller: function ($scope, $stateParams, EventStore, Calendar) {
+          var shortName = $stateParams.calendarShortName;
           var calendarId = Calendar.findCalendarIdByShortName(shortName);
 
-          var shortEventId = $routeParams.eventId;
+          var shortEventId = $stateParams.eventId;
           var eventId = Calendar.restoreEventId(shortEventId);
 
           Calendar.getEvent(calendarId, eventId)
             .then(function (event) {
               EventStore.save(event);
-              $scope.ons.screen.presentPage('event.html');
+              $scope.ons.screen.presentPage('partials/calendar/event.html');
             });
+        },
+        onExit: function($rootScope) {
+          $rootScope.ons.screen.dismissPage();
         }
       })
-      .otherwise({
-        redirectTo: '/calendar'
-      });
+
+      // Traffic
+      .state('traffic', {
+        url: '/traffic',
+        templateUrl: 'partials/traffic/main.html'
+      })
+
+      // News
+      .state('news', {
+        url: '/news',
+        templateUrl: 'partials/news/main.html'
+      })
+      .state('news.detail', {
+        url: '/:id',
+        templateUrl: 'partials/news/detail.html'
+      })
+
+      // Twitter
+      .state('twitter', {
+        url: '/twitter',
+        templateUrl: 'partials/twitter/main.html'
+      })
+
+      // About
+      .state('about', {
+        url: '/about',
+        templateUrl: 'partials/misc/about.html'
+      })
   })
-  .run(
-  function ($rootScope, $window, myAppSemVer, storage, Favorite, CalendarConst) {
+  .run(function ($rootScope, $window, myAppSemVer, storage, Favorite, CalendarConst) {
     $rootScope.semver = myAppSemVer;
     $rootScope.appName = "マチ★アプリ";
     $rootScope.volName = "vol.13";

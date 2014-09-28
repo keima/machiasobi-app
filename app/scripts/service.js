@@ -2,5 +2,6 @@ angular.module('myApp.service',
   [
     'myApp.service.calendar',
     'myApp.service.eventStore',
-    'myApp.service.favorite'
+    'myApp.service.favorite',
+    'myApp.service.machitools'
   ]);

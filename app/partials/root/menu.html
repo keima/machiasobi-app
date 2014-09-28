@@ -1,0 +1,16 @@
+<ons-list>
+  <ons-list-header>
+    メニュー
+  </ons-list-header>
+
+  <ons-list-item modifier="chevron"
+      ng-repeat="app in appList"
+      ui-sref="{{ app.state }}">
+    <ons-icon icon="{{ app.icon }}"></ons-icon>
+    {{ app.name }}
+  </ons-list-item>
+
+  <ons-list-item style="text-align:center">
+    {{ appName }} - {{ appVersion }}
+  </ons-list-item>
+</ons-list>

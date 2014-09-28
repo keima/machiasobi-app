@@ -1,6 +1,11 @@
 <ons-page ng-controller="MenuCtrl" style="background-color: white">
     <ons-list>
 
+      <ons-list-item ui-sref="root">
+        <ons-icon icon="ion-android-system-back"></ons-icon>
+        トップメニューに戻る
+      </ons-list-item>
+
         <ons-list-header>
             カレンダーのON/OFF
         </ons-list-header>
@@ -28,10 +33,5 @@
             ふぁぼったイベントだけ見る
         </ons-list-item>
         -->
-
-        <ons-list-item style="text-align:center">
-            {{ appName }} - {{ appVersion }}
-        </ons-list-item>
-
     </ons-list>
 </ons-page>

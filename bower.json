@@ -15,13 +15,13 @@
   ],
   "dependencies": {
     "onsenui": "1.1.2",
+    "angular-ui-router": "~0.2.11",
     "angular-ui-calendar": "0.9.0-beta.1",
     "lodash": "~2.4.1",
     "momentjs": "~2.8.3",
     "restangular": "~1.4.0",
     "angular-markdown-directive": "~0.3.0",
     "angularLocalStorage": "~0.1.7",
-    "angular-touch": "~1.2.23",
-    "angular-route": "~1.2.24"
+    "angular-touch": "~1.2.23"
   }
 }

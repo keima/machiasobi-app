@@ -1,14 +1,15 @@
 'use strict';
 
 angular.module('myApp.service.calendar', [])
-  .config(function (RestangularProvider) {
-    RestangularProvider.setBaseUrl('https://www.googleapis.com/calendar/v3');
-    RestangularProvider.setDefaultRequestParams({
-      key: "AIzaSyCgK3kr9bdc_Qv_SnSJTxAcS1npBGqyRgw" // AIzaSyBmnikoDvMTokwjPLjvLfPHNWry85ab_mA
+  .factory('CalendarRest', function (Restangular) {
+    return Restangular.withConfig(function (config) {
+      config.setBaseUrl('https://www.googleapis.com/calendar/v3');
+      config.setDefaultRequestParams({
+        key: "AIzaSyCgK3kr9bdc_Qv_SnSJTxAcS1npBGqyRgw"
+      });
     });
   })
-  .service('Calendar', function (Restangular, CalendarConst) {
-
+  .service('Calendar', function (CalendarRest, CalendarConst) {
     /**
      * calendarId から className(gcal-shinmachi) を取得します
      * @param _calendarId
@@ -24,16 +25,16 @@ angular.module('myApp.service.calendar', [])
      * @param _shortName
      * @returns calendarId
      */
-    function findCalendarIdByShortName(_shortName) {
+    function findCalendarIdByShortName (_shortName) {
       var calendar = _.find(CalendarConst, {shortName: _shortName});
       return calendar.calendarId;
     }
 
-    function extractEventId(eventId) {
+    function extractEventId (eventId) {
       return eventId.split('@')[0];
     }
 
-    function restoreEventId(shortEventId) {
+    function restoreEventId (shortEventId) {
       return shortEventId + '@google.com';
     }
 
@@ -46,7 +47,7 @@ angular.module('myApp.service.calendar', [])
      * @returns Promise
      */
     var getCalendarObject = function (calendarId, start, end) {
-      return Restangular.all('calendars').all(calendarId).get('events', {
+      return CalendarRest.all('calendars').all(calendarId).get('events', {
         orderBy: 'startTime',
         singleEvents: true,
         timeZone: 'Asia/Tokyo',
@@ -63,7 +64,7 @@ angular.module('myApp.service.calendar', [])
      */
     var getEventObject = function (calendarId, eventId) {
       var eid = eventId.split('@')[0];
-      return Restangular.all('calendars').all(calendarId).all('events').get(eid)
+      return CalendarRest.all('calendars').all(calendarId).all('events').get(eid)
         .then(function (result) {
           // Convert UI-Calendar Object
           var event = {
@@ -86,7 +87,7 @@ angular.module('myApp.service.calendar', [])
             event.allDay = false;
           } else if ('date' in result.start) {
             event.start = moment(result.start.date).toDate();
-            event.end = moment(result.end.date).add('days', -1).endOf('day').toDate();
+            event.end = moment(result.end.date).add(-1, 'days').endOf('day').toDate();
             event.allDay = true;
           }
 
@@ -126,6 +127,7 @@ angular.module('myApp.service.calendar', [])
      * @returns {Array}
      */
     var buildSources = function (calendars) {
+      console.log("buildSources is running");
       var array = [];
 
       calendars.forEach(function (element) {

@@ -1,0 +1,69 @@
+<ons-page ng-controller="TrafficCtrl as ctrl">
+  <ons-toolbar>
+    <div class="left">
+      <ons-back-button ui-sref="root">
+        戻る
+      </ons-back-button>
+    </div>
+    <div class="center">
+      待ち時間
+    </div>
+    <div class="right">
+      <ons-toolbar-button ng-click="ctrl.reload()">
+        <ons-icon icon="ion-refresh"></ons-icon>
+      </ons-toolbar-button>
+    </div>
+  </ons-toolbar>
+
+  <ons-list>
+    <div ng-repeat="transit in ctrl.transits">
+      <ons-list-header style="font-size: large;font-weight: bold">
+        {{ transit.name }}
+      </ons-list-header>
+
+      <div ng-repeat="place in transit.places">
+        <ons-list-header>
+          {{ place.name }}
+        </ons-list-header>
+        <ons-list-item>
+          待ち時間: {{ place.item.Waiting || '...' }} 分
+        </ons-list-item>
+        <ons-list-item>
+          {{ place.item.Message || '取得中...' }}
+        </ons-list-item>
+      </div>
+    </div>
+
+    <ons-list-header style="font-size: large;font-weight: bold">
+      注意事項
+    </ons-list-header>
+    <ons-list-item>
+      <p>
+        記載されている時間は「乗り物に乗車するまでの待ち時間」です。各会場に到着するまでの時間は含まれておりません。
+      </p>
+
+      <p>
+        各移動手段のスペックは以下の通りです。
+      </p>
+      <ul>
+        <li>ロープウェイ
+          <ul>
+            <li>移動時間: 片道6分</li>
+            <li>定員: 15人 × 2基</li>
+            <li>ガイドアナウンス、往復券購入のプレゼントなど</li>
+          </ul>
+        </li>
+        <li>シャトルバス
+          <ul>
+            <li>移動時間: 片道20分</li>
+            <li>定員: 50人</li>
+            <li>複数台のバスを運行</li>
+            <li><b>山頂駅から10分程度歩いて、眉山特設ステージに到着します</b></li>
+          </ul>
+        </li>
+      </ul>
+    </ons-list-item>
+
+  </ons-list>
+
+</ons-page>
