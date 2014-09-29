@@ -1,9 +1,10 @@
 <ons-page ng-controller="TrafficCtrl as ctrl">
   <ons-toolbar>
     <div class="left">
-      <ons-back-button ui-sref="root">
+      <ons-toolbar-button ui-sref="root">
+        <ons-icon icon="ion-android-system-back"></ons-icon>
         戻る
-      </ons-back-button>
+      </ons-toolbar-button>
     </div>
     <div class="center">
       待ち時間
@@ -31,6 +32,9 @@
         <ons-list-item>
           {{ place.item.Message || '取得中...' }}
         </ons-list-item>
+        <ons-list-item style="font-size: smaller" ng-show="place.item.updatedAt">
+          更新日時: {{ place.item.updatedAt | date:"MM月dd日 HH時mm分ss秒" }}
+        </ons-list-item>
       </div>
     </div>
 
@@ -50,7 +54,6 @@
           <ul>
             <li>移動時間: 片道6分</li>
             <li>定員: 15人 × 2基</li>
-            <li>ガイドアナウンス、往復券購入のプレゼントなど</li>
           </ul>
         </li>
         <li>シャトルバス
@@ -58,7 +61,7 @@
             <li>移動時間: 片道20分</li>
             <li>定員: 50人</li>
             <li>複数台のバスを運行</li>
-            <li><b>山頂駅から10分程度歩いて、眉山特設ステージに到着します</b></li>
+            <li><b>かんぽの宿前で下車し10分程度歩いて、眉山特設ステージに到着します</b></li>
           </ul>
         </li>
       </ul>
