@@ -70,7 +70,15 @@ angular.module('myApp',
       })
       .state('news.detail', {
         url: '/:id',
-        templateUrl: 'partials/news/detail.html'
+        template: '',
+        controller: function($scope, $timeout) {
+          $timeout(function(){
+            $scope.ons.navigator.pushPage('partials/news/detail.html');
+          }, 200);
+        },
+        onExit: function($rootScope) {
+          $rootScope.ons.navigator.popPage();
+        }
       })
 
       // Twitter

@@ -1,1 +1,23 @@
-TBD
+<ons-navigator animation="slide">
+  <ons-page ng-controller="NewsListCtrl as ctrl">
+    <ons-toolbar>
+      <div class="left">
+        <ons-toolbar-button ui-sref="root">
+          <ons-icon icon="ion-android-system-back"></ons-icon>
+          戻る
+        </ons-toolbar-button>
+      </div>
+      <div class="center">ニュース</div>
+    </ons-toolbar>
+
+    <ons-list>
+      <ons-list-item modifier="chevron" ng-repeat="item in ctrl.items" ui-sref="news.detail({id: item.Id})">
+        {{ item.Title }}
+      </ons-list-item>
+    </ons-list>
+
+    <ui-view></ui-view>
+
+  </ons-page>
+
+</ons-navigator>
