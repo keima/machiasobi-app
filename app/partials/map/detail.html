@@ -1,0 +1,29 @@
+<ons-page ng-controller="MapDetailCtrl">
+  <ons-toolbar>
+    <div class="left">
+      <ons-toolbar-button ui-sref="map">
+        戻る
+      </ons-toolbar-button>
+    </div>
+    <div class="center">{{ item.name }}</div>
+  </ons-toolbar>
+
+  <google-map center="map.center" zoom="map.zoom">
+    <marker ng-repeat="marker in markers"
+            coords="marker.coords" options="map.options" idkey="$index">
+      <window>
+        <div>
+          <strong>{{ marker.name }}</strong>
+
+          <div>{{ marker.description }}</div>
+          <ons-button modifier="light"
+                      ng-click="$parent.$parent.$parent.openCoords($parent.marker.coords)">
+            <ons-icon icon="ion-map"></ons-icon>
+            アプリで開く
+          </ons-button>
+        </div>
+      </window>
+    </marker>
+  </google-map>
+
+</ons-page>

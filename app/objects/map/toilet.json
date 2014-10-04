@@ -1,0 +1,50 @@
+[
+  {
+    "name": "水際公園内トイレ",
+    "description": "",
+    "coords": {
+      "latitude": 34.070303,
+      "longitude": 134.549799
+    }
+  },
+  {
+    "name": "藍場浜公園内トイレ",
+    "description": "",
+    "coords": {
+      "latitude": 34.072077,
+      "longitude": 134.548758
+    }
+  },
+  {
+    "name": "両国公園内トイレ",
+    "description": "",
+    "coords": {
+      "latitude": 34.068561,
+      "longitude": 134.550171
+    }
+  },
+  {
+    "name": "ufotable cinema & アニメイト徳島",
+    "description": "",
+    "coords": {
+      "latitude": 34.070607,
+      "longitude": 134.547608
+    }
+  },
+  {
+    "name": "ポッポ街商店街内トイレ",
+    "description": "いくつかあった気がする。。",
+    "coords": {
+      "latitude": 34.074848,
+      "longitude": 134.549237
+    }
+  },
+  {
+    "name": "眉山山頂駐車場内トイレ",
+    "description": "マチ★アソビ期間中は仮設トイレも多少ある",
+    "coords": {
+      "latitude": 34.067378,
+      "longitude": 134.536522
+    }
+  }
+]

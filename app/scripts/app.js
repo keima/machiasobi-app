@@ -10,6 +10,7 @@ angular.module('myApp',
     'ui.calendar',
     'onsen.directives',
     'btford.markdown',
+    'google-maps',
     'myApp.constant',
     'myApp.service',
     'myApp.controller',
@@ -74,6 +75,24 @@ angular.module('myApp',
         controller: function($scope, $timeout) {
           $timeout(function(){
             $scope.ons.navigator.pushPage('partials/news/detail.html');
+          }, 200);
+        },
+        onExit: function($rootScope) {
+          $rootScope.ons.navigator.popPage();
+        }
+      })
+
+      // Map
+      .state('map', {
+        url: '/map',
+        templateUrl: 'partials/map/main.html'
+      })
+      .state('map.detail', {
+        url: '/:id',
+        template: '',
+        controller: function($scope, $timeout) {
+          $timeout(function(){
+            $scope.ons.navigator.pushPage('partials/map/detail.html');
           }, 200);
         },
         onExit: function($rootScope) {

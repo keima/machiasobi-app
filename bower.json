@@ -22,6 +22,7 @@
     "restangular": "~1.4.0",
     "angular-markdown-directive": "~0.3.0",
     "angularLocalStorage": "~0.1.7",
-    "angular-touch": "~1.2.23"
+    "angular-touch": "~1.2.23",
+    "angular-google-maps": "~1.2.2"
   }
 }
