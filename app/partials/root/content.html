@@ -1,0 +1,33 @@
+<ons-toolbar>
+  <div class="left">
+    <ons-toolbar-button ng-click="ons.slidingMenu.toggleMenu()">
+      <ons-icon icon="ion-navicon"></ons-icon>
+    </ons-toolbar-button>
+  </div>
+
+  <div class="center">マチ<span style="color: #a90016">★</span>アプリ</div>
+
+</ons-toolbar>
+
+<ons-list>
+
+  <ons-list-item modifier="chevron" class="list-item-container"
+                 ng-repeat="app in appList"
+      ui-sref="{{ app.state }}">
+    <ons-row>
+      <ons-col width="95px">
+        <ons-icon icon="{{ app.icon }}" size="80px"></ons-icon>
+      </ons-col>
+      <ons-col>
+        <div class="name">
+          {{ app.name }}
+        </div>
+        <div class="desc">
+          {{ app.description }}
+        </div>
+      </ons-col>
+      <ons-col width="40px"></ons-col>
+    </ons-row>
+  </ons-list-item>
+
+</ons-list>

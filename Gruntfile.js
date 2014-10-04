@@ -41,7 +41,7 @@ module.exports = function(grunt) {
           livereload: '<%= connect.options.livereload %>'
         },
         files: [
-          '<%= yeoman.app %>/{,*/}*.html',
+          '<%= yeoman.app %>/{,partials/*/}*.html',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
       }
@@ -116,7 +116,7 @@ module.exports = function(grunt) {
       app: {
         src: '<%= yeoman.app %>/index.html',
         ignorePath: '<%= yeoman.app %>/',
-        exclude: [/underscore/, /fullcalendar\.js/]
+        exclude: [/underscore/, /fullcalendar\.js/, /momentjs/]
       }
     },
 
@@ -169,6 +169,49 @@ module.exports = function(grunt) {
       }
     },
 
+
+    copy: {
+      dist: {
+        files: [
+          { // そのままコピーするもの
+            expand: true,
+            dot: true,
+            cwd: '<%= yeoman.app %>',
+            dest: '<%= yeoman.dist %>',
+            src: [
+              '*.{ico,png,txt}',
+              '.htaccess',
+              '*.html',
+              'partials/{,*/}*.html',
+              'images/{,*/}*.{webp}',
+              'objects/{,*/}*.json'
+            ]
+          },
+          {
+            expand: true,
+            cwd: '.tmp/images',
+            dest: '<%= yeoman.dist %>/images',
+            src: ['generated/*']
+          },
+          { // fontawesome & ionicons
+            expand: true,
+            cwd: '<%= yeoman.app %>',
+            dest: '<%= yeoman.dist %>',
+            src: [
+              'bower_components/onsenui/build/css/{font_awesome,ionicons}/css/*.min.css',
+              'bower_components/onsenui/build/css/{font_awesome,ionicons}/fonts/*.{otf,eot,svg,ttf,woff}'
+            ]
+          }
+        ]
+      },
+      styles: {
+        expand: true,
+        cwd: '<%= yeoman.app %>/styles',
+        src: '{,*/}*.css',
+        dest: '.tmp/styles/'
+      }
+    },
+
     imagemin: {
       dist: {
         files: [
@@ -218,46 +261,6 @@ module.exports = function(grunt) {
           {src: '.tmp/concat/scripts/main.js', dest: '.tmp/concat/scripts/main.js'},
           {src: '.tmp/concat/scripts/vendor.js', dest: '.tmp/concat/scripts/vendor.js'}
         ]
-      }
-    },
-
-    copy: {
-      dist: {
-        files: [
-          { // そのままコピーするもの
-            expand: true,
-            dot: true,
-            cwd: '<%= yeoman.app %>',
-            dest: '<%= yeoman.dist %>',
-            src: [
-              '*.{ico,png,txt}',
-              '.htaccess',
-              '*.html',
-              'images/{,*/}*.{webp}'
-            ]
-          },
-          {
-            expand: true,
-            cwd: '.tmp/images',
-            dest: '<%= yeoman.dist %>/images',
-            src: ['generated/*']
-          },
-          {
-            expand: true,
-            cwd: '<%= yeoman.app %>',
-            dest: '<%= yeoman.dist %>',
-            src: [
-              'bower_components/onsenui/build/css/{font_awesome,ionicons}/css/*.min.css',
-              'bower_components/onsenui/build/css/{font_awesome,ionicons}/fonts/*.{otf,eot,svg,ttf,woff}'
-            ]
-          }
-        ]
-      },
-      styles: {
-        expand: true,
-        cwd: '<%= yeoman.app %>/styles',
-        src: '{,*/}*.css',
-        dest: '.tmp/styles/'
       }
     },
 

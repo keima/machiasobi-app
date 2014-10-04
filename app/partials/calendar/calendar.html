@@ -1,0 +1,56 @@
+<ons-navigator>
+  <div ng-controller="CalendarViewCtrl">
+
+    <ons-toolbar>
+      <div class="left">
+        <ons-toolbar-button ng-click="ons.slidingMenu.toggleMenu()">
+          <ons-icon icon="ion-navicon" style="font-size: 32px; width: 1em"></ons-icon>
+        </ons-toolbar-button>
+      </div>
+
+      <div class="center">マチ<span style="color: #a90016">★</span>アプリ</div>
+    </ons-toolbar>
+
+    <div id="calendar-header-area">
+      <!-- 日付選択 -->
+      <div class="navigation-bar">
+        <div class="navigation-bar__center">
+          <div class="button-bar" style="width: 100%;" id="dateSelector">
+
+            <div class="button-bar__item"
+                 ng-repeat="period in periods"
+                 ng-class="{active: selectedDateId == $index}">
+              <input type="radio" name="navi-segment-a"
+                     ng-click="setSelectedDateId($index)"
+                     ng-checked="selectedDateId == $index">
+
+              <div class="button-bar__button">{{ period.name }}</div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- 凡例表示 -->
+      <ons-row id="legends">
+        <ons-col ng-repeat="calendar in calendars"
+                 width="{{ calendar.layout }}"
+                 class="legend gcal-{{ calendar.shortName }}"
+                 ng-click="showOnlyThisEvent($index)">
+          {{ calendar.name }}
+        </ons-col>
+      </ons-row>
+    </div>
+
+    <!-- FullCalendar -->
+    <div ui-calendar="calendarConfig"
+         ng-model="eventSources"
+         calendar="myCalendar"
+         class="span8 calendar"
+         id="calendar">
+    </div>
+
+  </div>
+
+  <ui-view></ui-view>
+</ons-navigator>

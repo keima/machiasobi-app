@@ -1,0 +1,16 @@
+/* state:root */
+.state-root table {
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.state-root td {
+    width: 50%;
+    height: 100px;
+    vertical-align: middle;
+}
+
+.state-root td .ons-icon {
+    font-size: 40px;
+}

@@ -1,0 +1,19 @@
+<ons-page class="center" ng-controller="TwitterHashtagCtrl as ctrl">
+
+  <ons-toolbar>
+    <div class="left">
+      <ons-back-button ui-sref="root">戻る</ons-back-button>
+    </div>
+    <div class="center">
+      Twitter
+    </div>
+  </ons-toolbar>
+
+  <a class="twitter-timeline"
+     href="https://twitter.com/search?q=%28%23machiasobi+OR+%23%E3%83%9E%E3%83%81%E3%82%A2%E3%82%BD%E3%83%93%29+-RT"
+     height="{{ ctrl.contentHeight }}"
+     data-dnt="true"
+     data-chrome="noheader nofooter noborders"
+     data-widget-id="458266886371700737">Tweets about "(#machiasobi OR #マチアソビ) -RT"</a>
+
+</ons-page>

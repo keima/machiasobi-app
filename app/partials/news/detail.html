@@ -1,0 +1,33 @@
+<ons-page ng-controller="NewsDetailCtrl as ctrl">
+  <ons-toolbar>
+    <div class="left">
+      <ons-toolbar-button ui-sref="news">
+        戻る
+      </ons-toolbar-button>
+    </div>
+    <div class="center">{{ ctrl.item.Title }}</div>
+  </ons-toolbar>
+
+  <ons-list>
+    <ons-list-header>
+      タイトル
+    </ons-list-header>
+    <ons-list-item>
+      {{ ctrl.item.Title }}
+    </ons-list-item>
+
+    <ons-list-header>
+      作成日
+    </ons-list-header>
+    <ons-list-item>
+      {{ ctrl.item.updatedAt | date:"yyyy年MM月dd日 HH時mm分" }}
+    </ons-list-item>
+
+    <ons-list-header>
+      内容
+    </ons-list-header>
+    <ons-list-item>
+      <div btf-markdown="ctrl.item.Article" class="markdown" target-blank></div>
+    </ons-list-item>
+  </ons-list>
+</ons-page>
