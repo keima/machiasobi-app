@@ -9,45 +9,25 @@
 
 </ons-toolbar>
 
-<table>
-  <tbody>
-  <tr>
-    <td ui-sref="{{ appList[0].state }}">
-      <ons-icon icon="{{ appList[0].icon }}"></ons-icon>
-      <br>
-      {{ appList[0].name }}
-    </td>
-    <td ui-sref="{{ appList[1].state }}">
-      <ons-icon icon="{{ appList[1].icon }}"></ons-icon>
-      <br>
-      {{ appList[1].name }}
-    </td>
-  </tr>
-  <tr>
-    <td ui-sref="{{ appList[2].state }}">
-      <ons-icon icon="{{ appList[2].icon }}"></ons-icon>
-      <br>
-      {{ appList[2].name }}
-    </td>
-    <td ui-sref="{{ appList[3].state }}">
-      <ons-icon icon="{{ appList[3].icon }}"></ons-icon>
-      <br>
-      {{ appList[3].name }}
-    </td>
-  </tr>
-  <tr>
-    <!-- 用意はしたいけど間に合わん
-    <td ui-sref="help">
-      <ons-icon icon="ion-help-circled"></ons-icon>
-      <br>
-      ヘルプ
-    </td>
-    -->
-    <td colspan="2" ui-sref="about">
-      <ons-icon icon="ion-information-circled"></ons-icon>
-      <br>
-      このアプリについて
-    </td>
-  </tr>
-  </tbody>
-</table>
+<ons-list>
+
+  <ons-list-item modifier="chevron" class="list-item-container"
+                 ng-repeat="app in appList"
+      ui-sref="{{ app.state }}">
+    <ons-row>
+      <ons-col width="95px">
+        <ons-icon icon="{{ app.icon }}" size="80px"></ons-icon>
+      </ons-col>
+      <ons-col>
+        <div class="name">
+          {{ app.name }}
+        </div>
+        <div class="desc">
+          {{ app.description }}
+        </div>
+      </ons-col>
+      <ons-col width="40px"></ons-col>
+    </ons-row>
+  </ons-list-item>
+
+</ons-list>
