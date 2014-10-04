@@ -53,7 +53,7 @@ angular.module('myApp',
               $scope.ons.screen.presentPage('partials/calendar/event.html');
             });
         },
-        onExit: function($rootScope) {
+        onExit: function ($rootScope) {
           $rootScope.ons.screen.dismissPage();
         }
       })
@@ -72,12 +72,12 @@ angular.module('myApp',
       .state('news.detail', {
         url: '/:id',
         template: '',
-        controller: function($scope, $timeout) {
-          $timeout(function(){
+        controller: function ($scope, $timeout) {
+          $timeout(function () {
             $scope.ons.navigator.pushPage('partials/news/detail.html');
           }, 200);
         },
-        onExit: function($rootScope) {
+        onExit: function ($rootScope) {
           $rootScope.ons.navigator.popPage();
         }
       })
@@ -112,7 +112,7 @@ angular.module('myApp',
         templateUrl: 'partials/misc/about.html'
       })
   })
-  .run(function ($rootScope, $window, myAppSemVer, storage, Favorite, CalendarConst) {
+  .run(function ($rootScope, $window, $location, myAppSemVer, storage, Favorite, CalendarConst) {
     $rootScope.semver = myAppSemVer;
     $rootScope.appName = "マチ★アプリ";
     $rootScope.volName = "vol.13";
@@ -174,5 +174,14 @@ angular.module('myApp',
     // rootScopeいじっておいて、どこでもng-clickでリンクを開けるようにする
     $rootScope.openLink = function (url) {
       $window.open(url);
-    }
+    };
+
+    // Analytics収集用
+    $rootScope.$on('$stateChangeStart', function () {
+      var path = $location.path(),
+        absUrl = $location.absUrl(),
+        virtualUrl = absUrl.substring(absUrl.indexOf(path));
+
+      $window.dataLayer.push({ event: 'virtualPageView', virtualUrl: virtualUrl });
+    })
   });
