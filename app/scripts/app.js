@@ -64,6 +64,12 @@ angular.module('myApp',
         templateUrl: 'partials/traffic/main.html'
       })
 
+      // Delay
+      .state('delay', {
+        url: '/delay',
+        templateUrl: 'partials/delay/main.html'
+      })
+
       // News
       .state('news', {
         url: '/news',

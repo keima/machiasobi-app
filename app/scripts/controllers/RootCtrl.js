@@ -5,6 +5,8 @@ angular.module('myApp.controller.rootCtrl', [])
         description: "マチ★アソビのイベントをカレンダー形式で表示します"},
 //      {name: '待ち時間', icon: 'ion-clock', state: 'traffic',
 //        description: "ロープウェイ・シャトルバスの乗り場の待ち時間情報を表示します"},
+      {name: 'イベント遅延', icon: 'ion-ios7-stopwatch', state: 'delay',
+        description: "イベントの遅延情報(遅れ・進み)を確認します"},
       {name: 'Twitter', icon: 'ion-social-twitter', state: 'twitter',
         description: "マチ★アソビに関するTwitter情報を見ることが出来ます"},
       {name: 'マップ', icon: 'ion-map', state: 'map',

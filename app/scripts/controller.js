@@ -5,6 +5,7 @@ angular.module('myApp.controller',
     'myApp.controller.newsListCtrl',
     'myApp.controller.newsDetailCtrl',
     'myApp.controller.mapCtrl',
+    'myApp.controller.delayCtrl',
 
     'myApp.controller.menuCtrl',
     'myApp.controller.calendarViewCtrl',

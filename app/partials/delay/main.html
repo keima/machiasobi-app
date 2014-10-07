@@ -1,0 +1,51 @@
+<ons-page ng-controller="DelayCtrl as ctrl">
+  <ons-toolbar>
+    <div class="left">
+      <ons-toolbar-button ui-sref="root">
+        <ons-icon icon="ion-android-system-back"></ons-icon>
+        戻る
+      </ons-toolbar-button>
+    </div>
+    <div class="center">
+      イベント遅延情報
+    </div>
+    <div class="right">
+      <ons-toolbar-button ng-click="ctrl.reload()">
+        <ons-icon icon="ion-refresh"></ons-icon>
+      </ons-toolbar-button>
+    </div>
+  </ons-toolbar>
+
+  <ons-list>
+    <div ng-repeat="place in ctrl.places">
+      <ons-list-header style="font-size: large;font-weight: bold">
+        {{ place.name }}
+      </ons-list-header>
+      <ons-list-item ng-show="place.item">
+        {{ ctrl.abs(place.item.delay) }} 分
+        <span ng-if="place.item.delay  > 0">遅れ</span>
+        <span ng-if="place.item.delay  < 0">早い</span>
+        <span ng-if="place.item.delay == 0">定刻通り</span>
+      </ons-list-item>
+      <ons-list-item ng-show="place.item.message">
+        {{ place.item.message }}
+      </ons-list-item>
+      <ons-list-item ng-hide="place.item">
+        取得中です(もしくは取得エラーです)
+      </ons-list-item>
+    </div>
+
+    <ons-list-header style="font-size: large;font-weight: bold">
+      注意事項
+    </ons-list-header>
+    <ons-list-item>
+      <p><strong>遅延時間は目安です。</strong></p>
+      <p>
+        遅れ(進み)が突然解消される場合があります。<br>
+        移動される際は余裕を持って行動して下さい。
+      </p>
+    </ons-list-item>
+
+  </ons-list>
+
+</ons-page>
