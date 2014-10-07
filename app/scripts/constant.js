@@ -3,5 +3,6 @@
 angular.module('myApp.constant',
   [
     'myApp.constant.calendar',
-    'myApp.constant.location'
+    'myApp.constant.location',
+    'myApp.constant.period'
   ]);

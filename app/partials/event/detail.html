@@ -1,0 +1,40 @@
+<ons-page ng-controller="EventDetailCtrl as detail">
+  <ons-toolbar>
+    <div class="left">
+      <ons-back-button>戻る</ons-back-button>
+    </div>
+    <div class="center">
+      {{ detail.item.title }}
+    </div>
+    <div class="right">
+      <ons-toolbar-button ng-click="detail.reload()">
+        <ons-icon icon="ion-refresh"></ons-icon>
+      </ons-toolbar-button>
+    </div>
+  </ons-toolbar>
+
+  <ons-list>
+    <ons-list-header>タイトル</ons-list-header>
+    <ons-list-item>{{ detail.item.title }}</ons-list-item>
+
+    <ons-list-header>ステータス</ons-list-header>
+    <ons-list-item>
+      <span ng-show="detail.item.isFinished">配布終了</span>
+      <span ng-show="!detail.item.isFinished && detail.item.isRunning">配布中</span>
+      <span ng-show="!detail.item.isFinished && !detail.item.isRunning">準備中</span>
+    </ons-list-item>
+
+    <ons-list-header>配布開始時刻</ons-list-header>
+    <ons-list-item>{{ detail.item.startAt | date:"HH時mm分 〜" }}</ons-list-item>
+
+    <ons-list-header>配布場所</ons-list-header>
+    <ons-list-item>{{ detail.item.place }}</ons-list-item>
+
+    <ons-list-header>料金・備考など</ons-list-header>
+    <ons-list-item>{{ detail.item.message }}</ons-list-item>
+
+    <ons-list-header>更新日時</ons-list-header>
+    <ons-list-item>{{ detail.item.updatedAt | date:'MM月dd日 HH:mm' }}</ons-list-item>
+
+  </ons-list>
+</ons-page>

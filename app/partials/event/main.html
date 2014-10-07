@@ -1,0 +1,57 @@
+<ons-navigator animation="slide">
+  <ons-page ng-controller="EventCtrl">
+    <ons-toolbar>
+      <div class="left">
+        <ons-toolbar-button ui-sref="root">
+          <ons-icon icon="ion-android-system-back"></ons-icon>
+          戻る
+        </ons-toolbar-button>
+      </div>
+      <div class="center">
+        整理券情報
+      </div>
+      <div class="right">
+        <ons-toolbar-button ng-click="reload()">
+          <ons-icon icon="ion-refresh"></ons-icon>
+        </ons-toolbar-button>
+      </div>
+    </ons-toolbar>
+
+    <ons-list>
+      <ons-list-header>注意事項</ons-list-header>
+      <ons-list-item>
+        <p><strong>{{ now | date:'MM月dd日 HH時mm分ss秒' }} 時点での情報です。</strong></p>
+
+        <p>
+          最新の配布状況はufotable cinemaにて確認して下さい。
+        </p>
+      </ons-list-item>
+
+
+      <ons-list-item modifier="chevron" ng-repeat="item in items"
+                     ng-click="itemSelected($index)">
+        <div class="list__right-label">
+          <span ng-show="item.isFinished">配布終了</span>
+          <span ng-show="!item.isFinished && item.isRunning">配布中</span>
+          <span ng-show="!item.isFinished && !item.isRunning">準備中</span>
+        </div>
+        {{ item.title }}
+      </ons-list-item>
+      <ons-list-item ng-show="items && items.length == 0">
+        登録されていません
+      </ons-list-item>
+    </ons-list>
+
+    <div class="tab-bar">
+      <label class="tab-bar__item" ng-repeat="period in periods"
+             ng-click="periodSelected($index)">
+        <input type="radio" name="tab-bar-c"
+               ng-checked="selected == $index">
+        <button class="tab-bar__button">
+          <div class="tab-bar__label">{{ period.shortName }}</div>
+        </button>
+      </label>
+    </div>
+
+  </ons-page>
+</ons-navigator>

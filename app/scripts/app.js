@@ -70,6 +70,12 @@ angular.module('myApp',
         templateUrl: 'partials/delay/main.html'
       })
 
+      // Event
+      .state('event', {
+        url: '/event',
+        templateUrl: 'partials/event/main.html'
+      })
+
       // News
       .state('news', {
         url: '/news',
@@ -118,7 +124,7 @@ angular.module('myApp',
         templateUrl: 'partials/misc/about.html'
       })
   })
-  .run(function ($rootScope, $window, $location, myAppSemVer, storage, Favorite, CalendarConst) {
+  .run(function ($rootScope, $cookies, $window, $location, myAppSemVer, storage, Favorite, CalendarConst, PeriodConst) {
     $rootScope.semver = myAppSemVer;
     $rootScope.appName = "マチ★アプリ";
     $rootScope.volName = "vol.13";
@@ -126,20 +132,7 @@ angular.module('myApp',
 
     storage.bind($rootScope, 'lastVersion', {defaultValue: null});
 
-    $rootScope.periods = [
-      {
-        name: '10月11日(土)',
-        date: moment('2014-10-11T00:00:00+09:00')
-      },
-      {
-        name: '10月12日(日)',
-        date: moment('2014-10-12T00:00:00+09:00')
-      },
-      {
-        name: '10月13日(月)',
-        date: moment('2014-10-13T00:00:00+09:00')
-      }
-    ];
+    $rootScope.periods = PeriodConst;
 
     $rootScope.favEvents = [];
 
