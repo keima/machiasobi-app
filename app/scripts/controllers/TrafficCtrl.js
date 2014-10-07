@@ -1,8 +1,6 @@
 angular.module('myApp.controller.trafficCtrl', [])
-  .controller('TrafficCtrl', function ($timeout, MachiRest) {
+  .controller('TrafficCtrl', function (MachiRest) {
     var self = this;
-
-    var REFRESH_SEC = 1;
 
     this.transits = [
       {
