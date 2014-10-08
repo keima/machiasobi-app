@@ -6,7 +6,7 @@ angular.module('myApp.constant.calendar', [])
     {
       name: 'お知らせ',
       shortName: 'announce',
-      layout: '100%', // col-100
+      layout: '33%', // col-100
       calendarId: 'p-side.net_cbtlph70nn0hdpm7u58v4rjp8g@group.calendar.google.com',
       selected: true,
       sticky: true
@@ -14,7 +14,7 @@ angular.module('myApp.constant.calendar', [])
     {
       name: '眉山林間ステージ',
       shortName: 'bizan', // css: gcal-shinmachi
-      layout: '33%',
+      layout: '34%',
       calendarId: 'p-side.net_m9s9a5ut02n6ap1s6prdj92ss4@group.calendar.google.com',
       selected: true,
       sticky: false
@@ -22,7 +22,7 @@ angular.module('myApp.constant.calendar', [])
     {
       name: 'パゴダ広場',
       shortName: 'pagoda',
-      layout: '34%',
+      layout: '33%',
       calendarId: 'p-side.net_jdav9j70k7orjdq0djiudpv9cg@group.calendar.google.com',
       selected: true,
       sticky: false
@@ -43,14 +43,14 @@ angular.module('myApp.constant.calendar', [])
 //        selected: true,
 //        sticky: false
 //      },
-    {
-      name: '商店街アーケード',
-      shortName: 'arcade',
-      layout: '33%',
-      calendarId: 'p-side.net_oclfdoi9f11vifccu3t081e260@group.calendar.google.com',
-      selected: true,
-      sticky: false
-    },
+//    {
+//      name: '商店街アーケード',
+//      shortName: 'arcade',
+//      layout: '33%',
+//      calendarId: 'p-side.net_oclfdoi9f11vifccu3t081e260@group.calendar.google.com',
+//      selected: true,
+//      sticky: false
+//    },
     {
       name: 'ボードウォーク',
       shortName: 'boardwalk',

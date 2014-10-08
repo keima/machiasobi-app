@@ -1,6 +1,7 @@
 angular.module('myApp.controller.delayCtrl', [])
   .controller('DelayCtrl', function (MachiRest) {
     var self = this;
+    this.now = new Date();
 
     this.places = [
       {
@@ -21,6 +22,7 @@ angular.module('myApp.controller.delayCtrl', [])
       self.places.forEach(function(place){
         MachiRest.all('delay').get(place.id)
           .then(function(result){
+            self.now = new Date();
             place.item = result;
           }, function(){
             place.item = null;

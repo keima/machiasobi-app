@@ -19,7 +19,7 @@ angular.module('myApp',
   ])
   .constant('myAppSemVer', {
     major: 1,
-    minor: 5,
+    minor: 1,
     patch: 0
   })
   .config(function ($stateProvider, $urlRouterProvider) {
@@ -102,12 +102,12 @@ angular.module('myApp',
       .state('map.detail', {
         url: '/:id',
         template: '',
-        controller: function($scope, $timeout) {
-          $timeout(function(){
+        controller: function ($scope, $timeout) {
+          $timeout(function () {
             $scope.ons.navigator.pushPage('partials/map/detail.html');
           }, 200);
         },
-        onExit: function($rootScope) {
+        onExit: function ($rootScope) {
           $rootScope.ons.navigator.popPage();
         }
       })

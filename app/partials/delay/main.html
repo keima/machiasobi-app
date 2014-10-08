@@ -17,16 +17,29 @@
   </ons-toolbar>
 
   <ons-list>
+    <ons-list-header style="font-size: large;font-weight: bold">
+      取得日時
+    </ons-list-header>
+    <ons-list-item>
+      <p>{{ ctrl.now | date:'MM月dd日 HH時mm分ss秒' }}<br>
+        左上の
+        <ons-icon icon="ion-refresh"></ons-icon>
+        ボタンを押すと更新します。
+      </p>
+    </ons-list-item>
+
     <div ng-repeat="place in ctrl.places">
       <ons-list-header style="font-size: large;font-weight: bold">
         {{ place.name }}
       </ons-list-header>
       <ons-list-item ng-show="place.item">
         {{ ctrl.abs(place.item.delay) }} 分
-        <span ng-if="place.item.delay  > 0">遅れ</span>
-        <span ng-if="place.item.delay  < 0">早い</span>
+        <span ng-if="place.item.delay  > 0">遅れています</span>
+        <span ng-if="place.item.delay  < 0">早く進んでいます</span>
         <span ng-if="place.item.delay == 0">定刻通り</span>
       </ons-list-item>
+
+      <ons-list-header ng-show="place.item.message">追加情報など</ons-list-header>
       <ons-list-item ng-show="place.item.message">
         {{ place.item.message }}
       </ons-list-item>
@@ -40,6 +53,7 @@
     </ons-list-header>
     <ons-list-item>
       <p><strong>遅延時間は目安です。</strong></p>
+
       <p>
         遅れ(進み)が突然解消される場合があります。<br>
         移動される際は余裕を持って行動して下さい。
