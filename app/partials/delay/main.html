@@ -32,11 +32,15 @@
       <ons-list-header style="font-size: large;font-weight: bold">
         {{ place.name }}
       </ons-list-header>
-      <ons-list-item ng-show="place.item">
+      <ons-list-item ng-show="place.item && !place.item.isPostponed">
         {{ ctrl.abs(place.item.delay) }} 分
         <span ng-if="place.item.delay  > 0">遅れています</span>
         <span ng-if="place.item.delay  < 0">早く進んでいます</span>
         <span ng-if="place.item.delay == 0">定刻通り</span>
+      </ons-list-item>
+      <ons-list-item ng-show="place.item && place.item.isPostponed"
+                     style="background-color: #FF0000; color:#FFFFFF;font-weight: bold;">
+        本日開催のイベントは【中止】となりました
       </ons-list-item>
 
       <ons-list-header ng-show="place.item.message">追加情報など</ons-list-header>
