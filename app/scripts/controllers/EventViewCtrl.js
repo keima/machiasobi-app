@@ -41,7 +41,7 @@ angular.module('myApp.controller.eventViewCtrl', [])
     $scope.toggleFavorite = function () {
       Favorite.toggleFavorite(calendarId, eventId);
       $scope.isFavorite = !$scope.isFavorite;
-      $rootScope.$broadcast('ReRenderCalendar');
+      $rootScope.$broadcast('RefreshCalendarHeight');
 
       if ($scope.isFavorite) {
         var trackerName = ga.getAll()[0].get('name');

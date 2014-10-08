@@ -7,7 +7,7 @@ angular.module('myApp.controller.calendarViewCtrl', [])
      * @param current Moment
      * @param periods Moment
      */
-    var getDefaultSelectedId = function (current, periods) {
+    function estimeteSelectedDateId (current, periods) {
       var last = periods.length - 1;
       if (current.isBefore(periods[0].date, 'day')) {
         return 0;
@@ -15,19 +15,16 @@ angular.module('myApp.controller.calendarViewCtrl', [])
         return last;
       }
 
-      periods.forEach(function(period, index) {
+      periods.forEach(function (period, index) {
         if (current.isSame(period.date, 'day')) {
           return index;
         }
       });
+      return 0; // fail safe...
+    }
 
-      // fail safe...
-      return 0;
-    };
+    // TODO: Tutorial.show...
 
-    // Tutorial.show...
-
-    $scope.selectedDateId = getDefaultSelectedId(moment(), $rootScope.periods);
     $scope.eventSources = Calendar.buildSources($scope.calendars);
     var originEventSources = _.cloneDeep($scope.eventSources);
 
@@ -42,9 +39,13 @@ angular.module('myApp.controller.calendarViewCtrl', [])
     };
 
     // 日付ボタンバーのクリックイベント
+    $scope.selectedDateId = estimeteSelectedDateId(moment(), $rootScope.periods);
     $scope.setSelectedDateId = function (id) {
       $scope.selectedDateId = id;
     };
+    $scope.$watch('selectedDateId', function (value) {
+      $scope.calendarConfig.defaultDate = $scope.periods[value].date;
+    });
 
     // 凡例のクリックイベント
     $scope.showOnlyThisEvent = function (calendarIndex) {
@@ -53,11 +54,6 @@ angular.module('myApp.controller.calendarViewCtrl', [])
       });
       $rootScope.$broadcast('eventSourceIsChanged');
     };
-
-
-    $scope.$watch('selectedDateId', function (value) {
-      $scope.calendarConfig.defaultDate = $scope.periods[value].date;
-    });
 
     $scope.$on('eventSourceIsChanged', function () {
       // 全消し
@@ -81,8 +77,10 @@ angular.module('myApp.controller.calendarViewCtrl', [])
       var _calendar = $('#calendar');
       $scope.calendarConfig.height = $window.innerHeight - $('#calendar-header-area').height() - 44;
       _calendar.fullCalendar('render');
+
+      console.log("CalendarHeight: " + $scope.calendarConfig.height);
     };
     $timeout(renderCalendar, 200);
-    $scope.$on('ReRenderCalendar', renderCalendar);
+    $scope.$on('RefreshCalendarHeight', renderCalendar);
 
   });

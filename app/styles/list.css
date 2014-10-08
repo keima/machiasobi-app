@@ -1,3 +1,9 @@
-.ons-list-item-inner p, .ons-list-item-inner div {
+.ons-list-item-inner p,
+.ons-list-item-inner div {
     line-height: normal;
+}
+
+.ons-list-item-inner div.list__right-label {
+    padding-right: 20px;
+    line-height: 44px;
 }

@@ -17,14 +17,14 @@ module.exports = function(grunt) {
     watch: {
       js: {
         files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
-//        tasks: ['injector'],
+        tasks: ['injector'],
         options: {
           livereload: true
         }
       },
       css: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
-//        tasks: ['injector'],
+        tasks: ['injector'],
         options: {
           livereload: true
         }
@@ -112,7 +112,7 @@ module.exports = function(grunt) {
       }
     },
 
-    bowerInstall: {
+    wiredep: {
       app: {
         src: '<%= yeoman.app %>/index.html',
         ignorePath: '<%= yeoman.app %>/',
@@ -286,7 +286,7 @@ module.exports = function(grunt) {
     }
 
     grunt.task.run([
-      'bowerInstall',
+      'wiredep',
       'injector',
       'connect:livereload',
       'watch'
@@ -295,7 +295,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
-    'bowerInstall',
+    'wiredep',
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',

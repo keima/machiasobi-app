@@ -19,7 +19,7 @@ angular.module('myApp',
   ])
   .constant('myAppSemVer', {
     major: 1,
-    minor: 0,
+    minor: 1,
     patch: 0
   })
   .config(function ($stateProvider, $urlRouterProvider) {
@@ -64,6 +64,18 @@ angular.module('myApp',
         templateUrl: 'partials/traffic/main.html'
       })
 
+      // Delay
+      .state('delay', {
+        url: '/delay',
+        templateUrl: 'partials/delay/main.html'
+      })
+
+      // Event
+      .state('event', {
+        url: '/event',
+        templateUrl: 'partials/event/main.html'
+      })
+
       // News
       .state('news', {
         url: '/news',
@@ -90,12 +102,12 @@ angular.module('myApp',
       .state('map.detail', {
         url: '/:id',
         template: '',
-        controller: function($scope, $timeout) {
-          $timeout(function(){
+        controller: function ($scope, $timeout) {
+          $timeout(function () {
             $scope.ons.navigator.pushPage('partials/map/detail.html');
           }, 200);
         },
-        onExit: function($rootScope) {
+        onExit: function ($rootScope) {
           $rootScope.ons.navigator.popPage();
         }
       })
@@ -112,7 +124,7 @@ angular.module('myApp',
         templateUrl: 'partials/misc/about.html'
       })
   })
-  .run(function ($rootScope, $window, $location, myAppSemVer, storage, Favorite, CalendarConst) {
+  .run(function ($rootScope, $cookies, $window, $location, myAppSemVer, storage, Favorite, CalendarConst, PeriodConst) {
     $rootScope.semver = myAppSemVer;
     $rootScope.appName = "マチ★アプリ";
     $rootScope.volName = "vol.13";
@@ -120,20 +132,7 @@ angular.module('myApp',
 
     storage.bind($rootScope, 'lastVersion', {defaultValue: null});
 
-    $rootScope.periods = [
-      {
-        name: '10月11日(土)',
-        date: moment('2014-10-11T00:00:00+09:00')
-      },
-      {
-        name: '10月12日(日)',
-        date: moment('2014-10-12T00:00:00+09:00')
-      },
-      {
-        name: '10月13日(月)',
-        date: moment('2014-10-13T00:00:00+09:00')
-      }
-    ];
+    $rootScope.periods = PeriodConst;
 
     $rootScope.favEvents = [];
 
@@ -152,7 +151,7 @@ angular.module('myApp',
 
       defaultView: 'agendaDay',
 
-      allDaySlot: true,
+      allDaySlot: (($cookies.showAllDaySlot || 'true') === 'true'),
       allDayText: '終日',
 
       axisFormat: 'HH:mm',
@@ -168,7 +167,10 @@ angular.module('myApp',
       },
       windowResize: function () {
         console.log('windowResize');
-      }
+      },
+
+      // これはui-calendarのプロパティではない
+      showLegend: (($cookies.showLegend || 'true') === 'true')
     };
 
     // rootScopeいじっておいて、どこでもng-clickでリンクを開けるようにする

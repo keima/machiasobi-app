@@ -1,37 +1,43 @@
-<ons-page ng-controller="MenuCtrl" style="background-color: white">
-    <ons-list>
+<ons-page ng-controller="CalendarMenuCtrl" style="background-color: white">
+  <ons-list>
 
-      <ons-list-item ui-sref="root">
-        <ons-icon icon="ion-android-system-back"></ons-icon>
-        トップメニューに戻る
-      </ons-list-item>
+    <ons-list-item ui-sref="root">
+      <ons-icon icon="ion-android-system-back"></ons-icon>
+      トップメニューに戻る
+    </ons-list-item>
 
-        <ons-list-header>
-            カレンダーのON/OFF
-        </ons-list-header>
+    <ons-list-header>
+      機能
+    </ons-list-header>
 
-        <ons-list-item
-                ng-repeat="calendar in calendars"
-                ng-if="calendar.sticky === false"
-                ng-click="checkInverse($index)">
-            <ons-switch modifier="list-item" checked ng-model="calendar.selected"></ons-switch>
-            {{ calendar.name }}
-        </ons-list-item>
+    <ons-list-item ng-click="toggleAllDay()">
+      <ons-switch modifier="list-item" ng-model="calendarConfig.allDaySlot"></ons-switch>
+      終日イベントを表示する
+    </ons-list-item>
 
-        <ons-list-header>
-            機能
-        </ons-list-header>
+    <ons-list-item ng-click="toggleLegend()">
+      <ons-switch modifier="list-item" ng-model="calendarConfig.showLegend"></ons-switch>
+      凡例を表示する
+    </ons-list-item>
 
-        <ons-list-item ng-click="toggleAllDay()">
-            <ons-switch modifier="list-item" ng-model="calendarConfig.allDaySlot"></ons-switch>
-            終日イベントを表示する
-        </ons-list-item>
+    <!-- 非表示
+    <ons-list-item ng-click="showOnlyFavorite()">
+        <ons-switch modifier="list-item" ng-model="isOnlyFavorite"></ons-switch>
+        ふぁぼったイベントだけ見る
+    </ons-list-item>
+    -->
 
-        <!-- 非表示
-        <ons-list-item ng-click="showOnlyFavorite()">
-            <ons-switch modifier="list-item" ng-model="isOnlyFavorite"></ons-switch>
-            ふぁぼったイベントだけ見る
-        </ons-list-item>
-        -->
-    </ons-list>
+    <ons-list-header>
+      カレンダーのON/OFF
+    </ons-list-header>
+
+    <ons-list-item
+        ng-repeat="calendar in calendars"
+        ng-if="calendar.sticky === false"
+        ng-click="toggleCalendar($index)">
+      <ons-switch modifier="list-item" checked ng-model="calendar.selected"></ons-switch>
+      {{ calendar.name }}
+    </ons-list-item>
+
+  </ons-list>
 </ons-page>
