@@ -7,3 +7,11 @@
     padding-right: 20px;
     line-height: 44px;
 }
+
+.app-list-item {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+.app-list-item .desc {
+    font-size: 0.8em;
+}

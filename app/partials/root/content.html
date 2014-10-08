@@ -11,11 +11,11 @@
 
 <ons-list>
 
-  <ons-list-item modifier="chevron" class="list-item-container"
+  <ons-list-item modifier="chevron" class="list-item-container app-list-item"
                  ng-repeat="app in appList"
-      ui-sref="{{ app.state }}">
+                 ui-sref="{{ app.state }}">
     <ons-row>
-      <ons-col width="95px">
+      <ons-col width="80px">
         <ons-icon icon="{{ app.icon }}" size="60px"></ons-icon>
       </ons-col>
       <ons-col>
