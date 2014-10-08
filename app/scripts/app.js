@@ -151,7 +151,7 @@ angular.module('myApp',
 
       defaultView: 'agendaDay',
 
-      allDaySlot: true,
+      allDaySlot: (($cookies.showAllDaySlot || 'true') === 'true'),
       allDayText: '終日',
 
       axisFormat: 'HH:mm',
@@ -167,7 +167,10 @@ angular.module('myApp',
       },
       windowResize: function () {
         console.log('windowResize');
-      }
+      },
+
+      // これはui-calendarのプロパティではない
+      showLegend: (($cookies.showLegend || 'true') === 'true')
     };
 
     // rootScopeいじっておいて、どこでもng-clickでリンクを開けるようにする

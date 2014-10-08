@@ -32,7 +32,7 @@
       </div>
 
       <!-- 凡例表示 -->
-      <ons-row id="legends">
+      <ons-row id="legends" ng-show="calendarConfig.showLegend">
         <ons-col ng-repeat="calendar in calendars"
                  width="{{ calendar.layout }}"
                  class="legend gcal-{{ calendar.shortName }}"

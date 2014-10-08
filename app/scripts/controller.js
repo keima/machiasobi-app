@@ -8,8 +8,9 @@ angular.module('myApp.controller',
     'myApp.controller.delayCtrl',
     'myApp.controller.eventCtrl',
 
-    'myApp.controller.menuCtrl',
     'myApp.controller.calendarViewCtrl',
+    'myApp.controller.calendarMenuCtrl',
+
     'myApp.controller.twitterCtrl',
     'myApp.controller.eventViewCtrl',
     'myApp.controller.tutorialViewCtrl'
