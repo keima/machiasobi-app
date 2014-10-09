@@ -122,12 +122,11 @@ angular.module('myApp.service.calendar', [])
     };
 
     /**
-     * TODO: なんだっけこれ・・・？
+     * FullCalendarで使用可能な形式に変換する
      * @param calendars
      * @returns {Array}
      */
     var buildSources = function (calendars) {
-      console.log("buildSources is running");
       var array = [];
 
       calendars.forEach(function (element) {
