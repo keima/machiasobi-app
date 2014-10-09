@@ -154,7 +154,8 @@ angular.module('myApp',
       allDaySlot: (($cookies.showAllDaySlot || 'true') === 'true'),
       allDayText: '終日',
 
-      axisFormat: 'HH:mm',
+      axisFormat: 'HH',
+
       slotEventOverlap: false, // イベントの重なりを切る
 
       eventRender: function (event, element) {
