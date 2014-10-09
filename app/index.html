@@ -33,63 +33,10 @@
   <!-- endinjector -->
   <!-- endbuild -->
 
-  <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
-  <!-- build:js({.tmp,app}) scripts/vendor.js -->
-  <!-- bower:js -->
-  <script src="bower_components/jquery/dist/jquery.js"></script>
-  <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/onsenui/build/js/onsenui.js"></script>
-  <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-  <script src="bower_components/moment/moment.js"></script>
-  <script src="bower_components/angular-ui-calendar/src/calendar.js"></script>
-  <script src="bower_components/lodash/dist/lodash.compat.js"></script>
-  <script src="bower_components/restangular/dist/restangular.js"></script>
-  <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-  <script src="bower_components/angular-markdown-directive/markdown.js"></script>
-  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-  <script src="bower_components/angularLocalStorage/src/angularLocalStorage.js"></script>
-  <script src="bower_components/angular-touch/angular-touch.js"></script>
-  <script src="bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
-  <!-- endbower -->
-  <script src="bower_components/showdown/compressed/showdown.js"></script>
-  <script src="external-scripts/fullcalendar.js"></script>
-  <script src="bower_components/fullcalendar/dist/gcal.js"></script>
-  <!-- endbuild -->
-
-  <!-- build:js({.tmp,app}) scripts/main.js -->
-  <!-- injector:js -->
-  <script src="scripts/app.js"></script>
-  <script src="scripts/constant.js"></script>
-  <script src="scripts/constants/calendar.js"></script>
-  <script src="scripts/constants/location.js"></script>
-  <script src="scripts/constants/period.js"></script>
-  <script src="scripts/controller.js"></script>
-  <script src="scripts/controllers/CalendarMenuCtrl.js"></script>
-  <script src="scripts/controllers/CalendarViewCtrl.js"></script>
-  <script src="scripts/controllers/DelayCtrl.js"></script>
-  <script src="scripts/controllers/EventCtrl.js"></script>
-  <script src="scripts/controllers/EventViewCtrl.js"></script>
-  <script src="scripts/controllers/MapListCtrl.js"></script>
-  <script src="scripts/controllers/NewsDetailCtrl.js"></script>
-  <script src="scripts/controllers/NewsListCtrl.js"></script>
-  <script src="scripts/controllers/RootCtrl.js"></script>
-  <script src="scripts/controllers/TrafficCtrl.js"></script>
-  <script src="scripts/controllers/TutorialViewCtrl.js"></script>
-  <script src="scripts/controllers/TwitterCtrl.js"></script>
-  <script src="scripts/directive.js"></script>
-  <script src="scripts/filter.js"></script>
-  <script src="scripts/service.js"></script>
-  <script src="scripts/services/calendar.js"></script>
-  <script src="scripts/services/eventStore.js"></script>
-  <script src="scripts/services/favorite.js"></script>
-  <script src="scripts/services/machitools.js"></script>
-  <script src="scripts/services/tutorial.js"></script>
-  <!-- endinjector -->
-  <!-- endbuild -->
-
-  <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
 <body>
+
+<ui-view></ui-view>
 
 <!-- Google Tag Manager -->
 <noscript>
@@ -107,7 +54,61 @@
 })(window, document, 'script', 'dataLayer', 'GTM-KRPVKF');</script>
 <!-- End Google Tag Manager -->
 
-<ui-view></ui-view>
+<script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
+<!-- build:js({.tmp,app}) scripts/vendor.js -->
+<!-- bower:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/onsenui/build/js/onsenui.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="bower_components/moment/moment.js"></script>
+<script src="bower_components/angular-ui-calendar/src/calendar.js"></script>
+<script src="bower_components/lodash/dist/lodash.compat.js"></script>
+<script src="bower_components/restangular/dist/restangular.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-markdown-directive/markdown.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angularLocalStorage/src/angularLocalStorage.js"></script>
+<script src="bower_components/angular-touch/angular-touch.js"></script>
+<script src="bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
+<!-- endbower -->
+<script src="bower_components/showdown/compressed/showdown.js"></script>
+<script src="external-scripts/fullcalendar.js"></script>
+<script src="bower_components/fullcalendar/dist/gcal.js"></script>
+<!-- endbuild -->
+
+<!-- build:js({.tmp,app}) scripts/main.js -->
+<!-- injector:js -->
+<script src="scripts/app.js"></script>
+<script src="scripts/constant.js"></script>
+<script src="scripts/constants/calendar.js"></script>
+<script src="scripts/constants/location.js"></script>
+<script src="scripts/constants/period.js"></script>
+<script src="scripts/controller.js"></script>
+<script src="scripts/controllers/CalendarMenuCtrl.js"></script>
+<script src="scripts/controllers/CalendarViewCtrl.js"></script>
+<script src="scripts/controllers/DelayCtrl.js"></script>
+<script src="scripts/controllers/EventCtrl.js"></script>
+<script src="scripts/controllers/EventViewCtrl.js"></script>
+<script src="scripts/controllers/MapListCtrl.js"></script>
+<script src="scripts/controllers/NewsDetailCtrl.js"></script>
+<script src="scripts/controllers/NewsListCtrl.js"></script>
+<script src="scripts/controllers/RootCtrl.js"></script>
+<script src="scripts/controllers/TrafficCtrl.js"></script>
+<script src="scripts/controllers/TutorialViewCtrl.js"></script>
+<script src="scripts/controllers/TwitterCtrl.js"></script>
+<script src="scripts/directive.js"></script>
+<script src="scripts/filter.js"></script>
+<script src="scripts/service.js"></script>
+<script src="scripts/services/calendar.js"></script>
+<script src="scripts/services/eventStore.js"></script>
+<script src="scripts/services/favorite.js"></script>
+<script src="scripts/services/machitools.js"></script>
+<script src="scripts/services/tutorial.js"></script>
+<!-- endinjector -->
+<!-- endbuild -->
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 </body>
 </html>
