@@ -19,7 +19,7 @@ angular.module('myApp',
   ])
   .constant('myAppSemVer', {
     major: 1,
-    minor: 1,
+    minor: 2,
     patch: 0
   })
   .config(function ($stateProvider, $urlRouterProvider) {
@@ -154,7 +154,8 @@ angular.module('myApp',
       allDaySlot: (($cookies.showAllDaySlot || 'true') === 'true'),
       allDayText: '終日',
 
-      axisFormat: 'HH:mm',
+      axisFormat: 'HH',
+
       slotEventOverlap: false, // イベントの重なりを切る
 
       eventRender: function (event, element) {

@@ -29,11 +29,13 @@ a. fc-time-grid-event fc-event fc-start fc-end gcal-***** // event
 .fc-time {
     color: #000000;
 }
+
 .fc-title {
     color: #353535;
     font-weight: bold;
     /*text-shadow: 1px 1px 0 #cbcbcb;*/
 }
+
 .fc-bg {
     background: none;
     opacity: 1;
@@ -45,6 +47,17 @@ a. fc-time-grid-event fc-event fc-start fc-end gcal-***** // event
 }
 
 /* カラー定義 */
+.gcal-announce {
+    margin-left: 1px;
+    margin-right: 1px;
+    border: 3px dotted #ff5f62;
+    background-color: #ffffff;
+}
+
+.gcal-shinmachi {
+    background-color: #90ee90;
+}
+
 .gcal-bizan {
     background-color: #85C8AA;
 }
@@ -53,20 +66,20 @@ a. fc-time-grid-event fc-event fc-start fc-end gcal-***** // event
     background-color: #FFB01C;
 }
 
-.gcal-shinmachi {
-    background-color: #90ee90;
+.gcal-awagin {
+    background-color: #3ffdff;
 }
 
-.gcal-ryougoku {
-    background-color: #87ceeb;
+.gcal-bunka {
+    background-color: #ff5f85;
 }
 
-.gcal-arcade {
-    background-color: #bffff0;
+.gcal-corne {
+    background-color: #7485ff;
 }
 
-.gcal-boardwalk {
-    background-color: #dda0dd;
+.gcal-cinema-entry {
+    background-color: #ff8b87;
 }
 
 .gcal-cinema1 {
@@ -77,6 +90,10 @@ a. fc-time-grid-event fc-event fc-start fc-end gcal-***** // event
     background-color: #ffc0cb;
 }
 
+.gcal-boardwalk {
+    background-color: #dda0dd;
+}
+
 .gcal-poppo {
     background-color: #f0e68c;
 }
@@ -85,9 +102,13 @@ a. fc-time-grid-event fc-event fc-start fc-end gcal-***** // event
     background-color: #c3c3c3;
 }
 
-.gcal-announce {
-    /*border: 2px dotted #ff0000;*/
-    background-color: #ff9999;
+/* --- unused vol.13 --- */
+.gcal-ryougoku {
+    background-color: #87ceeb;
+}
+
+.gcal-arcade {
+    background-color: #bffff0;
 }
 
 /* Other */

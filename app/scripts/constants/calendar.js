@@ -12,8 +12,44 @@ angular.module('myApp.constant.calendar', [])
       sticky: true
     },
     {
+      name: 'CINEMA 入口',
+      shortName: 'cinema-entry',
+      layout: '33%',
+      calendarId: 'p-side.net_j3mtcq3ejulrovek8kru6vgoe8@group.calendar.google.com',
+      selected: true,
+      sticky: false
+    },
+
+    {
+      name: 'あわぎん小ホール',
+      shortName: 'awagin',
+      layout: '33%',
+      calendarId: 'p-side.net_oa45stb6g4h9lqiq5vd1ov844s@group.calendar.google.com',
+      selected: true,
+      sticky: false
+    },
+
+    {
+      name: 'コルネの泉',
+      shortName: 'corne',
+      layout: '33%',
+      calendarId: 'p-side.net_jo112m9l36p6nlkrv939sb9kr0@group.calendar.google.com',
+      selected: true,
+      sticky: false
+    },
+
+    {
+      name: '文化センター',
+      shortName: 'bunka',
+      layout: '33%',
+      calendarId: 'p-side.net_gocec2ij5sqho46oial3jusn1o@group.calendar.google.com',
+      selected: true,
+      sticky: false
+    },
+
+    {
       name: '眉山林間ステージ',
-      shortName: 'bizan', // css: gcal-shinmachi
+      shortName: 'bizan',
       layout: '34%',
       calendarId: 'p-side.net_m9s9a5ut02n6ap1s6prdj92ss4@group.calendar.google.com',
       selected: true,
