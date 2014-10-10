@@ -34,7 +34,8 @@
       <!-- 凡例表示 -->
       <ons-row id="legends" ng-show="calendarConfig.showLegend">
         <ons-col ng-repeat="calendar in calendars"
-                 width="{{ calendar.layout }}"
+                 ng-show="!calendar.sticky"
+                 width="33.3%"
                  class="legend gcal-{{ calendar.shortName }}"
                  ng-click="showOnlyThisEvent($index)">
           {{ calendar.name }}
