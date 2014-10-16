@@ -21,8 +21,11 @@
     "momentjs": "~2.8.3",
     "restangular": "~1.4.0",
     "angular-markdown-directive": "~0.3.0",
-    "angularLocalStorage": "~0.1.7",
-    "angular-touch": "~1.2.23",
+    "angularLocalStorage": "~0.1.8",
+    "angular-touch": "~1.2.26",
     "angular-google-maps": "~1.2.2"
+  },
+  "resolutions": {
+    "angular": "1.2.26"
   }
 }
