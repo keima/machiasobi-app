@@ -190,6 +190,6 @@ angular.module('myApp',
         absUrl = $location.absUrl(),
         virtualUrl = absUrl.substring(absUrl.indexOf(path));
 
-      $window.dataLayer.push({ event: 'virtualPageView', virtualUrl: virtualUrl });
+      $window.dataLayer.push({event: 'virtualPageView', virtualUrl: virtualUrl});
     })
   });
