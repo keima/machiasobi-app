@@ -10,7 +10,7 @@ angular.module('myApp',
     'ui.calendar',
     'onsen.directives',
     'btford.markdown',
-    'google-maps',
+    'google-maps'.ns(),
     'myApp.constant',
     'myApp.service',
     'myApp.controller',
@@ -20,7 +20,7 @@ angular.module('myApp',
   .constant('myAppSemVer', {
     major: 1,
     minor: 2,
-    patch: 0
+    patch: 1
   })
   .config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
@@ -124,6 +124,11 @@ angular.module('myApp',
         templateUrl: 'partials/misc/about.html'
       })
   })
+  .config(['GoogleMapApiProvider'.ns(), function (GoogleMapApi) {
+    GoogleMapApi.configure({
+      key: 'AIzaSyCgK3kr9bdc_Qv_SnSJTxAcS1npBGqyRgw'
+    });
+  }])
   .run(function ($rootScope, $cookies, $window, $location, myAppSemVer, storage, Favorite, CalendarConst, PeriodConst) {
     $rootScope.semver = myAppSemVer;
     $rootScope.appName = "マチ★アプリ";
@@ -185,6 +190,6 @@ angular.module('myApp',
         absUrl = $location.absUrl(),
         virtualUrl = absUrl.substring(absUrl.indexOf(path));
 
-      $window.dataLayer.push({ event: 'virtualPageView', virtualUrl: virtualUrl });
+      $window.dataLayer.push({event: 'virtualPageView', virtualUrl: virtualUrl});
     })
   });
