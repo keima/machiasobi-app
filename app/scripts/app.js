@@ -20,7 +20,7 @@ angular.module('myApp',
   .constant('myAppSemVer', {
     major: 1,
     minor: 2,
-    patch: 0
+    patch: 1
   })
   .config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
