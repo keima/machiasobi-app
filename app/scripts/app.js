@@ -10,7 +10,7 @@ angular.module('myApp',
     'ui.calendar',
     'onsen.directives',
     'btford.markdown',
-    'google-maps',
+    'google-maps'.ns(),
     'myApp.constant',
     'myApp.service',
     'myApp.controller',
@@ -124,6 +124,11 @@ angular.module('myApp',
         templateUrl: 'partials/misc/about.html'
       })
   })
+  .config(['GoogleMapApiProvider'.ns(), function (GoogleMapApi) {
+    GoogleMapApi.configure({
+      key: 'AIzaSyCgK3kr9bdc_Qv_SnSJTxAcS1npBGqyRgw'
+    });
+  }])
   .run(function ($rootScope, $cookies, $window, $location, myAppSemVer, storage, Favorite, CalendarConst, PeriodConst) {
     $rootScope.semver = myAppSemVer;
     $rootScope.appName = "マチ★アプリ";

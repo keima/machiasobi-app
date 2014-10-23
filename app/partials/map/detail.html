@@ -8,22 +8,23 @@
     <div class="center">{{ item.name }}</div>
   </ons-toolbar>
 
-  <google-map center="map.center" zoom="map.zoom">
-    <marker ng-repeat="marker in markers"
-            coords="marker.coords" options="map.options" idkey="$index">
-      <window>
+  <ui-gmap-google-map center="map.center" zoom="map.zoom">
+    <ui-gmap-markers models="markers" coords="'coords'" click="'onClickMarker'">
+      <ui-gmap-windows show="'visible'" templateParameter="'hoge'">
         <div>
-          <strong>{{ marker.name }}</strong>
-
-          <div>{{ marker.description }}</div>
+          <strong ng-non-bindable>{{ name }}</strong>
+          <div ng-non-bindable>{{ description }}</div>
           <ons-button modifier="light"
-                      ng-click="$parent.$parent.$parent.openCoords($parent.marker.coords)">
+                      ng-click="$parent.$parent.$parent.openSelectedCoords()">
             <ons-icon icon="ion-map"></ons-icon>
             アプリで開く
           </ons-button>
         </div>
-      </window>
-    </marker>
-  </google-map>
-
+      </ui-gmap-windows>
+    </ui-gmap-markers>
+  </ui-gmap-google-map>
 </ons-page>
+
+<!--
+
+-->

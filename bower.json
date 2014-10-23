@@ -23,7 +23,7 @@
     "angular-markdown-directive": "~0.3.0",
     "angularLocalStorage": "~0.1.8",
     "angular-touch": "~1.2.26",
-    "angular-google-maps": "~1.2.2"
+    "angular-google-maps": "2.0.5"
   },
   "resolutions": {
     "angular": "1.2.26"

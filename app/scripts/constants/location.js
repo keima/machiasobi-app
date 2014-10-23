@@ -14,8 +14,8 @@ angular.module('myApp.constant.location', [])
       url: "/objects/map/atm.json"
     },
     arcade: {
-      name: "新町商店街催事場所",
-      notice: "東新町商店街での催事情報をまとめました。足で稼ぐスタンス！",
+      name: "[vol.13]新町商店街催事場所",
+      notice: "vol.13での東新町商店街での展示イベント情報でした。",
       url: "/objects/map/arcade.json"
     }
   });
