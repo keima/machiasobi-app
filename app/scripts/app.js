@@ -125,12 +125,12 @@ angular.module('myApp',
         templateUrl: 'partials/misc/about.html'
       })
   })
-  .config(['GoogleMapApiProvider'.ns(), function (GoogleMapApi) {
-    GoogleMapApi.configure({
-      key: 'AIzaSyCgK3kr9bdc_Qv_SnSJTxAcS1npBGqyRgw'
+  .config(function (uiGmapGoogleMapApiProvider, myAppGoogleApiKey) {
+    uiGmapGoogleMapApiProvider.configure({
+      key: myAppGoogleApiKey
     });
-  }])
-  .run(function ($rootScope, $cookies, $window, $location, myAppSemVer, storage, Favorite, CalendarConst, PeriodConst) {
+  })
+  .run(function ($rootScope, $cookies, $window, $location, myAppSemVer, myAppGoogleApiKey, storage, Favorite, CalendarConst, PeriodConst) {
     $rootScope.semver = myAppSemVer;
     $rootScope.appName = "マチ★アプリ";
     $rootScope.volName = "vol.13";
@@ -145,10 +145,12 @@ angular.module('myApp',
     $rootScope.calendars = CalendarConst;
 
     $rootScope.calendarConfig = {
+      googleCalendarApiKey: myAppGoogleApiKey,
+
       header: false,
       height: 1000, // dummy value
       defaultDate: $rootScope.periods[0].date,
-      timezone: 'Asia/Tokyo',//false,//s'UTC',//'local',//'Asia/Tokyo',
+      timezone: 'Asia/Tokyo',
 
       scrollTime: '8:00:00',
       slotDuration: '00:15:00',
