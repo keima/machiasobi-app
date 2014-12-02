@@ -11,7 +11,7 @@ angular.module('myApp.service.calendar', [
       });
     });
   })
-  .service('Calendar', function (CalendarRest, CalendarConst, myAppGoogleApiKey) {
+  .service('Calendar', function (CalendarRest, CalendarConst) {
     /**
      * calendarId から className(gcal-shinmachi) を取得します
      * @param _calendarId

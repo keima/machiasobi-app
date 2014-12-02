@@ -16,7 +16,8 @@ angular.module('myApp',
     'myApp.service',
     'myApp.controller',
     'myApp.directive',
-    'myApp.filter'
+    'myApp.filter',
+    'myApp.view'
   ])
   .constant('myAppSemVer', {
     major: 1,
