@@ -12,11 +12,12 @@
     </ons-toolbar>
 
     <div id="calendar-header-area">
+
       <!-- 日付選択 -->
       <div class="navigation-bar">
-        <div class="navigation-bar__center">
-          <div class="button-bar" style="width: 100%;" id="dateSelector">
+        <div class="navigation-bar__center" style="padding:0 4px;">
 
+          <div class="button-bar" style="width: 100%; margin:8px auto 0;" id="dateSelector">
             <div class="button-bar__item"
                  ng-repeat="period in periods"
                  ng-class="{active: selectedDateId == $index}">
@@ -26,8 +27,8 @@
 
               <div class="button-bar__button">{{ period.name }}</div>
             </div>
-
           </div>
+
         </div>
       </div>
 
@@ -41,6 +42,7 @@
           {{ calendar.name }}
         </ons-col>
       </ons-row>
+
     </div>
 
     <!-- FullCalendar -->

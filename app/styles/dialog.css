@@ -1,0 +1,18 @@
+/* The dialog style */
+body {
+    height: 100%;
+}
+
+.dialog {
+    max-width: 100%;
+    height: 95%;
+}
+
+.dialog-list-wrap {
+    height: 100%;
+}
+
+.list {
+    height: 100%;
+    overflow: auto;
+}

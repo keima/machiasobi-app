@@ -69,6 +69,9 @@ angular.module('myApp.controller.calendarViewCtrl', [])
       if (_.isEmpty($scope.eventSources)) {
         $scope.eventSources.push($scope.favEvents);
       }
+
+      // calendarConfigを更新して強制的にアイテムのリロードをかける
+      $scope.calendarConfig.updateTime = moment();
     });
 
     // SUPER-DIRTY-HACK!!!!!!!!

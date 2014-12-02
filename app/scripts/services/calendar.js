@@ -1,11 +1,13 @@
 'use strict';
 
-angular.module('myApp.service.calendar', [])
-  .factory('CalendarRest', function (Restangular) {
+angular.module('myApp.service.calendar', [
+  'myApp.constant.apikey'
+])
+  .factory('CalendarRest', function (Restangular, myAppGoogleApiKey) {
     return Restangular.withConfig(function (config) {
       config.setBaseUrl('https://www.googleapis.com/calendar/v3');
       config.setDefaultRequestParams({
-        key: "AIzaSyCgK3kr9bdc_Qv_SnSJTxAcS1npBGqyRgw"
+        key: myAppGoogleApiKey
       });
     });
   })
@@ -96,19 +98,6 @@ angular.module('myApp.service.calendar', [])
     };
 
     /**
-     * calendarIdとshortName(shinmachiなど)を与えて url および className を取得します
-     * @param calendarId
-     * @param shortName
-     * @returns {{url: string, className: string}}
-     */
-    var getUrl = function (calendarId, shortName) {
-      return {
-        url: 'http://www.google.com/calendar/feeds/' + calendarId + '/public/basic',
-        className: 'gcal-' + shortName
-      };
-    };
-
-    /**
      * calnedarUrlからcalendarIdを取得します
      * @param calendarUrl
      * @returns {*}
@@ -118,7 +107,12 @@ angular.module('myApp.service.calendar', [])
 
       var calendarId = calendarUrl.match(pattern);
 
-      return calendarId[1]; // 1 is result of regexp.
+      if (_.isNull(calendarId)) {
+        return calendarUrl;
+      } else {
+        return calendarId[1]; // 1 is result of regexp.
+      }
+
     };
 
     /**
@@ -136,6 +130,20 @@ angular.module('myApp.service.calendar', [])
       });
 
       return array;
+    };
+
+    /**
+     * calendarIdとshortName(shinmachiなど)を与えて url および className を取得します
+     * @param calendarId
+     * @param shortName
+     * @returns {{url: string, className: string}}
+     */
+    var getUrl = function (calendarId, shortName) {
+      return {
+        // url: 'http://www.google.com/calendar/feeds/' + calendarId + '/public/basic',
+        googleCalendarId: calendarId,
+        className: 'gcal-' + shortName
+      };
     };
 
     return {

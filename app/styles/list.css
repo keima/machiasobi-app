@@ -15,3 +15,7 @@
 .app-list-item .desc {
     font-size: 0.8em;
 }
+
+.list__item:last-child {
+    margin-bottom: 44px;
+}

@@ -8,19 +8,21 @@ angular.module('myApp',
     'angularLocalStorage',
     'ui.router',
     'ui.calendar',
+    'onsen',
     'onsen.directives',
     'btford.markdown',
-    'google-maps'.ns(),
+    'uiGmapgoogle-maps',
     'myApp.constant',
     'myApp.service',
     'myApp.controller',
     'myApp.directive',
-    'myApp.filter'
+    'myApp.filter',
+    'myApp.view'
   ])
   .constant('myAppSemVer', {
     major: 1,
     minor: 2,
-    patch: 1
+    patch: 3
   })
   .config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
@@ -40,7 +42,7 @@ angular.module('myApp',
       .state('calendar.detail', {
         url: '/:calendarShortName/:eventId',
         template: '', // empty template
-        controller: function ($scope, $stateParams, EventStore, Calendar) {
+        controller: function ($scope, $stateParams, $timeout, $location, EventStore, Calendar) {
           var shortName = $stateParams.calendarShortName;
           var calendarId = Calendar.findCalendarIdByShortName(shortName);
 
@@ -50,11 +52,25 @@ angular.module('myApp',
           Calendar.getEvent(calendarId, eventId)
             .then(function (event) {
               EventStore.save(event);
-              $scope.ons.screen.presentPage('partials/calendar/event.html');
+
+              $scope.ons.createDialog('partials/calendar/event.html').then(function (dialog) {
+                dialog.on("prehide", function (e) {
+
+                  $timeout(function () {
+                    $location.path('/calendar');
+                  }, 10);
+
+                });
+                dialog.show();
+              });
+
+              //$scope.ons.screen.presentPage('partials/calendar/event.html');
             });
         },
         onExit: function ($rootScope) {
-          $rootScope.ons.screen.dismissPage();
+          if ($rootScope.ons.dialog.isShown()) {
+            $rootScope.ons.dialog.hide(); // DOMが残り続ける問題がある
+          }
         }
       })
 
@@ -124,12 +140,12 @@ angular.module('myApp',
         templateUrl: 'partials/misc/about.html'
       })
   })
-  .config(['GoogleMapApiProvider'.ns(), function (GoogleMapApi) {
-    GoogleMapApi.configure({
-      key: 'AIzaSyCgK3kr9bdc_Qv_SnSJTxAcS1npBGqyRgw'
+  .config(function (uiGmapGoogleMapApiProvider, myAppGoogleApiKey) {
+    uiGmapGoogleMapApiProvider.configure({
+      key: myAppGoogleApiKey
     });
-  }])
-  .run(function ($rootScope, $cookies, $window, $location, myAppSemVer, storage, Favorite, CalendarConst, PeriodConst) {
+  })
+  .run(function ($rootScope, $cookies, $window, $location, myAppSemVer, myAppGoogleApiKey, storage, Favorite, CalendarConst, PeriodConst) {
     $rootScope.semver = myAppSemVer;
     $rootScope.appName = "マチ★アプリ";
     $rootScope.volName = "vol.13";
@@ -144,10 +160,12 @@ angular.module('myApp',
     $rootScope.calendars = CalendarConst;
 
     $rootScope.calendarConfig = {
+      googleCalendarApiKey: myAppGoogleApiKey,
+
       header: false,
       height: 1000, // dummy value
       defaultDate: $rootScope.periods[0].date,
-      timezone: 'Asia/Tokyo',//false,//s'UTC',//'local',//'Asia/Tokyo',
+      timezone: 'Asia/Tokyo',
 
       scrollTime: '8:00:00',
       slotDuration: '00:15:00',
@@ -176,7 +194,8 @@ angular.module('myApp',
       },
 
       // これはui-calendarのプロパティではない
-      showLegend: (($cookies.showLegend || 'true') === 'true')
+      showLegend: (($cookies.showLegend || 'true') === 'true'),
+      updateTime: moment()
     };
 
     // rootScopeいじっておいて、どこでもng-clickでリンクを開けるようにする
