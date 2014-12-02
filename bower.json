@@ -18,16 +18,16 @@
     "angular-sanitize": "~1.2.27",
     "angular-cookies": "~1.2.27",
 
-    "onsenui": "~1.2.0",
+    "onsenui": "~1.2.1",
     "angular-ui-router": "~0.2.11",
-    "fullcalendar": "~2.2.2",
+    "fullcalendar": "~2.2.3",
     "angular-ui-calendar": "0.9.0-beta.1",
     "lodash": "~2.4.1",
     "momentjs": "~2.8.4",
     "restangular": "~1.4.0",
     "angular-markdown-directive": "~0.3.0",
     "angularLocalStorage": "~0.1.8",
-    "angular-google-maps": "2.0.9",
+    "angular-google-maps": "~2.0.11",
     "angular-touch": "~1.2.27"
   },
   "resolutions": {

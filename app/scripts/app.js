@@ -41,7 +41,7 @@ angular.module('myApp',
       .state('calendar.detail', {
         url: '/:calendarShortName/:eventId',
         template: '', // empty template
-        controller: function ($scope, $stateParams, EventStore, Calendar) {
+        controller: function ($scope, $stateParams, $timeout, $location, EventStore, Calendar) {
           var shortName = $stateParams.calendarShortName;
           var calendarId = Calendar.findCalendarIdByShortName(shortName);
 
@@ -51,11 +51,25 @@ angular.module('myApp',
           Calendar.getEvent(calendarId, eventId)
             .then(function (event) {
               EventStore.save(event);
-              $scope.ons.screen.presentPage('partials/calendar/event.html');
+
+              $scope.ons.createDialog('partials/calendar/event.html').then(function (dialog) {
+                dialog.on("prehide", function (e) {
+
+                  $timeout(function () {
+                    $location.path('/calendar');
+                  }, 10);
+
+                });
+                dialog.show();
+              });
+
+              //$scope.ons.screen.presentPage('partials/calendar/event.html');
             });
         },
         onExit: function ($rootScope) {
-          $rootScope.ons.screen.dismissPage();
+          if ($rootScope.ons.dialog.isShown()) {
+            $rootScope.ons.dialog.hide(); // DOMが残り続ける問題がある
+          }
         }
       })
 
@@ -179,7 +193,8 @@ angular.module('myApp',
       },
 
       // これはui-calendarのプロパティではない
-      showLegend: (($cookies.showLegend || 'true') === 'true')
+      showLegend: (($cookies.showLegend || 'true') === 'true'),
+      updateTime: moment()
     };
 
     // rootScopeいじっておいて、どこでもng-clickでリンクを開けるようにする
