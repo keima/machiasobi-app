@@ -6,8 +6,14 @@
   <ons-list-item modifier="chevron"
                  ng-repeat="app in appList"
                  ui-sref="{{ app.state }}">
-    <ons-icon icon="{{ app.icon }}"></ons-icon>
-    {{ app.name }}
+    <ons-row>
+      <ons-col width="40px" style="text-align: center;">
+        <ons-icon icon="{{ app.icon }}"></ons-icon>
+      </ons-col>
+      <ons-col>
+        {{ app.name }}
+      </ons-col>
+    </ons-row>
   </ons-list-item>
 
   <ons-list-item style="text-align:center">
