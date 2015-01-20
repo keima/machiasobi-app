@@ -2,6 +2,7 @@
   <ons-toolbar>
     <div class="left">
       <ons-toolbar-button ui-sref="map">
+        <ons-icon icon="ion-ios7-arrow-back" size="36px"></ons-icon>
         戻る
       </ons-toolbar-button>
     </div>
@@ -13,6 +14,7 @@
       <ui-gmap-windows show="'visible'" templateParameter="'hoge'">
         <div>
           <strong ng-non-bindable>{{ name }}</strong>
+
           <div ng-non-bindable>{{ description }}</div>
           <ons-button modifier="light"
                       ng-click="$parent.$parent.$parent.openSelectedCoords()">
