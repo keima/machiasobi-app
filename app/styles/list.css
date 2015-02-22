@@ -16,6 +16,9 @@
     font-size: 0.8em;
 }
 
+/* FIXME: なんのために存在するのか調べる */
 .list__item:last-child {
+    /*
     margin-bottom: 44px;
+    */
 }

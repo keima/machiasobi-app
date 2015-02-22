@@ -1,0 +1,37 @@
+/* search result */
+.plan-left {
+    text-align: right;
+    padding: 10px 10px 10px 0;
+}
+
+.plan-date {
+    font-size: 14px;
+    opacity: 0.8;
+    margin-bottom: 4px;
+    font-weight: 500;
+}
+
+.plan-duration {
+    font-size: 11px;
+    opacity: 0.4;
+}
+
+.plan-center {
+    background-color: #3399ff;
+    opacity: 0.5;
+}
+
+.plan-right {
+    padding: 10px 0px 10px 10px;
+}
+
+.plan-name {
+    font-size: 17px;
+    margin-bottom: 8px;
+}
+
+.plan-info {
+    opacity: 0.6;
+    font-size: 12px;
+    line-height: 1.4;
+}
