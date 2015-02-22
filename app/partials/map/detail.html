@@ -2,6 +2,7 @@
   <ons-toolbar>
     <div class="left">
       <ons-toolbar-button ui-sref="map">
+        <ons-icon icon="ion-ios7-arrow-back" size="36px"></ons-icon>
         戻る
       </ons-toolbar-button>
     </div>
@@ -9,22 +10,22 @@
   </ons-toolbar>
 
   <ui-gmap-google-map center="map.center" zoom="map.zoom">
-    <ui-gmap-markers models="markers" coords="'coords'" click="'onClickMarker'">
-      <ui-gmap-windows show="'visible'" templateParameter="'hoge'">
+    <ui-gmap-marker ng-repeat="marker in item.markers"
+                    idKey="marker.id"
+                    click="marker.onClick()"
+                    coords="marker.coords">
+      <ui-gmap-window show="marker.visible">
         <div>
-          <strong ng-non-bindable>{{ name }}</strong>
-          <div ng-non-bindable>{{ description }}</div>
+          <strong>{{ marker.name }}</strong>
+          <div>{{ marker.description }}</div>
+
           <ons-button modifier="light"
-                      ng-click="$parent.$parent.$parent.openSelectedCoords()">
+                      ng-click="$parent.marker.openCoords()">
             <ons-icon icon="ion-map"></ons-icon>
             アプリで開く
           </ons-button>
         </div>
-      </ui-gmap-windows>
-    </ui-gmap-markers>
+      </ui-gmap-window>
+    </ui-gmap-marker>
   </ui-gmap-google-map>
 </ons-page>
-
-<!--
-
--->

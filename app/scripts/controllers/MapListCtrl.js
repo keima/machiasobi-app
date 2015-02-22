@@ -1,12 +1,19 @@
+"use strict";
+
 angular.module('myApp.controller.mapCtrl', [])
-  .controller('MapListCtrl', function (LocationConst) {
+  .controller('MapListCtrl', function (MachiRest) {
     var self = this;
-    this.items = LocationConst;
+
+    MachiRest.all('maps').getList()
+      .then(function (result) {
+        self.items = result;
+      });
+
   })
-  .controller('MapDetailCtrl', function ($scope, $window, $http, $stateParams, LocationConst) {
-    $scope.item = LocationConst[$stateParams.id];
+  .controller('MapDetailCtrl', function ($scope, $window, $http, $stateParams, MachiRest, LocationConst) {
     $scope.markers = [];
-    $scope.SELECTED_ID = 0; // DIRTY HACK!
+    $scope.isExist = false;
+    $scope.SELECTED_ID = "0"; // DIRTY HACK!
 
     // set height
     var height = $window.innerHeight - 44;
@@ -21,27 +28,36 @@ angular.module('myApp.controller.mapCtrl', [])
       zoom: 16
     };
 
-    $http.get($scope.item.url).then(function (result) {
-      $scope.markers = result.data;
-      $scope.markers.forEach(function (value, index) {
-        value.id = index;
-        value.visible = false;
-        value.onClickMarker = function() {
-          $scope.SELECTED_ID = value.id;
+    MachiRest.all('maps').get($stateParams.id)
+      .then(function (result) {
+        $scope.item = result;
 
-          // 押したマーカー以外は閉じたい
-          $scope.markers.forEach(function (value, index) {
-            value.visible = ($scope.SELECTED_ID === index);
-          });
-          $scope.markers;
+        if (_.isUndefined($scope.item.markers)) {
+          $scope.isExist = false;
+          return;
         }
-      });
-    });
+        $scope.isExist = true;
 
-    $scope.openSelectedCoords = function () {
-      var coords = $scope.markers[$scope.SELECTED_ID].coords;
-      $scope.openCoords(coords);
-    };
+        $scope.item.markers.forEach(function (value, index) {
+            // angular-google-maps対応
+            value.visible = false;
+
+            value.onClick = function () {
+              $scope.SELECTED_ID = value.id;
+
+              // 押したマーカー以外は閉じたい
+              $scope.item.markers.forEach(function (value, index) {
+                value.visible = ($scope.SELECTED_ID === value.id);
+              });
+            };
+
+            value.openCoords = function () {
+              $scope.openCoords(value.coords);
+            }
+
+          }
+        )
+      });
 
     // open geo link
     $scope.openCoords = function (coords) {
@@ -50,10 +66,6 @@ angular.module('myApp.controller.mapCtrl', [])
 
       var url = "http://maps.google.com/?q=" + lat + "," + log;
       $window.open(url);
-    };
-
-    $scope.hoge = function (object) {
-      console.log(object);
     };
 
   });

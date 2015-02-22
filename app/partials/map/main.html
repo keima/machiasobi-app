@@ -7,23 +7,26 @@
           戻る
         </ons-toolbar-button>
       </div>
-      <div class="center">ニュース</div>
+      <div class="center">マップ</div>
     </ons-toolbar>
 
     <ons-list>
       <ons-list-item modifier="chevron"
-                     ng-repeat="(key, item) in ctrl.items"
-                     ui-sref="map.detail({id: key})">
-        {{ item.name }}
+                     ng-repeat="item in ctrl.items"
+                     ui-sref="map.detail({id: item.id})">
+        <p>
+          {{ item.name }}<br>
+          <small>{{ item.updatedAt | date:"yyyy年MM月dd日 HH時mm分 更新" }}</small>
+        </p>
+      </ons-list-item>
+
+      <ons-list-item>
+        <p>掲載されている情報のうち、コンビニの情報は意図的に除外してあります。</p>
+
+        <p>新町地区のコンビニのうち、トイレがない店舗が多数確認されています。コンビニのトイレをご利用の方は細心の注意を払ってご検討下さい。<br>
+          また、希に紙を切らしている場合もありますので、念のために紙を持っていくことをオススメします。</p>
       </ons-list-item>
     </ons-list>
-
-    <ons-list-item>
-      <p>掲載されている情報のうち、コンビニの情報は意図的に除外してあります。</p>
-
-      <p>新町地区のコンビニのうち、トイレがない店舗が多数確認されています。コンビニのトイレをご利用の方は細心の注意を払ってご検討下さい。<br>
-        また、希に紙を切らしている場合もありますので、念のために紙を持っていくことをオススメします。</p>
-    </ons-list-item>
 
     <ui-view></ui-view>
 
