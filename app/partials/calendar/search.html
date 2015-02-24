@@ -18,13 +18,14 @@
     </div>
   </div>
 
-  <ons-list ng-hide="ctrl.notFound">
+  <ons-list ng-hide="ctrl.notFound || ctrl.result.length == 0">
     <div ng-repeat="item in ctrl.result">
       <ons-list-header ng-show="ctrl.showHeader(ctrl.result[$index - 1], item)">
         {{ item.start | date:"yyyy年MM月dd日" }}
       </ons-list-header>
-      <ons-list-item ng-click="ctrl.moveToDetail($index)">
-        <ons-row>
+      <ons-list-item ng-click="ctrl.moveToDetail($index)" modifier="chevron">
+
+        <ons-row class="calendar-search-result">
           <ons-col class="plan-left" width="80px">
             <div class="plan-date">{{ item.start | date:"HH:mm a" }}</div>
             <div class="plan-duration">{{ ctrl.diff(item.start, item.end) }}min.</div>
@@ -44,10 +45,20 @@
     </div>
   </ons-list>
 
-  <div ng-show="ctrl.notFound" style="text-align: center">
-    <ons-icon icon="times-circle" size="64px"></ons-icon><br>
-    上記の言葉で検索しましたが見つかりませんでした・・・。<br>
-    言葉を分割する、別の意味の言葉で検索するとヒットすることがあります。
+  <!-- Start -->
+  <div ng-show="ctrl.result.length == 0 && !ctrl.notFound" style="text-align: center;padding-bottom: 100px">
+    <ons-icon icon="arrow-up" size="64px"></ons-icon>
+    <br>
+    検索欄に検索したい言葉を入力し、Enterキー(確定キー)を押すと検索されます
+  </div>
+
+  <!-- Not Found -->
+  <div ng-show="ctrl.notFound" style="text-align: center;padding-bottom: 100px">
+    <ons-icon icon="times-circle" size="64px"></ons-icon>
+    <br>
+    上記の言葉で検索しましたが見つかりませんでした・・・<br><br>
+    言葉を分割する、別の意味の言葉で検索すると見つかることがあります<br><br>
+    例：「IDOL」はNG、「IDOLM@STER」はOK。
   </div>
 
 </ons-page>

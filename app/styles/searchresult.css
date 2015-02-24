@@ -1,4 +1,11 @@
 /* search result */
+.calendar-search-result p,
+.calendar-search-result div {
+    line-height: normal;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
 .plan-left {
     text-align: right;
     padding: 10px 10px 10px 0;

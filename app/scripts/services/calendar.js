@@ -11,7 +11,7 @@ angular.module('myApp.service.calendar', [
       });
     });
   })
-  .service('Calendar', function (CalendarRest, CalendarConst, $q) {
+  .service('Calendar', function (CalendarRest, CalendarConst, PeriodConst, $q) {
     /**
      * calendarId から className(gcal-shinmachi) を取得します
      * @param _calendarId
@@ -81,7 +81,7 @@ angular.module('myApp.service.calendar', [
      * @param gcalObj
      * @returns {{id: *, title: string, description: (*|$scope.appList.description), start: string, end: string, className: string, url: string, source: {dataType: string, url: string}}}
      */
-    function convertGcalToFullCalendarObject(calendarId, eventId, gcalObj) {
+    function convertGcalToFullCalendarObject (calendarId, eventId, gcalObj) {
       if (gcalObj.status === "cancelled") {
         return null;
       }
@@ -166,14 +166,23 @@ angular.module('myApp.service.calendar', [
       var deferred = $q.defer();
       var count = 0;
 
-      CalendarConst.forEach(function(calendar){
-        CalendarRest.all("calendars").all(calendar.calendarId).get("events", {q: searchWord})
-          .then(function (result) {
+      CalendarConst.forEach(function (calendar) {
+        CalendarRest.all("calendars").all(calendar.calendarId).get("events",
+          {
+            orderBy: 'startTime',
+            singleEvents: true,
+            timeZone: 'Asia/Tokyo',
+            timeMin: _.first(PeriodConst).date.startOf('day').format(),
+            timeMax: _.last(PeriodConst).date.endOf('day').format(),
+
+            q: searchWord
+          }
+        ).then(function (result) {
             var list = [];
 
-            result.items.forEach(function(item){
+            result.items.forEach(function (item) {
               var calItem = convertGcalToFullCalendarObject(calendar.calendarId, restoreEventId(item.id), item);
-              if (!_.isNull(calItem)){
+              if (!_.isNull(calItem)) {
                 list.push(calItem);
               }
             });
