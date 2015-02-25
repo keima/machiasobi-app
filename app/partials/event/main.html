@@ -2,7 +2,9 @@
   <ons-page ng-controller="EventCtrl">
     <ons-toolbar>
       <div class="left">
-        <ons-toolbar-button ui-sref="root">
+        <ons-toolbar-button ui-sref="root"
+                            analytics-on analytics-category="Event" analytics-event="Click"
+                            analytics-label="Back">
           <ons-icon icon="ion-android-system-back"></ons-icon>
           戻る
         </ons-toolbar-button>
@@ -29,7 +31,9 @@
 
 
       <ons-list-item modifier="chevron" ng-repeat="item in items"
-                     ng-click="itemSelected($index)">
+                     ng-click="itemSelected($index)"
+                     analytics-on analytics-category="Event" analytics-event="Click"
+                     analytics-label="{{ item.title }}">
         <div class="list__right-label">
           <span ng-show="item.isFinished">配布終了</span>
           <span ng-show="!item.isFinished && item.isRunning">配布中</span>

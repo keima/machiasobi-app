@@ -1,7 +1,11 @@
 <ons-page ng-controller="EventDetailCtrl as detail">
   <ons-toolbar>
     <div class="left">
-      <ons-back-button>戻る</ons-back-button>
+      <ons-back-button
+          analytics-on analytics-category="Event--Detail" analytics-event="Click"
+          analytics-label="Back">
+        戻る
+      </ons-back-button>
     </div>
     <div class="center">
       {{ detail.item.title }}

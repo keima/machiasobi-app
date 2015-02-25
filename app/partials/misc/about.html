@@ -1,7 +1,9 @@
 <ons-page>
   <ons-toolbar>
     <div class="left">
-      <ons-back-button ui-sref="root">
+      <ons-back-button ui-sref="root"
+                       analytics-on analytics-category="About" analytics-event="Click"
+                       analytics-label="Back">
         戻る
       </ons-back-button>
     </div>
@@ -58,11 +60,15 @@
     </ons-list-header>
 
     <ons-list-item modifier="chevron"
-                   ng-click="openLink('https://twitter.com/machiappli')">
+                   ng-click="openLink('https://twitter.com/machiappli')"
+                   analytics-on analytics-category="About" analytics-event="Click"
+                   analytics-label="@machiappli">
       公式アカウント : @machiappli
     </ons-list-item>
     <ons-list-item modifier="chevron"
-                   ng-click="openLink('https://twitter.com/pside')">
+                   ng-click="openLink('https://twitter.com/pside')"
+                   analytics-on analytics-category="About" analytics-event="Click"
+                   analytics-label="@pside">
       製作・管理 : @pside
     </ons-list-item>
 

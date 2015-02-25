@@ -38,7 +38,9 @@
                  ng-show="!calendar.sticky"
                  width="33.3%"
                  class="legend gcal-{{ calendar.shortName }}"
-                 ng-click="showOnlyThisEvent($index)">
+                 ng-click="showOnlyThisEvent($index)"
+                 analytics-on analytics-category="Calendar--Legend" analytics-event="Click"
+                 analytics-label="{{ calendar.shortName }}">
           {{ calendar.name }}
         </ons-col>
       </ons-row>
