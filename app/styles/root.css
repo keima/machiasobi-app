@@ -14,3 +14,9 @@
 .state-root td .ons-icon {
     font-size: 40px;
 }
+
+.app-list-item div {
+    line-height: normal;
+    padding-top: 0;
+    padding-bottom: 0;
+}

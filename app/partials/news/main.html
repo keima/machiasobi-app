@@ -13,7 +13,9 @@
     </ons-toolbar>
 
     <ons-list>
-      <ons-list-item modifier="chevron" ng-repeat="item in ctrl.items" ui-sref="news.detail({id: item.Id})"
+      <ons-list-item modifier="chevron" ng-repeat="item in ctrl.items"
+                     style="padding-right: 40px"
+                     ui-sref="news.detail({id: item.Id})"
                      analytics-on analytics-category="News" analytics-event="Click"
                      analytics-label="{{ item.Id }}">
         <p>{{ item.Title }}</p>

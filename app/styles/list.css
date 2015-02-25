@@ -1,6 +1,10 @@
 .ons-list-item-inner p,
 .ons-list-item-inner div {
     line-height: normal;
+    padding-top: 17px;
+    padding-bottom: 17px;
+    margin-top:0;
+    margin-bottom: 0;
 }
 
 .ons-list-item-inner div.list__right-label {
@@ -16,6 +20,7 @@
     font-size: 0.8em;
 }
 
-.list__item:last-child {
+/* event.html のフッターが欠けるのを回避する */
+.dialog-list-wrap .list__item:last-child {
     margin-bottom: 44px;
 }
