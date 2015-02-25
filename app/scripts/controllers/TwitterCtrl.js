@@ -6,16 +6,26 @@ angular.module('myApp.controller.twitterCtrl', [])
     }, 100);
   })
   .controller('TwitterOfficialCtrl',
-  function($scope, $window, $controller, $timeout) {
+  function($scope, $window, $controller, $timeout, $analytics) {
     $controller('AbstractTwitterCtrl', {'$timeout': $timeout});
 
     this.contentHeight = $window.innerHeight - 44 - 49;
+
+    $analytics.eventTrack('View', {
+      category: 'Twitter',
+      label: 'Official'
+    });
 
   })
   .controller('TwitterHashtagCtrl',
-  function($scope, $window, $controller, $timeout) {
+  function($scope, $window, $controller, $timeout, $analytics) {
     $controller('AbstractTwitterCtrl', {'$timeout': $timeout});
 
     this.contentHeight = $window.innerHeight - 44 - 49;
+
+    $analytics.eventTrack('View', {
+      category: 'Twitter',
+      label: 'Hashtag'
+    });
 
   });

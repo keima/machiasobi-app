@@ -27,11 +27,20 @@
     "restangular": "~1.4.0",
     "angular-markdown-directive": "~0.3.1",
     "angularLocalStorage": "~0.3.0",
-    "angular-google-maps": "~2.0.12"
+    "angular-google-maps": "~2.0.12",
+    "angulartics": "~0.17.2"
   },
   "resolutions": {
     "angular": "~1.3.13",
     "angular-cookies": "~1.3.13",
     "lodash": "~3.3.0"
+  },
+  "overrides": {
+    "angulartics": {
+      "main": [
+        "src/angulartics.js",
+        "src/angulartics-gtm.js"
+      ]
+    }
   }
 }

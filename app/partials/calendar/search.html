@@ -1,0 +1,70 @@
+<ons-page ng-controller="CalendarSearchCtrl as ctrl">
+  <ons-toolbar>
+    <div class="left">
+      <ons-back-button
+          analytics-on analytics-category="Calendar--Search" analytics-event="Click"
+          analytics-label="Back">
+        戻る
+      </ons-back-button>
+    </div>
+    <div class="center">検索</div>
+    <div class="right" ng-show="ctrl.nowLoading">
+      <ons-icon icon="refresh" size="32px" spin="true" fixed-width="true"></ons-icon>
+    </div>
+  </ons-toolbar>
+
+  <div class="navigation-bar">
+    <div class="navigation-bar__center">
+      <form ng-submit="ctrl.submit()">
+      <input type="search" class="search-input" ng-model="ctrl.searchWord"
+             style="width: 96%; margin: 6px auto 6px auto;" placeholder="Search">
+      </form>
+    </div>
+  </div>
+
+  <ons-list ng-hide="ctrl.notFound || ctrl.result.length == 0">
+    <div ng-repeat="item in ctrl.result">
+      <ons-list-header ng-show="ctrl.showHeader(ctrl.result[$index - 1], item)">
+        {{ item.start | date:"yyyy年MM月dd日" }}
+      </ons-list-header>
+      <ons-list-item ng-click="ctrl.moveToDetail($index)" modifier="chevron"
+                     analytics-on analytics-category="Calendar--Search" analytics-event="Click--Result"
+                     analytics-label="{{ item.title }}">
+
+        <ons-row class="calendar-search-result">
+          <ons-col class="plan-left" width="80px">
+            <div class="plan-date">{{ item.start | date:"HH:mm a" }}</div>
+            <div class="plan-duration">{{ ctrl.diff(item.start, item.end) }}min.</div>
+          </ons-col>
+          <ons-col class="plan-center"
+                   width="2px"></ons-col>
+          <ons-col class="plan-right">
+            <div class="plan-name">{{ item.title }}</div>
+            <div class="plan-info">
+              <ons-icon icon="fa-map-marker"></ons-icon>
+              {{ item.venueName }}
+            </div>
+          </ons-col>
+        </ons-row>
+
+      </ons-list-item>
+    </div>
+  </ons-list>
+
+  <!-- Start -->
+  <div ng-show="ctrl.result.length == 0 && !ctrl.notFound" style="text-align: center;padding-bottom: 100px">
+    <ons-icon icon="arrow-up" size="64px"></ons-icon>
+    <br>
+    検索欄に検索したい言葉を入力し、Enterキー(確定キー)を押すと検索されます
+  </div>
+
+  <!-- Not Found -->
+  <div ng-show="ctrl.notFound" style="text-align: center;padding-bottom: 100px">
+    <ons-icon icon="times-circle" size="64px"></ons-icon>
+    <br>
+    上記の言葉で検索しましたが見つかりませんでした・・・<br><br>
+    言葉を分割する、別の意味の言葉で検索すると見つかることがあります<br><br>
+    例：「IDOL」はNG、「IDOLM@STER」はOK。
+  </div>
+
+</ons-page>

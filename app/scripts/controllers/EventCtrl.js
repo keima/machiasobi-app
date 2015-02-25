@@ -10,14 +10,14 @@ angular.module('myApp.controller.eventCtrl', [])
       }
     }
   })
-  .controller('EventCtrl', function ($scope, $rootScope, MachiRest, PeriodConst, EventStore) {
+  .controller('EventCtrl', function ($scope, $rootScope, $analytics, MachiRest, PeriodConst, EventStore) {
     $scope.periods = PeriodConst;
     $scope.items = [];
     $scope.now = new Date();
 
     $scope.selected = 0;
 
-    $scope.periodSelected = function(index) {
+    $scope.periodSelected = function (index) {
       $scope.selected = index;
       $scope.reload();
     };
@@ -30,6 +30,11 @@ angular.module('myApp.controller.eventCtrl', [])
     $scope.reload = function () {
       var startAt = PeriodConst[$scope.selected].date;
       var endAt = startAt.clone().endOf('days');
+
+      $analytics.eventTrack('View', {
+        category: 'Event',
+        label: startAt.format('YYYY/MM/DD')
+      });
 
       MachiRest.all('events').getList({
         first: 0,

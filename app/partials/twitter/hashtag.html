@@ -2,7 +2,11 @@
 
   <ons-toolbar>
     <div class="left">
-      <ons-back-button ui-sref="root">戻る</ons-back-button>
+      <ons-back-button ui-sref="root"
+                       analytics-on analytics-category="Twitter" analytics-event="Click"
+                       analytics-label="Back">
+        戻る
+      </ons-back-button>
     </div>
     <div class="center">
       Twitter

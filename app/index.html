@@ -27,29 +27,26 @@
   <link rel="stylesheet" href="styles/other.css">
   <link rel="stylesheet" href="styles/page.css">
   <link rel="stylesheet" href="styles/root.css">
+  <link rel="stylesheet" href="styles/searchresult.css">
   <!-- endinjector -->
   <!-- endbuild -->
 
 </head>
 <body>
 
-<ui-view></ui-view>
-
+<!-- @formatter:off -->
 <!-- Google Tag Manager -->
-<noscript>
-  <iframe src="//www.googletagmanager.com/ns.html?id=GTM-KRPVKF"
-          height="0" width="0" style="display:none;visibility:hidden"></iframe>
-</noscript>
-<script>(function (w, d, s, l, i) {
-  w[l] = w[l] || [];
-  w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
-  var f = d.getElementsByTagName(s)[0],
-      j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
-  j.async = true;
-  j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
-  f.parentNode.insertBefore(j, f);
-})(window, document, 'script', 'dataLayer', 'GTM-KRPVKF');</script>
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-KRPVKF"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KRPVKF');</script>
 <!-- End Google Tag Manager -->
+<!-- @formatter:on -->
+
+<ui-view></ui-view>
 
 <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
 <!-- build:js({.tmp,app}) scripts/vendor.js -->
@@ -69,6 +66,10 @@
 <script src="bower_components/angular-markdown-directive/markdown.js"></script>
 <script src="bower_components/angularLocalStorage/src/angularLocalStorage.js"></script>
 <script src="bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
+<script src="bower_components/waypoints/waypoints.js"></script>
+<script src="bower_components/SHA-1/sha1.js"></script>
+<script src="bower_components/angulartics/src/angulartics.js"></script>
+<script src="bower_components/angulartics/src/angulartics-gtm.js"></script>
 <!-- endbower -->
 <script src="bower_components/showdown/compressed/showdown.js"></script>
 <script src="bower_components/fullcalendar/dist/gcal.js"></script>
@@ -84,6 +85,7 @@
 <script src="scripts/constants/period.js"></script>
 <script src="scripts/controller.js"></script>
 <script src="scripts/controllers/CalendarMenuCtrl.js"></script>
+<script src="scripts/controllers/CalendarSearchCtrl.js"></script>
 <script src="scripts/controllers/CalendarViewCtrl.js"></script>
 <script src="scripts/controllers/DelayCtrl.js"></script>
 <script src="scripts/controllers/EventCtrl.js"></script>

@@ -9,6 +9,12 @@
       </div>
 
       <div class="center">マチ<span style="color: #a90016">★</span>アプリ</div>
+
+      <div class="right">
+        <ons-toolbar-button ng-click="ons.navigator.pushPage('partials/calendar/search.html')">
+          <ons-icon icon="ion-search" style="font-size: 32px; width: 1em"></ons-icon>
+        </ons-toolbar-button>
+      </div>
     </ons-toolbar>
 
     <div id="calendar-header-area">
@@ -38,7 +44,9 @@
                  ng-show="!calendar.sticky"
                  width="33.3%"
                  class="legend gcal-{{ calendar.shortName }}"
-                 ng-click="showOnlyThisEvent($index)">
+                 ng-click="showOnlyThisEvent($index)"
+                 analytics-on analytics-category="Calendar--Legend" analytics-event="Click"
+                 analytics-label="{{ calendar.shortName }}">
           {{ calendar.name }}
         </ons-col>
       </ons-row>

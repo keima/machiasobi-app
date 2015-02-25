@@ -12,6 +12,8 @@ angular.module('myApp',
     'onsen.directives',
     'btford.markdown',
     'uiGmapgoogle-maps',
+    'angulartics',
+    'angulartics.google.tagmanager',
     'myApp.constant',
     'myApp.service',
     'myApp.controller',
@@ -21,7 +23,7 @@ angular.module('myApp',
   ])
   .constant('myAppSemVer', {
     major: 1,
-    minor: 3,
+    minor: 4,
     patch: 0
   })
   .config(function ($stateProvider, $urlRouterProvider) {
@@ -202,13 +204,4 @@ angular.module('myApp',
     $rootScope.openLink = function (url) {
       $window.open(url);
     };
-
-    // Analytics収集用
-    $rootScope.$on('$stateChangeStart', function () {
-      var path = $location.path(),
-        absUrl = $location.absUrl(),
-        virtualUrl = absUrl.substring(absUrl.indexOf(path));
-
-      $window.dataLayer.push({event: 'virtualPageView', virtualUrl: virtualUrl});
-    })
   });

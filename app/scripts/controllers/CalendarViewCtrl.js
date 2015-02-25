@@ -1,6 +1,6 @@
 angular.module('myApp.controller.calendarViewCtrl', [])
   .controller('CalendarViewCtrl',
-  function ($scope, $rootScope, $window, $timeout, $location, Calendar, EventStore) {
+  function ($scope, $rootScope, $window, $timeout, $location, $analytics, Calendar, EventStore) {
 
     /**
      * Return selected id
@@ -34,6 +34,11 @@ angular.module('myApp.controller.calendarViewCtrl', [])
       var calendarId = Calendar.extractCalendarId(event.source.url);
       var shortName = Calendar.findShortNameByCalendarId(calendarId);
       var eventId = Calendar.extractEventId(event.id);
+
+      $analytics.eventTrack('Click', {
+        category: 'Calendar--View',
+        label: event.title
+      });
 
       $location.path('/calendar/' + shortName + '/' + eventId);
     };

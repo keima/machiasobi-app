@@ -11,7 +11,7 @@ angular.module('myApp.service.calendar', [
       });
     });
   })
-  .service('Calendar', function (CalendarRest, CalendarConst) {
+  .service('Calendar', function (CalendarRest, CalendarConst, PeriodConst, $q) {
     /**
      * calendarId から className(gcal-shinmachi) を取得します
      * @param _calendarId
@@ -32,10 +32,12 @@ angular.module('myApp.service.calendar', [
       return calendar.calendarId;
     }
 
+    // メールアドレスっぽいIDから先頭だけを抽出します
     function extractEventId (eventId) {
       return eventId.split('@')[0];
     }
 
+    // ドメイン名を含まないIDにドメインを付与します
     function restoreEventId (shortEventId) {
       return shortEventId + '@google.com';
     }
@@ -65,37 +67,51 @@ angular.module('myApp.service.calendar', [
      * @returns Promise
      */
     var getEventObject = function (calendarId, eventId) {
-      var eid = eventId.split('@')[0];
+      var eid = extractEventId(eventId);
       return CalendarRest.all('calendars').all(calendarId).all('events').get(eid)
         .then(function (result) {
-          // Convert UI-Calendar Object
-          var event = {
-            id: eventId,
-            title: result.summary,
-            description: result.description,
-            start: result.start.dateTime,
-            end: result.end.dateTime,
-            className: 'gcal-' + findShortNameByCalendarId(calendarId),
-            url: "http://www.google.com/calendar/feeds/" + calendarId + "/public/basic",
-            source: {
-              dataType: 'gcal',
-              url: "http://www.google.com/calendar/feeds/" + calendarId + "/public/basic"
-            }
-          };
-
-          if ('dateTime' in result.start) {
-            event.start = result.start.dateTime;
-            event.end = result.end.dateTime;
-            event.allDay = false;
-          } else if ('date' in result.start) {
-            event.start = moment(result.start.date).toDate();
-            event.end = moment(result.end.date).add(-1, 'days').endOf('day').toDate();
-            event.allDay = true;
-          }
-
-          return event;
+          return convertGcalToFullCalendarObject(calendarId, eventId, result);
         });
     };
+
+    /**
+     * Google Calendar APIからのデータをFullCalendarで使用できる形式に変換します
+     * @param calendarId
+     * @param eventId
+     * @param gcalObj
+     * @returns {{id: *, title: string, description: (*|$scope.appList.description), start: string, end: string, className: string, url: string, source: {dataType: string, url: string}}}
+     */
+    function convertGcalToFullCalendarObject (calendarId, eventId, gcalObj) {
+      if (gcalObj.status === "cancelled") {
+        return null;
+      }
+
+      var event = {
+        id: eventId,
+        title: gcalObj.summary,
+        description: gcalObj.description,
+        start: gcalObj.start.dateTime,
+        end: gcalObj.end.dateTime,
+        className: 'gcal-' + findShortNameByCalendarId(calendarId),
+        url: "http://www.google.com/calendar/feeds/" + calendarId + "/public/basic",
+        source: {
+          dataType: 'gcal',
+          url: "http://www.google.com/calendar/feeds/" + calendarId + "/public/basic"
+        }
+      };
+
+      if ('dateTime' in gcalObj.start) {
+        event.start = gcalObj.start.dateTime;
+        event.end = gcalObj.end.dateTime;
+        event.allDay = false;
+      } else if ('date' in gcalObj.start) {
+        event.start = moment(gcalObj.start.date).toDate();
+        event.end = moment(gcalObj.end.date).add(-1, 'days').endOf('day').toDate();
+        event.allDay = true;
+      }
+
+      return event;
+    }
 
     /**
      * calnedarUrlからcalendarIdを取得します
@@ -146,6 +162,46 @@ angular.module('myApp.service.calendar', [
       };
     };
 
+    var searchAll = function (searchWord) {
+      var deferred = $q.defer();
+      var count = 0;
+
+      CalendarConst.forEach(function (calendar) {
+        CalendarRest.all("calendars").all(calendar.calendarId).get("events",
+          {
+            orderBy: 'startTime',
+            singleEvents: true,
+            timeZone: 'Asia/Tokyo',
+            timeMin: _.first(PeriodConst).date.startOf('day').format(),
+            timeMax: _.last(PeriodConst).date.endOf('day').format(),
+
+            q: searchWord
+          }
+        ).then(function (result) {
+            var list = [];
+
+            result.items.forEach(function (item) {
+              var calItem = convertGcalToFullCalendarObject(calendar.calendarId, restoreEventId(item.id), item);
+              if (!_.isNull(calItem)) {
+                list.push(calItem);
+              }
+            });
+
+            var cal = _.cloneDeep(calendar);
+            cal.items = list;
+
+            deferred.notify(cal);
+            if (++count == CalendarConst.length) {
+              deferred.resolve(count);
+            }
+          }, function (reason) {
+            deferred.reject(reason);
+          });
+      });
+
+      return deferred.promise;
+    };
+
     return {
       findShortNameByCalendarId: findShortNameByCalendarId,
       findCalendarIdByShortName: findCalendarIdByShortName,
@@ -156,7 +212,8 @@ angular.module('myApp.service.calendar', [
       getEvents: getCalendarObject,
       getEvent: getEventObject,
       extractCalendarId: extractCalendarId,
-      buildSources: buildSources
+      buildSources: buildSources,
+      searchAll: searchAll
     };
 
   });

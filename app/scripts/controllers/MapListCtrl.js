@@ -10,7 +10,7 @@ angular.module('myApp.controller.mapCtrl', [])
       });
 
   })
-  .controller('MapDetailCtrl', function ($scope, $window, $http, $stateParams, MachiRest, LocationConst) {
+  .controller('MapDetailCtrl', function ($scope, $window, $http, $stateParams, $analytics ,MachiRest) {
     $scope.markers = [];
     $scope.isExist = false;
     $scope.SELECTED_ID = "0"; // DIRTY HACK!
@@ -45,6 +45,11 @@ angular.module('myApp.controller.mapCtrl', [])
             value.onClick = function () {
               $scope.SELECTED_ID = value.id;
 
+              $analytics.eventTrack('Click--Marker', {
+                category: 'Map--Detail',
+                label: value.name
+              });
+
               // 押したマーカー以外は閉じたい
               $scope.item.markers.forEach(function (value, index) {
                 value.visible = ($scope.SELECTED_ID === value.id);
@@ -52,6 +57,11 @@ angular.module('myApp.controller.mapCtrl', [])
             };
 
             value.openCoords = function () {
+              $analytics.eventTrack('Click--Marker--OpenMap', {
+                category: 'Map--Detail',
+                label: value.name
+              });
+
               $scope.openCoords(value.coords);
             }
 
