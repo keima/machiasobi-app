@@ -204,13 +204,4 @@ angular.module('myApp',
     $rootScope.openLink = function (url) {
       $window.open(url);
     };
-
-    // Analytics収集用
-    $rootScope.$on('$stateChangeStart', function () {
-      var path = $location.path(),
-        absUrl = $location.absUrl(),
-        virtualUrl = absUrl.substring(absUrl.indexOf(path));
-
-      $window.dataLayer.push({event: 'virtualPageView', virtualUrl: virtualUrl});
-    })
   });
