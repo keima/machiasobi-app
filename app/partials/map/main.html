@@ -2,7 +2,9 @@
   <ons-page ng-controller="MapListCtrl as ctrl">
     <ons-toolbar>
       <div class="left">
-        <ons-toolbar-button ui-sref="root">
+        <ons-toolbar-button ui-sref="root"
+                            analytics-on analytics-category="Map" analytics-event="Click"
+                            analytics-label="Back">
           <ons-icon icon="ion-android-system-back"></ons-icon>
           戻る
         </ons-toolbar-button>
@@ -13,7 +15,9 @@
     <ons-list>
       <ons-list-item modifier="chevron"
                      ng-repeat="item in ctrl.items"
-                     ui-sref="map.detail({id: item.id})">
+                     ui-sref="map.detail({id: item.id})"
+                     analytics-on analytics-category="Map" analytics-event="Click"
+                     analytics-label="{{ item.id }}">
         <p>
           {{ item.name }}<br>
           <small>{{ item.updatedAt | date:"yyyy年MM月dd日 HH時mm分 更新" }}</small>
