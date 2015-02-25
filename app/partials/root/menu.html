@@ -5,7 +5,8 @@
 
   <ons-list-item modifier="chevron"
                  ng-repeat="app in appList"
-                 ui-sref="{{ app.state }}">
+                 ui-sref="{{ app.state }}"
+                 analytics-on analytics-category="GlobalMenu" analytics-event="Click" analytics-label="{{ app.state }}">
     <ons-row>
       <ons-col width="40px" style="text-align: center;">
         <ons-icon icon="{{ app.icon }}"></ons-icon>
