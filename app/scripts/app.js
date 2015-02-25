@@ -21,7 +21,7 @@ angular.module('myApp',
   ])
   .constant('myAppSemVer', {
     major: 1,
-    minor: 3,
+    minor: 4,
     patch: 0
   })
   .config(function ($stateProvider, $urlRouterProvider) {
