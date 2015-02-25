@@ -1,9 +1,10 @@
 "use strict";
 
 angular.module('myApp.controller.calendar', [])
-  .controller('CalendarSearchCtrl', function ($location, Calendar, CalendarSearchUtil) {
+  .controller('CalendarSearchCtrl', function ($location, $analytics, Calendar, CalendarSearchUtil) {
     var self = this;
     this.result = [];
+    this.searchWord = "";
     this.nowLoading = false;
     this.notFound = false;
 
@@ -11,6 +12,11 @@ angular.module('myApp.controller.calendar', [])
       if (_.isEmpty(self.searchWord)) {
         return;
       }
+
+      $analytics.eventTrack('Submit', {
+        category: 'Calendar--Search',
+        label: self.searchWord
+      });
 
       self.result.splice(0, self.result.length);
       self.nowLoading = true;
