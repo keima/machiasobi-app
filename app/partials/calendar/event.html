@@ -1,7 +1,9 @@
 <ons-dialog cancelable ng-controller="EventViewCtrl">
   <ons-toolbar inline>
     <div class="left">
-      <ons-toolbar-button ng-click="closePage()">
+      <ons-toolbar-button ng-click="closePage()"
+                          analytics-on analytics-category="Calendar--Detail" analytics-event="Click"
+                          analytics-label="Close">
         <ons-icon icon="fa-chevron-left"></ons-icon>
         閉じる
       </ons-toolbar-button>
@@ -9,46 +11,48 @@
   </ons-toolbar>
 
   <div class="dialog-list-wrap">
-  <ons-list>
-    <ons-list-header>イベント名</ons-list-header>
-    <ons-list-item>
-      <p>{{ event.title }}</p>
-    </ons-list-item>
+    <ons-list>
+      <ons-list-header>イベント名</ons-list-header>
+      <ons-list-item>
+        <p>{{ event.title }}</p>
+      </ons-list-item>
 
-    <ons-list-header>開催期間</ons-list-header>
-    <ons-list-item ng-hide="event.allDay">
-      開始日時 : {{ event.start.toDate() | date:'MM月dd日 HH:mm' }}
-    </ons-list-item>
-    <ons-list-item ng-hide="event.allDay">
-      終了日時 : {{ event.end.toDate() | date:'MM月dd日 HH:mm' }}
-    </ons-list-item>
-    <ons-list-item ng-show="event.allDay">
-      <p>終日<br>イベント会場の開始・終了時刻をご確認下さい</p>
-    </ons-list-item>
+      <ons-list-header>開催期間</ons-list-header>
+      <ons-list-item ng-hide="event.allDay">
+        開始日時 : {{ event.start.toDate() | date:'MM月dd日 HH:mm' }}
+      </ons-list-item>
+      <ons-list-item ng-hide="event.allDay">
+        終了日時 : {{ event.end.toDate() | date:'MM月dd日 HH:mm' }}
+      </ons-list-item>
+      <ons-list-item ng-show="event.allDay">
+        <p>終日<br>イベント会場の開始・終了時刻をご確認下さい</p>
+      </ons-list-item>
 
-    <ons-list-header>共有</ons-list-header>
-    <ons-list-item ng-click="shareTwitter()" modifier="tappable">
-      <ons-icon icon="fa-twitter"></ons-icon>
-      Twitterでシェアする！
-    </ons-list-item>
+      <ons-list-header>共有</ons-list-header>
+      <ons-list-item ng-click="shareTwitter()" modifier="tappable"
+                     analytics-on analytics-category="Calendar--Detail" analytics-event="Click"
+                     analytics-label="Twitter Share Button">
+        <ons-icon icon="fa-twitter"></ons-icon>
+        Twitterでシェアする！
+      </ons-list-item>
 
-    <ons-list-header ng-show="event.description">イベント概要</ons-list-header>
-    <ons-list-item ng-show="event.description">
-      <div btf-markdown="event.description" class="markdown" target-blank></div>
-    </ons-list-item>
+      <ons-list-header ng-show="event.description">イベント概要</ons-list-header>
+      <ons-list-item ng-show="event.description">
+        <div btf-markdown="event.description" class="markdown" target-blank></div>
+      </ons-list-item>
 
-    <ons-list-header>免責事項</ons-list-header>
-    <ons-list-item>
-      <p>記載されている出演者等のお名前は 敬称略、順不同 とさせて頂きます。</p>
-    </ons-list-item>
-    <ons-list-item>
-      <p>
-        掲載されているイベント情報は予告なく修正・削除する場合がございます。
-        また、イベント情報は正確な情報を伝えるようにしていますが、
-        当サイトの情報により生じた如何なる問題についても、当サイト運営者は責任を負いかねます。
-      </p>
-    </ons-list-item>
-  </ons-list>
+      <ons-list-header>免責事項</ons-list-header>
+      <ons-list-item>
+        <p>記載されている出演者等のお名前は 敬称略、順不同 とさせて頂きます。</p>
+      </ons-list-item>
+      <ons-list-item>
+        <p>
+          掲載されているイベント情報は予告なく修正・削除する場合がございます。
+          また、イベント情報は正確な情報を伝えるようにしていますが、
+          当サイトの情報により生じた如何なる問題についても、当サイト運営者は責任を負いかねます。
+        </p>
+      </ons-list-item>
+    </ons-list>
   </div>
 
 </ons-dialog>
