@@ -1,21 +1,18 @@
 'use strict';
 
-angular.module('myApp.service.tutorial', [])
-  .service('Tutorial', function ($scope, storage) {
-
-    function showTutorialViewIfNeeded(lastVer, currentVer) {
-      if (!lastVer) {
-        $scope.ons.screen.presentPage('tutorial.html');
-      } else {
-        if (lastVer.major <= 0 && lastVer.minor < 6) {
-          $scope.ons.screen.presentPage('changelog.html');
+angular.module('myApp.service')
+  .service('Tutorial', function(storage) {
+    function show(naviObj, partial) {
+      return function() {
+        if (!storage.get(partial)) {
+          naviObj.pushPage(partial);
+          storage.set(partial, true);
         }
       }
-
-      storage.set('lastVersion', currentVer);
     }
 
     return {
-      showTutorialViewIfNeeded: showTutorialViewIfNeeded
-    };
-  });
+      showAtCalendar: show(app.calendarNavi, 'partials/calendar/tutorial.html')
+    }
+  })
+;

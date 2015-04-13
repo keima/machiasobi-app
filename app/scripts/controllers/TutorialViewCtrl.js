@@ -1,9 +1,10 @@
-angular.module('myApp.controller.tutorialViewCtrl', [])
-  .controller('TutorialViewCtrl',
-  function($scope) {
-    $scope.dismiss = function() {
-      if (confirm('出来れば内容を全部読んで欲しいのですが。。。\nこのページを閉じますか？')) {
-        $scope.ons.screen.dismissPage();
-      }
-    }
+angular.module('myApp.controller')
+  .controller('TutorialViewCtrl', function ($scope) {
+    $scope.items = [
+      'images/tutorial/1.png',
+      'images/tutorial/2.png',
+      'images/tutorial/3.png',
+      'images/tutorial/4.png',
+      'images/tutorial/5.png'
+    ]
   });
