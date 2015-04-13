@@ -28,7 +28,7 @@ angular.module('myApp.controller.eventViewCtrl', [])
       url += '?url=' + encodeURIComponent($location.absUrl());
 
       // attach hashtag
-      url += '&hashtags=' + 'マチアソビ';
+      url += '&hashtags=' + 'machiasobi';
 
       // attach event name
       var text = $scope.appName + " ≫ " + $scope.event.title;

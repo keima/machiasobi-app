@@ -1,6 +1,8 @@
 angular.module('myApp.controller.calendarViewCtrl', [])
   .controller('CalendarViewCtrl',
-  function ($scope, $rootScope, $window, $timeout, $state, $location, $analytics, Calendar, EventStore) {
+  function ($scope, $rootScope, $window, $timeout, $state, $location, $analytics, Calendar, EventStore, Tutorial) {
+
+    Tutorial.showAtCalendar();
 
     /**
      * Return selected id
@@ -22,8 +24,6 @@ angular.module('myApp.controller.calendarViewCtrl', [])
       });
       return 0; // fail safe...
     }
-
-    // TODO: Tutorial.show...
 
     $scope.eventSources = Calendar.buildSources($scope.calendars);
     var originEventSources = _.cloneDeep($scope.eventSources);

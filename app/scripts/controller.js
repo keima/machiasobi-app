@@ -12,6 +12,5 @@ angular.module('myApp.controller',
     'myApp.controller.calendarMenuCtrl',
 
     'myApp.controller.twitterCtrl',
-    'myApp.controller.eventViewCtrl',
-    'myApp.controller.tutorialViewCtrl'
+    'myApp.controller.eventViewCtrl'
   ]);
