@@ -6,6 +6,7 @@ angular.module('myApp.constant')
       name: '5月3日(日)',
       shortName: '1日目',
       date: moment('2015-05-03T00:00:00+09:00')
+//      date: moment('2014-10-12T00:00:00+09:00') /* デバッグ用 */
     },
     {
       name: '5月4日(月)',
