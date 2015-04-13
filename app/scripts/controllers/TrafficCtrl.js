@@ -4,6 +4,16 @@ angular.module('myApp.controller.trafficCtrl', [])
 
     this.transits = [
       {
+        name: "橋の下美術館",
+        id: "museum",
+        places: [
+          {
+            name: '船着き場',
+            direction: 'inbound'
+          }
+        ]
+      },
+      {
         name: 'ロープウェイ乗り場',
         id: 'ropeway',
         places: [
@@ -33,7 +43,7 @@ angular.module('myApp.controller.trafficCtrl', [])
       }
     ];
 
-    this.reload = function() {
+    this.reload = function () {
       self.transits.forEach(function (transit) {
         transit.places.forEach(function (place) {
           // if item is exist, remove it.

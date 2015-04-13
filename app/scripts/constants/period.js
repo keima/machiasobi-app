@@ -3,18 +3,19 @@
 angular.module('myApp.constant')
   .constant('PeriodConst', [
     {
-      name: '10月11日(土)',
+      name: '5月3日(日)',
       shortName: '1日目',
-      date: moment('2014-10-11T00:00:00+09:00')
+      date: moment('2015-05-03T00:00:00+09:00')
     },
     {
-      name: '10月12日(日)',
+      name: '5月4日(月)',
       shortName: '2日目',
-      date: moment('2014-10-12T00:00:00+09:00')
+      date: moment('2015-05-04T00:00:00+09:00')
     },
     {
-      name: '10月13日(月)',
+      name: '5月5日(火)',
       shortName: '3日目',
-      date: moment('2014-10-13T00:00:00+09:00')
+      date: moment('2015-05-05T00:00:00+09:00')
     }
-  ]);
+  ])
+;
