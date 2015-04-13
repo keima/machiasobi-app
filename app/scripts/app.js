@@ -22,7 +22,7 @@ angular.module('myApp',
   ])
   .constant('myAppSemVer', {
     major: 1,
-    minor: 4,
+    minor: 5,
     patch: 0
   })
   .config(function (uiGmapGoogleMapApiProvider, myAppGoogleApiKey) {
