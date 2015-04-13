@@ -1,33 +1,36 @@
-<ons-toolbar>
-  <div class="left">
-    <ons-toolbar-button ng-click="ons.slidingMenu.toggleMenu()">
-      <ons-icon icon="ion-navicon" style="font-size: 32px; width: 1em"></ons-icon>
-    </ons-toolbar-button>
-  </div>
+<ons-navigator var="app.globalNavi" animation="slide">
+  <ons-toolbar>
+    <div class="left">
+      <ons-toolbar-button ng-click="app.globalMenu.toggleMenu()">
+        <ons-icon icon="ion-navicon" style="font-size: 32px; width: 1em"></ons-icon>
+      </ons-toolbar-button>
+    </div>
 
-  <div class="center">マチ<span style="color: #a90016">★</span>アプリ</div>
-</ons-toolbar>
+    <div class="center">マチ<span style="color: #a90016">★</span>アプリ</div>
+  </ons-toolbar>
 
-<ons-list>
+  <ons-list ng-controller="AppListCtrl">
+    <ons-list-item modifier="chevron" class="list-item-container app-list-item"
+                   ng-repeat="app in appList"
+                   ui-sref="{{ app.state }}"
+                   analytics-on analytics-category="TopPage" analytics-event="Click" analytics-label="{{ app.state }}">
+      <ons-row>
+        <ons-col width="80px" style="text-align: center;">
+          <ons-icon icon="{{ app.icon }}" size="60px"></ons-icon>
+        </ons-col>
+        <ons-col>
+          <div class="name">
+            <strong>{{ app.name }}</strong>
+          </div>
+          <div class="desc">
+            {{ app.description }}
+          </div>
+        </ons-col>
+        <ons-col width="40px"></ons-col>
+      </ons-row>
+    </ons-list-item>
+  </ons-list>
 
-  <ons-list-item modifier="chevron" class="list-item-container app-list-item"
-                 ng-repeat="app in appList"
-                 ui-sref="{{ app.state }}"
-                 analytics-on analytics-category="TopPage" analytics-event="Click" analytics-label="{{ app.state }}">
-    <ons-row>
-      <ons-col width="80px" style="text-align: center;">
-        <ons-icon icon="{{ app.icon }}" size="60px"></ons-icon>
-      </ons-col>
-      <ons-col>
-        <div class="name">
-          <strong>{{ app.name }}</strong>
-        </div>
-        <div class="desc">
-          {{ app.description }}
-        </div>
-      </ons-col>
-      <ons-col width="40px"></ons-col>
-    </ons-row>
-  </ons-list-item>
+  <ui-view></ui-view>
 
-</ons-list>
+</ons-navigator>

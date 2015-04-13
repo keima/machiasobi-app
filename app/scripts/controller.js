@@ -1,6 +1,5 @@
 angular.module('myApp.controller',
   [
-    'myApp.controller.rootCtrl',
     'myApp.controller.trafficCtrl',
     'myApp.controller.newsListCtrl',
     'myApp.controller.newsDetailCtrl',
@@ -13,6 +12,5 @@ angular.module('myApp.controller',
     'myApp.controller.calendarMenuCtrl',
 
     'myApp.controller.twitterCtrl',
-    'myApp.controller.eventViewCtrl',
-    'myApp.controller.tutorialViewCtrl'
+    'myApp.controller.eventViewCtrl'
   ]);

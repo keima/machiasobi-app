@@ -1,13 +1,15 @@
 angular.module('myApp.controller.calendarViewCtrl', [])
   .controller('CalendarViewCtrl',
-  function ($scope, $rootScope, $window, $timeout, $location, $analytics, Calendar, EventStore) {
+  function ($scope, $rootScope, $window, $timeout, $state, $location, $analytics, Calendar, EventStore, Tutorial) {
+
+    Tutorial.showAtCalendar();
 
     /**
      * Return selected id
      * @param current Moment
      * @param periods Moment
      */
-    function estimeteSelectedDateId (current, periods) {
+    function estimeteSelectedDateId(current, periods) {
       var last = periods.length - 1;
       if (current.isBefore(periods[0].date, 'day')) {
         return 0;
@@ -22,8 +24,6 @@ angular.module('myApp.controller.calendarViewCtrl', [])
       });
       return 0; // fail safe...
     }
-
-    // TODO: Tutorial.show...
 
     $scope.eventSources = Calendar.buildSources($scope.calendars);
     var originEventSources = _.cloneDeep($scope.eventSources);
@@ -40,7 +40,7 @@ angular.module('myApp.controller.calendarViewCtrl', [])
         label: event.title
       });
 
-      $location.path('/calendar/' + shortName + '/' + eventId);
+      $state.go('app.calendar.detail', {calendarShortName: shortName, eventId: eventId})
     };
 
     // 日付ボタンバーのクリックイベント

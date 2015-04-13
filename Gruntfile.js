@@ -143,7 +143,7 @@ module.exports = function(grunt) {
           src: [
             '<%= yeoman.dist %>/scripts/{,*/}*.js',
             '<%= yeoman.dist %>/styles/{,*/}*.css',
-            '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+            //'<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
             '<%= yeoman.dist %>/styles/fonts/*'
           ]
         }
@@ -185,9 +185,10 @@ module.exports = function(grunt) {
             src: [
               '*.{ico,png,txt}',
               '.htaccess',
+              'manifest.json',
               '*.html',
               'partials/{,*/}*.html',
-              'images/{,*/}*.{webp}',
+              'images/{,*/}*.{webp,png,jpg,jpeg,gif}',
               'objects/{,*/}*.json'
             ]
           },
@@ -216,30 +217,30 @@ module.exports = function(grunt) {
       }
     },
 
-    imagemin: {
-      dist: {
-        files: [
-          {
-            expand: true,
-            cwd: '<%= yeoman.app %>/images',
-            src: '{,*/}*.{png,jpg,jpeg,gif}',
-            dest: '<%= yeoman.dist %>/images'
-          }
-        ]
-      }
-    },
-    svgmin: {
-      dist: {
-        files: [
-          {
-            expand: true,
-            cwd: '<%= yeoman.app %>/images',
-            src: '{,*/}*.svg',
-            dest: '<%= yeoman.dist %>/images'
-          }
-        ]
-      }
-    },
+    //imagemin: {
+    //  dist: {
+    //    files: [
+    //      {
+    //        expand: true,
+    //        cwd: '<%= yeoman.app %>/images',
+    //        src: '{,*/}*.{png,jpg,jpeg,gif}',
+    //        dest: '<%= yeoman.dist %>/images'
+    //      }
+    //    ]
+    //  }
+    //},
+    //svgmin: {
+    //  dist: {
+    //    files: [
+    //      {
+    //        expand: true,
+    //        cwd: '<%= yeoman.app %>/images',
+    //        src: '{,*/}*.svg',
+    //        dest: '<%= yeoman.dist %>/images'
+    //      }
+    //    ]
+    //  }
+    //},
     htmlmin: {
       dist: {
         options: {
@@ -270,8 +271,8 @@ module.exports = function(grunt) {
 
     concurrent: {
       dist: [
-        'imagemin',
-        'svgmin'
+        //'imagemin',
+        //'svgmin'
       ]
     },
 
@@ -301,7 +302,7 @@ module.exports = function(grunt) {
     'clean:dist',
     'wiredep',
     'useminPrepare',
-    'concurrent:dist',
+    //'concurrent:dist',
     'autoprefixer',
     'concat',
     'ngAnnotate',

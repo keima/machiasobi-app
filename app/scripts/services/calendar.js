@@ -1,8 +1,6 @@
 'use strict';
 
-angular.module('myApp.service.calendar', [
-  'myApp.constant.apikey'
-])
+angular.module('myApp.service.calendar', [])
   .factory('CalendarRest', function (Restangular, myAppGoogleApiKey) {
     return Restangular.withConfig(function (config) {
       config.setBaseUrl('https://www.googleapis.com/calendar/v3');

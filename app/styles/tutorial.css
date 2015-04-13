@@ -1,0 +1,14 @@
+ons-carousel-item {
+    text-align: center;
+}
+
+.cover-label {
+    width: 100%;
+
+    color: black;
+    text-align: center;
+
+    position: absolute;
+    left: 0;
+    bottom: 10px;
+}

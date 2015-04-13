@@ -1,39 +1,33 @@
-<ons-navigator animation="slide">
-  <ons-page ng-controller="MapListCtrl as ctrl">
-    <ons-toolbar>
-      <div class="left">
-        <ons-toolbar-button ui-sref="root"
-                            analytics-on analytics-category="Map" analytics-event="Click"
-                            analytics-label="Back">
-          <ons-icon icon="ion-android-system-back"></ons-icon>
-          戻る
-        </ons-toolbar-button>
-      </div>
-      <div class="center">マップ</div>
-    </ons-toolbar>
+<ons-page ng-controller="MapListCtrl as ctrl">
+  <ons-toolbar>
+    <div class="left">
+      <ons-state-back-button
+                          analytics-on analytics-category="Map" analytics-event="Click"
+                          analytics-label="Back">
+        戻る
+      </ons-state-back-button>
+    </div>
+    <div class="center">マップ</div>
+  </ons-toolbar>
 
-    <ons-list>
-      <ons-list-item modifier="chevron"
-                     ng-repeat="item in ctrl.items"
-                     ui-sref="map.detail({id: item.id})"
-                     analytics-on analytics-category="Map" analytics-event="Click"
-                     analytics-label="{{ item.id }}">
-        <p>
-          {{ item.name }}<br>
-          <small>{{ item.updatedAt | date:"yyyy年MM月dd日 HH時mm分 更新" }}</small>
-        </p>
-      </ons-list-item>
+  <ons-list>
+    <ons-list-item modifier="chevron"
+                   ng-repeat="item in ctrl.items"
+                   ui-sref="app.map.detail({id: item.id})"
+                   analytics-on analytics-category="Map" analytics-event="Click"
+                   analytics-label="{{ item.id }}">
+      <p>
+        {{ item.name }}<br>
+        <small>{{ item.updatedAt | date:"yyyy年MM月dd日 HH時mm分 更新" }}</small>
+      </p>
+    </ons-list-item>
 
-      <ons-list-item>
-        <p>掲載されている情報のうち、コンビニの情報は意図的に除外してあります。</p>
+    <ons-list-item>
+      <p>掲載されている情報のうち、コンビニの情報は意図的に除外してあります。</p>
 
-        <p>新町地区のコンビニのうち、トイレがない店舗が多数確認されています。コンビニのトイレをご利用の方は細心の注意を払ってご検討下さい。<br>
-          また、希に紙を切らしている場合もありますので、念のために紙を持っていくことをオススメします。</p>
-      </ons-list-item>
-    </ons-list>
+      <p>新町地区のコンビニのうち、トイレがない店舗が多数確認されています。コンビニのトイレをご利用の方は細心の注意を払ってご検討下さい。<br>
+        また、希に紙を切らしている場合もありますので、念のために紙を持っていくことをオススメします。</p>
+    </ons-list-item>
+  </ons-list>
 
-    <ui-view></ui-view>
-
-  </ons-page>
-
-</ons-navigator>
+</ons-page>

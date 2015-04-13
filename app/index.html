@@ -3,7 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="msapplication-navbutton-color" content="#ffffff">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#ffffff">
+
   <title>マチ★アプリ</title>
+
+  <link rel="manifest" href="./manifest.json">
 
   <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
   <link rel="shortcut icon" href="./favicon.png">
@@ -28,6 +35,7 @@
   <link rel="stylesheet" href="styles/page.css">
   <link rel="stylesheet" href="styles/root.css">
   <link rel="stylesheet" href="styles/searchresult.css">
+  <link rel="stylesheet" href="styles/tutorial.css">
   <!-- endinjector -->
   <!-- endbuild -->
 
@@ -63,6 +71,7 @@
 <script src="bower_components/angular-ui-calendar/src/calendar.js"></script>
 <script src="bower_components/lodash/lodash.js"></script>
 <script src="bower_components/restangular/dist/restangular.js"></script>
+<script src="bower_components/showdown/src/showdown.js"></script>
 <script src="bower_components/angular-markdown-directive/markdown.js"></script>
 <script src="bower_components/angularLocalStorage/src/angularLocalStorage.js"></script>
 <script src="bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
@@ -71,7 +80,6 @@
 <script src="bower_components/angulartics/src/angulartics.js"></script>
 <script src="bower_components/angulartics/src/angulartics-gtm.js"></script>
 <!-- endbower -->
-<script src="bower_components/showdown/compressed/showdown.js"></script>
 <script src="bower_components/fullcalendar/dist/gcal.js"></script>
 <!-- endbuild -->
 
@@ -80,8 +88,8 @@
 <script src="scripts/app.js"></script>
 <script src="scripts/constant.js"></script>
 <script src="scripts/constants/apikey.js"></script>
+<script src="scripts/constants/appList.js"></script>
 <script src="scripts/constants/calendar.js"></script>
-<script src="scripts/constants/location.js"></script>
 <script src="scripts/constants/period.js"></script>
 <script src="scripts/controller.js"></script>
 <script src="scripts/controllers/CalendarMenuCtrl.js"></script>
@@ -98,15 +106,15 @@
 <script src="scripts/controllers/TutorialViewCtrl.js"></script>
 <script src="scripts/controllers/TwitterCtrl.js"></script>
 <script src="scripts/directive.js"></script>
+<script src="scripts/directives/onsStateBackButton.js"></script>
 <script src="scripts/filter.js"></script>
+<script src="scripts/routing.js"></script>
 <script src="scripts/service.js"></script>
 <script src="scripts/services/calendar.js"></script>
 <script src="scripts/services/eventStore.js"></script>
 <script src="scripts/services/favorite.js"></script>
 <script src="scripts/services/machitools.js"></script>
 <script src="scripts/services/tutorial.js"></script>
-<script src="scripts/view.js"></script>
-<script src="scripts/views/CalendarView.js"></script>
 <!-- endinjector -->
 <!-- endbuild -->
 

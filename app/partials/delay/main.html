@@ -1,12 +1,11 @@
 <ons-page ng-controller="DelayCtrl as ctrl">
   <ons-toolbar>
     <div class="left">
-      <ons-toolbar-button ui-sref="root"
+      <ons-state-back-button
                           analytics-on analytics-category="Delay" analytics-event="Click"
                           analytics-label="Back">
-        <ons-icon icon="ion-android-system-back"></ons-icon>
         戻る
-      </ons-toolbar-button>
+      </ons-state-back-button>
     </div>
     <div class="center">
       イベント遅延情報
@@ -35,7 +34,7 @@
         {{ place.name }}
       </ons-list-header>
       <ons-list-item ng-show="place.item && !place.item.isPostponed">
-        {{ ctrl.abs(place.item.delay) }} 分
+        {{ place.item.delay | abs }} 分
         <span ng-if="place.item.delay  > 0">遅れています</span>
         <span ng-if="place.item.delay  < 0">早く進んでいます</span>
         <span ng-if="place.item.delay == 0">定刻通り</span>
@@ -58,9 +57,8 @@
       注意事項
     </ons-list-header>
     <ons-list-item>
-      <p><strong>遅延時間は目安です。</strong></p>
-
       <p>
+        <strong>遅延時間は目安です。</strong><br>
         遅れ(進み)が突然解消される場合があります。<br>
         移動される際は余裕を持って行動して下さい。
       </p>

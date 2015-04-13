@@ -1,0 +1,32 @@
+<ons-page ng-controller="TutorialViewCtrl">
+  <ons-toolbar>
+    <div class="left">
+      <ons-back-button>
+        閉じる
+      </ons-back-button>
+    </div>
+    <div class="center">
+      ヘルプ
+    </div>
+  </ons-toolbar>
+
+  <ons-carousel
+      swipeable
+      overscrollable
+      auto-scroll
+      fullscreen
+      >
+    <ons-carousel-item ng-repeat="item in items">
+      <img ng-src="{{ item }}"
+          style="max-width: 95%;max-height: 95%;"
+          >
+    </ons-carousel-item>
+
+    <ons-carousel-cover>
+      <div class="cover-label">
+        左右にスワイプしてページ移動<br>
+        左上の「閉じる」を押してヘルプを閉じる
+      </div>
+    </ons-carousel-cover>
+  </ons-carousel>
+</ons-page>

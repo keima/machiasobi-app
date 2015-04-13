@@ -1,5 +1,5 @@
-.ons-list-item-inner p,
-.ons-list-item-inner div {
+.ons-list-item-inner > p,
+.ons-list-item-inner > div {
     line-height: normal;
     padding-top: 17px;
     padding-bottom: 17px;

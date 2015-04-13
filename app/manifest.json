@@ -1,0 +1,28 @@
+{
+  "short_name": "マチアプリ",
+  "name": "マチ★アプリ",
+  "icons": [
+    {
+      "src": "/images/icons/ic_launcher_mdpi.png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "/images/icons/ic_launcher_hdpi.png",
+      "sizes": "72x72"
+    },
+    {
+      "src": "/images/icons/ic_launcher_xhdpi.png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "/images/icons/ic_launcher_xxhdpi.png",
+      "sizes": "144x144"
+    },
+    {
+      "src": "/images/icons/ic_launcher_xxxhdpi.png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": "index.html",
+  "display": "standalone"
+}
