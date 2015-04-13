@@ -1,14 +1,12 @@
 <ons-page ng-controller="NewsDetailCtrl as ctrl">
   <ons-toolbar>
     <div class="left">
-      <ons-toolbar-button ui-sref="news"
+      <ons-state-back-button
                           analytics-on analytics-category="News--Detail" analytics-event="Click"
                           analytics-label="Back">
-        <ons-icon icon="ion-ios7-arrow-back" size="36px"></ons-icon>
         戻る
-      </ons-toolbar-button>
+      </ons-state-back-button>
     </div>
-    <div class="center">{{ ctrl.item.Title }}</div>
   </ons-toolbar>
 
   <ons-list>

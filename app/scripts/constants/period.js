@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.constant.period', [])
+angular.module('myApp.constant')
   .constant('PeriodConst', [
     {
       name: '10月11日(土)',

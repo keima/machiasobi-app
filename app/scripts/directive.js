@@ -1,4 +1,6 @@
-angular.module('myApp.directive', ['angulartics'])
+angular.module('myApp.directive', [
+  'angulartics'
+])
 /**
  * aタグのリンクを新しいタブで開くようにします。ついでにangularticsで計測も行います。
  * @see http://stackoverflow.com/questions/20099784/open-links-in-new-window-using-angularjs

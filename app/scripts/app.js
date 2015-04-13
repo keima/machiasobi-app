@@ -9,11 +9,11 @@ angular.module('myApp',
     'ui.router',
     'ui.calendar',
     'onsen',
-    'onsen.directives',
     'btford.markdown',
     'uiGmapgoogle-maps',
     'angulartics',
     'angulartics.google.tagmanager',
+
     'myApp.constant',
     'myApp.service',
     'myApp.controller',
@@ -24,122 +24,6 @@ angular.module('myApp',
     major: 1,
     minor: 4,
     patch: 0
-  })
-  .config(function ($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise('/');
-
-    $stateProvider
-      .state('root', {
-        url: '/',
-        templateUrl: 'partials/root/main.html',
-        controller: 'RootCtrl'
-      })
-
-      // Calendar
-      .state('calendar', {
-        url: '/calendar',
-        templateUrl: 'partials/calendar/main.html'
-      })
-      .state('calendar.detail', {
-        url: '/:calendarShortName/:eventId',
-        template: '', // empty template
-        controller: function ($scope, $stateParams, $timeout, $location, EventStore, Calendar) {
-          var shortName = $stateParams.calendarShortName;
-          var calendarId = Calendar.findCalendarIdByShortName(shortName);
-
-          var shortEventId = $stateParams.eventId;
-          var eventId = Calendar.restoreEventId(shortEventId);
-
-          Calendar.getEvent(calendarId, eventId)
-            .then(function (event) {
-              EventStore.save(event);
-
-              $scope.ons.createDialog('partials/calendar/event.html').then(function (dialog) {
-                dialog.on("prehide", function (e) {
-
-                  $timeout(function () {
-                    $location.path('/calendar');
-                  }, 10);
-
-                });
-                dialog.show();
-              });
-
-              //$scope.ons.screen.presentPage('partials/calendar/event.html');
-            });
-        },
-        onExit: function ($rootScope) {
-          if ($rootScope.ons.dialog.isShown()) {
-            $rootScope.ons.dialog.hide(); // DOMが残り続ける問題がある
-          }
-        }
-      })
-
-      // Traffic
-      .state('traffic', {
-        url: '/traffic',
-        templateUrl: 'partials/traffic/main.html'
-      })
-
-      // Delay
-      .state('delay', {
-        url: '/delay',
-        templateUrl: 'partials/delay/main.html'
-      })
-
-      // Event
-      .state('event', {
-        url: '/event',
-        templateUrl: 'partials/event/main.html'
-      })
-
-      // News
-      .state('news', {
-        url: '/news',
-        templateUrl: 'partials/news/main.html'
-      })
-      .state('news.detail', {
-        url: '/:id',
-        template: '',
-        controller: function ($scope, $timeout) {
-          $timeout(function () {
-            $scope.ons.navigator.pushPage('partials/news/detail.html');
-          }, 200);
-        },
-        onExit: function ($rootScope) {
-          $rootScope.ons.navigator.popPage();
-        }
-      })
-
-      // Map
-      .state('map', {
-        url: '/map',
-        templateUrl: 'partials/map/main.html'
-      })
-      .state('map.detail', {
-        url: '/:id',
-        template: '',
-        controller: function ($scope, $timeout) {
-          $timeout(function () {
-            $scope.ons.navigator.pushPage('partials/map/detail.html');
-          }, 200);
-        },
-        onExit: function ($rootScope) {
-          $rootScope.ons.navigator.popPage();
-        }
-      })
-
-      // Twitter
-      .state('twitter', {
-        url: '/twitter',
-        templateUrl: 'partials/twitter/main.html'
-      })
-
-      // About
-      .state('about', {
-        url: '/about',
-        templateUrl: 'partials/misc/about.html'
-      })
   })
   .config(function (uiGmapGoogleMapApiProvider, myAppGoogleApiKey) {
     uiGmapGoogleMapApiProvider.configure({
@@ -203,4 +87,5 @@ angular.module('myApp',
     $rootScope.openLink = function (url) {
       $window.open(url);
     };
+
   });
