@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.constant.calendar', [])
+angular.module('myApp.constant')
   .constant('CalendarConst',
   [
     {

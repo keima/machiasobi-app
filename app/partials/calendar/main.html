@@ -1,8 +1,16 @@
-<ons-screen>
-  <ons-sliding-menu
-      menu-page="partials/calendar/menu.html"
-      main-page="partials/calendar/calendar.html"
-      swipeable
-      side="left">
-  </ons-sliding-menu>
-</ons-screen>
+<ons-page>
+<ons-sliding-menu
+    var="app.calendarMenu"
+    menu-page="partials/calendar/menu.html"
+    main-page="partials/calendar/calendar.html"
+    swipeable="true"
+    swipe-target-width="100"
+    max-slide-distance="90%"
+    side="right"
+    type="overlay"
+    ons-postopen="app.globalMenu.setSwipeable(false)"
+    ons-postclose="app.globalMenu.setSwipeable(true)"
+    ons-destroy="app.globalMenu.setSwipeable(true)"
+    >
+</ons-sliding-menu>
+</ons-page>

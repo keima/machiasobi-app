@@ -1,6 +1,10 @@
-<ons-sliding-menu class="state-root"
+<ons-sliding-menu
+    var="app.globalMenu"
     menu-page="partials/root/menu.html"
     main-page="partials/root/content.html"
-    swipeable
-    side="left">
+    swipeable="true"
+    swipe-target-width="100"
+    max-slide-distance="90%"
+    side="left"
+    type="overlay">
 </ons-sliding-menu>

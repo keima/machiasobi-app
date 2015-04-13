@@ -7,4 +7,10 @@ angular.module('myApp.filter', [])
     return function (text) {
       return text.replace(/[\n\r]/g, "<br>");
     };
-  }]);
+  }])
+  .filter("abs", [function () {
+    return function (content) {
+      return Math.abs(content);
+    }
+  }])
+;

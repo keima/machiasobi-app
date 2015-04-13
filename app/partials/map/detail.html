@@ -1,12 +1,11 @@
 <ons-page ng-controller="MapDetailCtrl">
   <ons-toolbar>
     <div class="left">
-      <ons-toolbar-button ui-sref="map"
+      <ons-state-back-button
                           analytics-on analytics-category="Map--Detail" analytics-event="Click"
                           analytics-label="Back">
-        <ons-icon icon="ion-ios7-arrow-back" size="36px"></ons-icon>
         戻る
-      </ons-toolbar-button>
+      </ons-state-back-button>
     </div>
     <div class="center">{{ item.name }}</div>
   </ons-toolbar>
