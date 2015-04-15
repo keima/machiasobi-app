@@ -30,7 +30,9 @@ angular.module('myApp',
       key: myAppGoogleApiKey
     });
   })
-  .run(function ($rootScope, $cookies, $window, $location, myAppSemVer, myAppGoogleApiKey, storage, Favorite, CalendarConst, PeriodConst) {
+  .run(function ($rootScope, $cookies, $window, $location, myAppSemVer, myAppGoogleApiKey, storage, Favorite, CalendarConst, PeriodConst, JoinUs) {
+    JoinUs.outputLog();
+    
     $rootScope.semver = myAppSemVer;
     $rootScope.appName = "マチ★アプリ";
     $rootScope.volName = "vol.13";
