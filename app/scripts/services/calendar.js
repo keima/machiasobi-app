@@ -74,8 +74,7 @@ angular.module('myApp.service.calendar', [])
      * @returns Promise
      */
     var getEventObject = function (calendarId, eventId) {
-      var eid = extractEventId(eventId);
-      return CalendarRest.all('calendars').all(calendarId).all('events').get(eid)
+      return CalendarRest.all('calendars').all(calendarId).all('events').get(eventId)
         .then(function (result) {
           return convertGcalToFullCalendarObject(calendarId, eventId, result);
         });
@@ -94,7 +93,7 @@ angular.module('myApp.service.calendar', [])
       }
 
       var event = {
-        id: eventId,
+        id: restoreEventId(eventId),
         title: gcalObj.summary,
         description: gcalObj.description,
         start: gcalObj.start.dateTime,

@@ -63,6 +63,7 @@ angular.module('myApp.controller.calendarMenuCtrl', [])
         $scope.calendars.forEach(function (e) {
           e.selected = false;
         });
+        checkSelected();
 
       } else {
         $rootScope.favEvents = [];
@@ -70,6 +71,7 @@ angular.module('myApp.controller.calendarMenuCtrl', [])
         $scope.calendars.forEach(function (e) {
           e.selected = true;
         });
+        checkSelected();
 
         $rootScope.$broadcast('eventSourceIsChanged');
       }

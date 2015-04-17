@@ -24,12 +24,11 @@ angular.module('myApp')
       .state('app.calendar.detail', {
         url: '/:calendarShortName/:eventId',
         template: '', // empty template
-        controller: function ($scope, $stateParams, $timeout, $location, EventStore, Calendar) {
+        controller: function ($stateParams, $location, $timeout, Calendar, EventStore) {
           var shortName = $stateParams.calendarShortName;
           var calendarId = Calendar.findCalendarIdByShortName(shortName);
 
-          var shortEventId = $stateParams.eventId;
-          var eventId = Calendar.restoreEventId(shortEventId);
+          var eventId = $stateParams.eventId;
 
           Calendar.getEvent(calendarId, eventId)
             .then(function (event) {

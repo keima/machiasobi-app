@@ -1,13 +1,14 @@
 'use strict';
 
 angular.module('myApp.service.favorite', [])
-  .service('Favorite', function (FavoriteStore, Calendar, $rootScope, $q) {
-    var isFavorite = function (eventId) {
+  .service('Favorite', function (FavoriteStore, Calendar, MachiRest, $q) {
+
+    function isFavorite(eventId) {
       var favs = FavoriteStore.get();
       return !_.isEmpty(_.find(favs, {eventId: eventId}));
-    };
+    }
 
-    var getEvents = function () {
+    function getEvents() {
       var promises = [];
       var favs = FavoriteStore.get();
 
@@ -16,24 +17,41 @@ angular.module('myApp.service.favorite', [])
       });
 
       return $q.all(promises);
-    };
+    }
+
+    function toggleFavorite(calendarId, eventId) {
+      var fav = {eventId: eventId, calendarId: calendarId};
+
+      if (isFavorite(eventId)) {
+        return MachiRest.all('calendar').one(encodeURIComponent(calendarId), eventId).remove()
+          .then(function(){
+            FavoriteStore.remove(fav)
+          });
+      } else {
+        return MachiRest.all('calendar').one(encodeURIComponent(calendarId), eventId).post()
+          .then(function(){
+            FavoriteStore.add(fav);
+          });
+      }
+    }
+
+    function retrieve() {
+      return MachiRest.all('calendar').getList()
+        .then(function(result){
+          result.forEach(function(item){
+            FavoriteStore.add(item);
+          });
+        })
+    }
 
     return {
       isFavorite: isFavorite,
       getEvents: getEvents,
-      toggleFavorite: function (calendarId, eventId) {
-
-        var fav = {eventId: eventId, calendarId: calendarId};
-
-        if (isFavorite(eventId)) {
-          FavoriteStore.remove(fav)
-        } else {
-          FavoriteStore.add(fav);
-        }
-      }
-    };
+      toggleFavorite: toggleFavorite,
+      retrieve: retrieve
+    }
   })
-  .service('FavoriteStore', function (storage) {
+  .service('FavoriteStore', function () {
     /* Data Structure
      * favs = [
      *   {
@@ -44,38 +62,26 @@ angular.module('myApp.service.favorite', [])
      * ]
      */
 
-    var STORE_NAME = 'favoriteList';
-
     var favs = [];
 
-    var getList = function () {
-      if (_.isEmpty(favs)) {
-        favs = storage.get(STORE_NAME);
-      }
-
+    function getList() {
       if (_.isNull(favs)) {
         favs = [];
       }
-
       return favs;
-    };
+    }
+
+    function addFav(fav) {
+      favs.push(fav);
+    }
+
+    function removeFav(fav) {
+      favs = _.reject(favs, fav);
+    }
 
     return {
-      add: function (fav) {
-        favs = getList();
-
-        favs.push(fav);
-
-        storage.set(STORE_NAME, favs);
-      },
-      remove: function (fav) {
-        favs = getList();
-
-        favs = _.reject(favs, fav);
-
-        storage.set(STORE_NAME, favs);
-      },
+      add: addFav,
+      remove: removeFav,
       get: getList
-
     };
   });

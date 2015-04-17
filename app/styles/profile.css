@@ -1,0 +1,75 @@
+.profile-card {
+    position: relative;
+
+    width: 100%;
+    height: 80px;
+    padding: 5px 10px;
+
+    color: white;
+    background-color: #33393c;
+    text-shadow: rgba(0, 0, 0, 0.4) 0px 1px 0px;
+}
+
+.profile-card img.avatar {
+    float: left;
+    width: 50px;
+    height: 50px;
+    margin: 15px 10px 15px 0;
+
+    border-radius: 50%;
+    background-color: black;
+    border: 1px solid white;
+    box-sizing: border-box;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 0px 0px;
+}
+
+.profile-card .message {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    bottom: 0;
+    margin: auto;
+    width: 280px;
+    height: 30px;
+
+    font-size: 14px;
+    line-height: 15px;
+}
+
+.profile-card .screen-name {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    bottom: 0;
+    margin: auto;
+    width: 280px;
+    height: 100%;
+
+    float: left;
+    line-height: 90px;
+    font-weight: bold;
+
+}
+
+.profile-card .button {
+    position: absolute;
+    top: 0;
+    right: 30px;
+    bottom: 0;
+    margin: auto;
+    /*width: 30px;*/
+    height: 30px;
+
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 30px;
+    padding: 0 5px;
+    text-align:center;
+}
+.profile-card .button.login {
+    color: #FFFFFF;
+    background: #0C26FF;
+}
+.profile-card .button.logout {
+    background: rgba(255, 255, 255, 0.75);
+}

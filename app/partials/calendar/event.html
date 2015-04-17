@@ -10,6 +10,14 @@
         閉じる
       </ons-toolbar-button>
     </div>
+    <div class="right">
+      <ons-toolbar-button ng-click="toggleFavorite()">
+        <ons-icon ng-show="!isFavorite"
+                  icon="ion-ios-star-outline" size="28px"></ons-icon>
+        <ons-icon ng-show="isFavorite"
+                  icon="ion-ios-star" size="28px"></ons-icon>
+      </ons-toolbar-button>
+    </div>
   </ons-toolbar>
 
   <div class="dialog-list-wrap">
@@ -35,12 +43,20 @@
         <p>終日<br>イベント会場の開始・終了時刻をご確認下さい</p>
       </ons-list-item>
 
-      <ons-list-header>共有</ons-list-header>
+      <ons-list-header>機能</ons-list-header>
       <ons-list-item ng-click="shareTwitter()" modifier="tappable"
                      analytics-on analytics-category="Calendar--Detail" analytics-event="Click"
                      analytics-label="Twitter Share Button">
-        <ons-icon icon="fa-twitter"></ons-icon>
+        <ons-icon icon="fa-twitter" fixed-width="true"></ons-icon>
         Twitterでシェアする！
+      </ons-list-item>
+      <ons-list-item ng-show="!isFavorite" ng-click="toggleFavorite()">
+        <ons-icon icon="ion-android-star-outline" fixed-width="true"></ons-icon>
+        このイベントをふぁぼる！
+      </ons-list-item>
+      <ons-list-item ng-show="isFavorite" ng-click="toggleFavorite()">
+        <ons-icon icon="ion-android-star" fixed-width="true"></ons-icon>
+        ふぁぼを解除する
       </ons-list-item>
 
       <ons-list-header ng-show="event.description">イベント概要</ons-list-header>
