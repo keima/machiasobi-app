@@ -1,4 +1,27 @@
 <ons-list ng-controller="AppListCtrl" class="state-root">
+
+  <div class="profile-card" ng-show="loggedIn">
+    <div class="screen-name">
+      <ons-icon icon="fa-check-circle-o"></ons-icon>
+      ログイン済み
+    </div>
+    <a class="button button--light logout"
+        ng-href="{{ baseUrl }}/api/v1/auth/logout?redirectTo=app">
+      ログアウト
+    </a>
+  </div>
+
+  <div class="profile-card" ng-show="!loggedIn">
+    <div class="message">
+      ログインすると「ふぁぼ機能」を<br>
+      お使いいただけます
+    </div>
+    <a class="button button--light login"
+       ng-href="{{ baseUrl }}/api/v1/auth/login?redirectTo=app">
+      ログイン
+    </a>
+  </div>
+
   <ons-list-header>
     メニュー
   </ons-list-header>

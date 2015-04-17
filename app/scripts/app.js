@@ -30,19 +30,17 @@ angular.module('myApp',
       key: myAppGoogleApiKey
     });
   })
-  .run(function ($rootScope, $cookies, $window, $location, myAppSemVer, myAppGoogleApiKey, storage, Favorite, CalendarConst, PeriodConst) {
+  .run(function ($rootScope, $cookies, $window, myAppSemVer, myAppGoogleApiKey, Favorite, Calendar, PeriodConst, MachiRest, User, JoinUs) {
+    JoinUs.outputLog();
+
     $rootScope.semver = myAppSemVer;
     $rootScope.appName = "マチ★アプリ";
-    $rootScope.volName = "vol.13";
+    $rootScope.volName = "vol.14";
     $rootScope.appVersion = "ver." + myAppSemVer.major + "." + myAppSemVer.minor + "." + myAppSemVer.patch;
-
-    storage.bind($rootScope, 'lastVersion', {defaultValue: null});
 
     $rootScope.periods = PeriodConst;
 
     $rootScope.favEvents = [];
-
-    $rootScope.calendars = CalendarConst;
 
     $rootScope.calendarConfig = {
       googleCalendarApiKey: myAppGoogleApiKey,
@@ -70,7 +68,7 @@ angular.module('myApp',
         // override href param
         element.removeAttr('href');
 
-        if (Favorite.isFavorite(event.id)) {
+        if (Favorite.isFavorite(Calendar.extractEventId(event.id))) {
           element.addClass('favorited');
         }
       },
@@ -87,5 +85,13 @@ angular.module('myApp',
     $rootScope.openLink = function (url) {
       $window.open(url);
     };
+
+    MachiRest.all('auth').get('check')
+      .then(function (result) {
+        User.setUser(result);
+      }, function (reason) {
+        console.log(reason);
+        User.setUser({});
+      });
 
   });

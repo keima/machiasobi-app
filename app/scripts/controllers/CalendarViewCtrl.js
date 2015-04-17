@@ -1,6 +1,7 @@
 angular.module('myApp.controller.calendarViewCtrl', [])
   .controller('CalendarViewCtrl',
-  function ($scope, $rootScope, $window, $timeout, $state, $location, $analytics, Calendar, EventStore, Tutorial) {
+  function ($scope, $rootScope, $window, $timeout, $state, $location, $analytics, Calendar,CalendarConst, EventStore, Favorite, Tutorial) {
+    $scope.calendars = CalendarConst;
 
     Tutorial.showAtCalendar();
 
@@ -9,7 +10,7 @@ angular.module('myApp.controller.calendarViewCtrl', [])
      * @param current Moment
      * @param periods Moment
      */
-    function estimeteSelectedDateId(current, periods) {
+    function estimeteSelectedDateId (current, periods) {
       var last = periods.length - 1;
       if (current.isBefore(periods[0].date, 'day')) {
         return 0;
@@ -25,7 +26,10 @@ angular.module('myApp.controller.calendarViewCtrl', [])
       return 0; // fail safe...
     }
 
-    $scope.eventSources = Calendar.buildSources($scope.calendars);
+    Favorite.retrieve().then(function () {
+      $rootScope.$broadcast('eventSourceIsChanged');
+    });
+    $scope.eventSources = Calendar.buildSources(CalendarConst);
     var originEventSources = _.cloneDeep($scope.eventSources);
 
     // イベントのクリックリスナ
@@ -90,5 +94,11 @@ angular.module('myApp.controller.calendarViewCtrl', [])
     };
     $timeout(renderCalendar, 200);
     $scope.$on('RefreshCalendarHeight', renderCalendar);
+
+    var rerenderCalendar = function() {
+      console.log("rerenderCalendar");
+      $('#calendar').fullCalendar('rerenderEvents');
+    };
+    $scope.$on('RerenderCalendar', rerenderCalendar);
 
   });
