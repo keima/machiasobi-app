@@ -1,12 +1,8 @@
 angular.module('myApp.controller.calendarMenuCtrl', [])
   .controller('CalendarMenuCtrl',
-  function ($scope, $rootScope, $cookies, $timeout, Calendar, Favorite) {
+  function ($scope, $rootScope, $cookies, $timeout, Calendar, CalendarConst, Favorite) {
+    $scope.calendars = CalendarConst;
 
-    $scope.toggleCalendar = function (index) {
-      console.log('checkInverse');
-      $scope.calendars[index].selected = !$scope.calendars[index].selected;
-      $rootScope.$broadcast('eventSourceIsChanged');
-    };
     $scope.someSelected = true;
     function checkSelected() {
       for (var i = 0; i < $scope.calendars.length; i++) {
@@ -44,10 +40,14 @@ angular.module('myApp.controller.calendarMenuCtrl', [])
       $rootScope.$broadcast('eventSourceIsChanged');
     };
 
-    // 以下作りなおす予定
+    $scope.toggleCalendar = function (index) {
+      console.log('checkInverse');
+      $scope.calendars[index].selected = !$scope.calendars[index].selected;
+      checkSelected();
+      $rootScope.$broadcast('eventSourceIsChanged');
+    };
 
     $scope.isOnlyFavorite = false;
-
     $scope.showOnlyFavorite = function () {
       $scope.isOnlyFavorite = !$scope.isOnlyFavorite;
     };
