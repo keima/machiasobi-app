@@ -33,7 +33,7 @@ angular.module('myApp',
   .run(function ($rootScope, $cookies, $window, $location, myAppSemVer, myAppGoogleApiKey, storage, Favorite, CalendarConst, PeriodConst) {
     $rootScope.semver = myAppSemVer;
     $rootScope.appName = "マチ★アプリ";
-    $rootScope.volName = "vol.13";
+    $rootScope.volName = "vol.14";
     $rootScope.appVersion = "ver." + myAppSemVer.major + "." + myAppSemVer.minor + "." + myAppSemVer.patch;
 
     storage.bind($rootScope, 'lastVersion', {defaultValue: null});
