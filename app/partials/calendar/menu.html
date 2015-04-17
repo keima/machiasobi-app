@@ -27,6 +27,12 @@
     <ons-list-header>
       カレンダーのON/OFF
     </ons-list-header>
+    <ons-list-item>
+      <ons-switch modifier="list-item"
+                  ng-checked="someSelected"
+                  ng-click="toggleAllCalendars()"></ons-switch>
+      一括ON/OFF
+    </ons-list-item>
     <ons-list-item
         ng-repeat="calendar in calendars"
         ng-if="calendar.sticky === false">
