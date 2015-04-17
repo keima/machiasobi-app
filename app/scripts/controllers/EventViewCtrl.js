@@ -1,18 +1,17 @@
 angular.module('myApp.controller.eventViewCtrl', [])
   .controller('EventViewCtrl',
-  function ($scope, $rootScope, $window, $location, EventStore, Favorite, Calendar) {
+  function ($scope, $rootScope, $window, $location, $analytics, EventStore, Favorite, Calendar, User) {
     $scope.event = EventStore.load();
     // 日付表示を整形
     $scope.event.start = moment($scope.event.start);
     $scope.event.end = moment($scope.event.end);
 
-    var eventId = $scope.event.id;
+    var eventId = Calendar.extractEventId($scope.event.id);
     var sourceUrl = ('url' in $scope.event.source) ? $scope.event.source.url : $scope.event.sourceUrl;
-
-    $scope.isFavorite = Favorite.isFavorite(eventId);
-
-
     var calendarId = Calendar.extractCalendarId(sourceUrl);
+
+    $scope.placeName = Calendar.findByCalendarId(calendarId).name;
+    $scope.isFavorite = Favorite.isFavorite(eventId);
 
     // 閉じるボタン
     $scope.closePage = function () {
@@ -39,14 +38,27 @@ angular.module('myApp.controller.eventViewCtrl', [])
 
     // ふぁぼるボタン
     $scope.toggleFavorite = function () {
-      Favorite.toggleFavorite(calendarId, eventId);
-      $scope.isFavorite = !$scope.isFavorite;
-      $rootScope.$broadcast('RefreshCalendarHeight');
-
-      if ($scope.isFavorite) {
-        var trackerName = ga.getAll()[0].get('name');
-        ga(trackerName + '.send', 'event', 'Favorite', $scope.event.title);
+      // ログインしてなかったらグローバル・サイドバーを展開
+      if (!User.isLogin()) {
+        $location.path('/calendar');
+        app.globalMenu.openMenu();
+        return;
       }
+
+      Favorite.toggleFavorite(calendarId, eventId)
+        .then(function(){
+          $scope.isFavorite = !$scope.isFavorite;
+          $rootScope.$broadcast('RefreshCalendarHeight');
+          $rootScope.$broadcast('RerenderCalendar');
+
+          $analytics.eventTrack(
+            $scope.isFavorite ? 'Favorite' : 'Unfavorite',
+            {
+              category: 'Calendar--Favorite',
+              label: $scope.event.title
+            }
+          );
+        });
     };
 
   });

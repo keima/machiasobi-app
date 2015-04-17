@@ -1,12 +1,19 @@
 angular.module('myApp.controller.calendarMenuCtrl', [])
   .controller('CalendarMenuCtrl',
-  function ($scope, $rootScope, $cookies, $timeout, Calendar, Favorite) {
+  function ($scope, $rootScope, $cookies, $timeout, Calendar, CalendarConst, Favorite) {
+    $scope.calendars = CalendarConst;
 
-    $scope.toggleCalendar = function (index) {
-      console.log('checkInverse');
-      $scope.calendars[index].selected = !$scope.calendars[index].selected;
-      $rootScope.$broadcast('eventSourceIsChanged');
-    };
+    $scope.someSelected = true;
+    function checkSelected() {
+      for (var i = 0; i < $scope.calendars.length; i++) {
+        if ($scope.calendars[i].selected == true) {
+          $scope.someSelected = true;
+          return true;
+        }
+      }
+      $scope.someSelected = false;
+      return false;
+    }
 
     $scope.toggleAllDay = function () {
       console.log('toggleAllDay');
@@ -24,11 +31,23 @@ angular.module('myApp.controller.calendarMenuCtrl', [])
       }, 100);
     };
 
+    $scope.toggleAllCalendars = function() {
+      var status = checkSelected();
+      $scope.calendars.forEach(function(cal){
+        cal.selected = !status;
+      });
+      checkSelected();
+      $rootScope.$broadcast('eventSourceIsChanged');
+    };
 
-    // 以下作りなおす予定
+    $scope.toggleCalendar = function (index) {
+      console.log('checkInverse');
+      $scope.calendars[index].selected = !$scope.calendars[index].selected;
+      checkSelected();
+      $rootScope.$broadcast('eventSourceIsChanged');
+    };
 
     $scope.isOnlyFavorite = false;
-
     $scope.showOnlyFavorite = function () {
       $scope.isOnlyFavorite = !$scope.isOnlyFavorite;
     };
@@ -44,6 +63,7 @@ angular.module('myApp.controller.calendarMenuCtrl', [])
         $scope.calendars.forEach(function (e) {
           e.selected = false;
         });
+        checkSelected();
 
       } else {
         $rootScope.favEvents = [];
@@ -51,6 +71,7 @@ angular.module('myApp.controller.calendarMenuCtrl', [])
         $scope.calendars.forEach(function (e) {
           e.selected = true;
         });
+        checkSelected();
 
         $rootScope.$broadcast('eventSourceIsChanged');
       }
