@@ -21,8 +21,8 @@ angular.module('myApp',
     'myApp.filter'
   ])
   .constant('myAppSemVer', {
-    major: 1,
-    minor: 5,
+    major: 2,
+    minor: 0,
     patch: 0
   })
   .config(function (uiGmapGoogleMapApiProvider, myAppGoogleApiKey) {
