@@ -8,11 +8,10 @@ angular.module('myApp.controller.eventViewCtrl', [])
 
     var eventId = $scope.event.id;
     var sourceUrl = ('url' in $scope.event.source) ? $scope.event.source.url : $scope.event.sourceUrl;
-
-    $scope.isFavorite = Favorite.isFavorite(eventId);
-
-
     var calendarId = Calendar.extractCalendarId(sourceUrl);
+
+    $scope.placeName = Calendar.findByCalendarId(calendarId).name;
+    $scope.isFavorite = Favorite.isFavorite(eventId);
 
     // 閉じるボタン
     $scope.closePage = function () {

@@ -11,6 +11,15 @@ angular.module('myApp.service.calendar', [])
   })
   .service('Calendar', function (CalendarRest, CalendarConst, PeriodConst, $q) {
     /**
+     * calendarId から CalendarConstのオブジェクトを取得します
+     * @param _calendarId
+     * @returns {*}
+     */
+    var findByCalendarId = function(_calendarId) {
+      return _.find(CalendarConst, {calendarId: _calendarId});
+    };
+
+    /**
      * calendarId から className(gcal-shinmachi) を取得します
      * @param _calendarId
      * @returns {string}
@@ -201,6 +210,7 @@ angular.module('myApp.service.calendar', [])
     };
 
     return {
+      findByCalendarId: findByCalendarId,
       findShortNameByCalendarId: findShortNameByCalendarId,
       findCalendarIdByShortName: findCalendarIdByShortName,
 

@@ -19,7 +19,12 @@
         <p>{{ event.title }}</p>
       </ons-list-item>
 
-      <ons-list-header>開催期間</ons-list-header>
+      <ons-list-header>場所</ons-list-header>
+      <ons-list-item>
+        <p>{{ placeName }}</p>
+      </ons-list-item>
+
+      <ons-list-header>日時</ons-list-header>
       <ons-list-item ng-hide="event.allDay">
         開始日時 : {{ event.start.toDate() | date:'MM月dd日 HH:mm' }}
       </ons-list-item>
