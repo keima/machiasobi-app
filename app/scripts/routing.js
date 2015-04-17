@@ -37,11 +37,20 @@ angular.module('myApp')
 
               ons.createDialog('partials/calendar/event.html')
                 .then(function (dialog) {
+                  dialog.on('prehide', function(event){
+
+                    $timeout(function(){
+                      $location.path('/calendar');
+                    });
+
+                  });
                   dialog.show();
                 });
+            }, function (reason) {
+              $location.path('/calendar');
             });
         },
-        onExit: function ($timeout) {
+        onExit: function () {
           if (!!app.eventDialog && app.eventDialog.isShown()) {
             app.eventDialog.hide({
               callback: function () {
