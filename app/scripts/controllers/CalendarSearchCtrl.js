@@ -52,8 +52,9 @@ angular.module('myApp.controller.calendar', [])
 
     this.moveToDetail = function(index) {
       var item = self.result[index];
+      var eventId = Calendar.extractEventId(item.eventId);
 
-      $location.path('/calendar/' + item.shortName + '/' + item.eventId);
+      $location.path('/calendar/' + item.shortName + '/' + eventId);
     };
 
     this.diff = CalendarSearchUtil.humanizeDiff;

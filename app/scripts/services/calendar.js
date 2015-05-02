@@ -187,7 +187,7 @@ angular.module('myApp.service.calendar', [])
             var list = [];
 
             result.items.forEach(function (item) {
-              var calItem = convertGcalToFullCalendarObject(calendar.calendarId, restoreEventId(item.id), item);
+              var calItem = convertGcalToFullCalendarObject(calendar.calendarId, extractEventId(item.id), item);
               if (!_.isNull(calItem)) {
                 list.push(calItem);
               }
