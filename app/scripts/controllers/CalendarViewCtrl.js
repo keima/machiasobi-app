@@ -1,7 +1,39 @@
 angular.module('myApp.controller.calendarViewCtrl', [])
   .controller('CalendarViewCtrl',
-  function ($scope, $rootScope, $window, $timeout, $state, $location, $analytics, Calendar,CalendarConst, EventStore, Favorite, Tutorial) {
+  function ($scope, $rootScope, $window, $timeout, $state, $location, $analytics, Calendar, CalendarConst, EventStore, Favorite, Tutorial, myAppGoogleApiKey, $cookies) {
     $scope.calendars = CalendarConst;
+    $scope.calendarConfig = {
+      googleCalendarApiKey: myAppGoogleApiKey,
+
+      header: false,
+      height: 1000, // dummy value
+      defaultDate: $rootScope.periods[0].date,
+      timezone: 'Asia/Tokyo',
+      scrollTime: '8:00:00',
+      slotDuration: '00:15:00',
+      editable: false,
+      defaultView: 'agendaDay',
+      allDaySlot: (($cookies.showAllDaySlot || 'true') === 'true'),
+      allDayText: '終日',
+      axisFormat: 'HH',
+      slotEventOverlap: false, // イベントの重なりを切る
+
+      eventRender: function (event, element) {
+        // override href param
+        element.removeAttr('href');
+
+        if (Favorite.isFavorite(Calendar.extractEventId(event.id))) {
+          element.addClass('favorited');
+        }
+      },
+      windowResize: function () {
+        console.log('windowResize');
+      },
+
+      // これはui-calendarのプロパティではない
+      showLegend: (($cookies.showLegend || 'true') === 'true'),
+      updateTime: moment()
+    };
 
     /**
      * Return selected id

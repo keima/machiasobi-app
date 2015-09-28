@@ -33,53 +33,14 @@ angular.module('myApp',
   .run(function ($rootScope, $cookies, $window, myAppSemVer, myAppGoogleApiKey, Favorite, Calendar, PeriodConst, MachiRest, User, JoinUs) {
     JoinUs.outputLog();
 
-    $rootScope.semver = myAppSemVer;
     $rootScope.appName = "マチ★アプリ";
     $rootScope.volName = "vol.14";
+    $rootScope.semver = myAppSemVer;
     $rootScope.appVersion = "ver." + myAppSemVer.major + "." + myAppSemVer.minor + "." + myAppSemVer.patch;
 
     $rootScope.periods = PeriodConst;
 
     $rootScope.favEvents = [];
-
-    $rootScope.calendarConfig = {
-      googleCalendarApiKey: myAppGoogleApiKey,
-
-      header: false,
-      height: 1000, // dummy value
-      defaultDate: $rootScope.periods[0].date,
-      timezone: 'Asia/Tokyo',
-
-      scrollTime: '8:00:00',
-      slotDuration: '00:15:00',
-
-      editable: false,
-
-      defaultView: 'agendaDay',
-
-      allDaySlot: (($cookies.showAllDaySlot || 'true') === 'true'),
-      allDayText: '終日',
-
-      axisFormat: 'HH',
-
-      slotEventOverlap: false, // イベントの重なりを切る
-
-      eventRender: function (event, element) {
-        // override href param
-        element.removeAttr('href');
-
-        if (Favorite.isFavorite(Calendar.extractEventId(event.id))) {
-          element.addClass('favorited');
-        }
-      },
-      windowResize: function () {
-        console.log('windowResize');
-      },
-
-      // これはui-calendarのプロパティではない
-      showLegend: (($cookies.showLegend || 'true') === 'true'),
-      updateTime: moment()
-    };
 
     // rootScopeいじっておいて、どこでもng-clickでリンクを開けるようにする
     $rootScope.openLink = function (url) {
