@@ -3,8 +3,6 @@ angular.module('myApp.controller.calendarViewCtrl', [])
   function ($scope, $rootScope, $window, $timeout, $state, $location, $analytics, Calendar,CalendarConst, EventStore, Favorite, Tutorial) {
     $scope.calendars = CalendarConst;
 
-    Tutorial.showAtCalendar();
-
     /**
      * Return selected id
      * @param current Moment
