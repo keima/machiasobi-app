@@ -8,14 +8,14 @@ angular.module('myApp.controller.delayCtrl', [])
         id: 'shinmachi',
         name: '新町橋東公園'
       },
-      {
-        id: 'ryogoku',
-        name: "両国橋西公園"
-      }
       //{
-      //  id: 'bizan',
-      //  name: '眉山林間ステージ'
+      //  id: 'ryogoku',
+      //  name: "両国橋西公園"
       //}
+      {
+        id: 'bizan',
+        name: '眉山林間ステージ'
+      }
     ];
 
     this.reload = function () {

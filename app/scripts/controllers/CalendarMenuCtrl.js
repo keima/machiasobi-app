@@ -12,13 +12,13 @@ angular.module('myApp.controller.calendarMenuCtrl', [])
 
     $scope.toggleAllDay = function() {
       console.log('toggleAllDay');
-      $rootScope.calendarConfig.allDaySlot = !$rootScope.calendarConfig.allDaySlot;
-      $cookies.showAllDaySlot = $rootScope.calendarConfig.allDaySlot;
+      $scope.calendarConfig.allDaySlot = !$scope.calendarConfig.allDaySlot;
+      $cookies.showAllDaySlot = $scope.calendarConfig.allDaySlot;
     };
 
     $scope.toggleLegend = function() {
-      $rootScope.calendarConfig.showLegend = !$rootScope.calendarConfig.showLegend;
-      $cookies.showLegend = $rootScope.calendarConfig.showLegend;
+      $scope.calendarConfig.showLegend = !$scope.calendarConfig.showLegend;
+      $cookies.showLegend = $scope.calendarConfig.showLegend;
 
       $timeout(function() {
         $rootScope.$broadcast('RefreshCalendarHeight');
@@ -27,7 +27,7 @@ angular.module('myApp.controller.calendarMenuCtrl', [])
 
     $scope.toggleAllCalendars = function() {
       var status = updateAnythingIsSelectedStatus();
-      Calendar.setAllSelectedStatus(status);
+      Calendar.setAllSelectedStatus(!status);
       updateAnythingIsSelectedStatus();
       $rootScope.$broadcast('eventSourceIsChanged');
     };

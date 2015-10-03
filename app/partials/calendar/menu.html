@@ -34,7 +34,7 @@
     </ons-list-item>
     <ons-list-item
         ng-repeat="calendar in calendars"
-        ng-if="calendar.sticky === false">
+        ng-if="calendar.isSticky === false">
       <ons-switch modifier="list-item"
                   ng-checked="calendarStatuses[$index]"
                   ng-click="toggleCalendar($index)"></ons-switch>
