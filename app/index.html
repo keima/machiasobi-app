@@ -15,18 +15,17 @@
   <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
   <link rel="shortcut icon" href="./favicon.png">
 
-  <link rel="stylesheet" href="bower_components/onsenui/build/css/font_awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="bower_components/onsenui/build/css/ionicons/css/ionicons.min.css">
-  <!-- build:css({.tmp,app}) styles/vendor.css -->
+  <!-- build:vendorcss -->
   <link rel="stylesheet" href="bower_components/onsenui/build/css/onsenui.css">
   <link rel="stylesheet" href="bower_components/onsenui/build/css/onsen-css-components.css">
   <!-- bower:css -->
-  <link rel="stylesheet" href="bower_components/fullcalendar/dist/fullcalendar.css" />
-  <!-- endbower -->
+  <link rel="stylesheet" href="bower_components/fullcalendar/dist/fullcalendar.css">
+  <!-- endinject -->
   <!-- endbuild -->
 
-  <!-- build:css({.tmp,app}) styles/main.css -->
-  <!-- injector:css -->
+  <!-- build:css -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="styles/bootstrap.css">
   <link rel="stylesheet" href="styles/calendar.css">
   <link rel="stylesheet" href="styles/dialog.css">
   <link rel="stylesheet" href="styles/list.css">
@@ -37,9 +36,8 @@
   <link rel="stylesheet" href="styles/root.css">
   <link rel="stylesheet" href="styles/searchresult.css">
   <link rel="stylesheet" href="styles/tutorial.css">
-  <!-- endinjector -->
+  <!-- endinject -->
   <!-- endbuild -->
-
 </head>
 <body>
 
@@ -58,68 +56,69 @@
 <ui-view></ui-view>
 
 <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
-<!-- build:js({.tmp,app}) scripts/vendor.js -->
-<script src="bower_components/angular/angular.js"></script>
+<!-- build:vendorjs -->
 <!-- bower:js -->
+<script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular-i18n/angular-locale_ja-jp.js"></script>
 <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
 <script src="bower_components/angular-cookies/angular-cookies.js"></script>
 <script src="bower_components/angular-touch/angular-touch.js"></script>
 <script src="bower_components/onsenui/build/js/onsenui.js"></script>
 <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 <script src="bower_components/moment/moment.js"></script>
-<script src="bower_components/fullcalendar/dist/fullcalendar.js"></script>
-<script src="bower_components/angular-ui-calendar/src/calendar.js"></script>
 <script src="bower_components/lodash/lodash.js"></script>
+<script src="bower_components/momentjs/moment.js"></script>
 <script src="bower_components/restangular/dist/restangular.js"></script>
 <script src="bower_components/showdown/src/showdown.js"></script>
-<script src="bower_components/angular-markdown-directive/markdown.js"></script>
 <script src="bower_components/angularLocalStorage/src/angularLocalStorage.js"></script>
 <script src="bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
 <script src="bower_components/waypoints/waypoints.js"></script>
 <script src="bower_components/SHA-1/sha1.js"></script>
+<script src="bower_components/fullcalendar/dist/fullcalendar.js"></script>
+<script src="bower_components/angular-ui-calendar/src/calendar.js"></script>
+<script src="bower_components/angular-markdown-directive/markdown.js"></script>
 <script src="bower_components/angulartics/src/angulartics.js"></script>
 <script src="bower_components/angulartics/src/angulartics-gtm.js"></script>
-<!-- endbower -->
+<!-- endinject -->
 <script src="bower_components/fullcalendar/dist/gcal.js"></script>
 <!-- endbuild -->
 
-<!-- build:js({.tmp,app}) scripts/main.js -->
-<!-- injector:js -->
-<script src="scripts/app.js"></script>
-<script src="scripts/constant.js"></script>
-<script src="scripts/constants/apikey.js"></script>
-<script src="scripts/constants/appList.js"></script>
-<script src="scripts/constants/calendar.js"></script>
-<script src="scripts/constants/period.js"></script>
-<script src="scripts/controller.js"></script>
-<script src="scripts/controllers/CalendarCtrl.js"></script>
-<script src="scripts/controllers/CalendarMenuCtrl.js"></script>
-<script src="scripts/controllers/CalendarSearchCtrl.js"></script>
-<script src="scripts/controllers/CalendarViewCtrl.js"></script>
-<script src="scripts/controllers/DelayCtrl.js"></script>
-<script src="scripts/controllers/EventCtrl.js"></script>
-<script src="scripts/controllers/EventViewCtrl.js"></script>
-<script src="scripts/controllers/MapListCtrl.js"></script>
-<script src="scripts/controllers/NewsDetailCtrl.js"></script>
-<script src="scripts/controllers/NewsListCtrl.js"></script>
-<script src="scripts/controllers/RootCtrl.js"></script>
-<script src="scripts/controllers/TrafficCtrl.js"></script>
-<script src="scripts/controllers/TutorialViewCtrl.js"></script>
-<script src="scripts/controllers/TwitterCtrl.js"></script>
+<!-- build:js -->
+<!-- inject:js -->
+<script src="scripts/service.js"></script>
+<script src="scripts/services/user.js"></script>
+<script src="scripts/services/tutorial.js"></script>
+<script src="scripts/services/machitools.js"></script>
+<script src="scripts/services/joinus.js"></script>
+<script src="scripts/services/favorite.js"></script>
+<script src="scripts/services/eventStore.js"></script>
+<script src="scripts/services/calendar.js"></script>
 <script src="scripts/directive.js"></script>
 <script src="scripts/directives/onsStateBackButton.js"></script>
-<script src="scripts/filter.js"></script>
+<script src="scripts/controllers/TwitterCtrl.js"></script>
+<script src="scripts/controller.js"></script>
+<script src="scripts/controllers/TutorialViewCtrl.js"></script>
+<script src="scripts/controllers/TrafficCtrl.js"></script>
+<script src="scripts/controllers/RootCtrl.js"></script>
+<script src="scripts/controllers/NewsListCtrl.js"></script>
+<script src="scripts/controllers/NewsDetailCtrl.js"></script>
+<script src="scripts/controllers/MapListCtrl.js"></script>
+<script src="scripts/controllers/EventViewCtrl.js"></script>
+<script src="scripts/controllers/EventCtrl.js"></script>
+<script src="scripts/controllers/DelayCtrl.js"></script>
+<script src="scripts/controllers/CalendarViewCtrl.js"></script>
+<script src="scripts/controllers/CalendarSearchCtrl.js"></script>
+<script src="scripts/controllers/CalendarMenuCtrl.js"></script>
+<script src="scripts/controllers/CalendarCtrl.js"></script>
+<script src="scripts/constant.js"></script>
+<script src="scripts/constants/appList.js"></script>
+<script src="scripts/constants/apikey.js"></script>
+<script src="scripts/app.js"></script>
 <script src="scripts/routing.js"></script>
-<script src="scripts/service.js"></script>
-<script src="scripts/services/calendar.js"></script>
-<script src="scripts/services/eventStore.js"></script>
-<script src="scripts/services/favorite.js"></script>
-<script src="scripts/services/joinus.js"></script>
-<script src="scripts/services/machitools.js"></script>
-<script src="scripts/services/tutorial.js"></script>
-<script src="scripts/services/user.js"></script>
-<!-- endinjector -->
+<script src="scripts/filter.js"></script>
+<script src="scripts/bootstrap.js"></script>
+<!-- endinject -->
 <!-- endbuild -->
 
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>

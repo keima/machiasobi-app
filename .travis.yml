@@ -1,13 +1,14 @@
 language: node_js
 node_js:
-  - "0.10"
+  - "4.1.1"
+sudo: false
 before_install:
-  - npm install -g bower grunt-cli
+  - npm install -g bower gulp
 install:
   - npm install
   - bower install
 script:
-  - grunt build
+  - gulp build
 deploy:
   provider: gcs
   access_key_id:
