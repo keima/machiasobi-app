@@ -66,13 +66,14 @@ angular.module('myApp.controller.calendar', [])
       extractOnlyWhatIUse: function (result) {
         var list = [];
 
+        // resultそのものはCalendarsにitemsを付与したものと同じ
         result.items.forEach(function (item) {
           var obj = {
             start: item.start,
             end: item.end,
             title: item.title,
             venueName: result.name,
-            shortName: result.shortName,
+            shortName: result.id,
             calendarId: result.calendarId,
             eventId: item.id
           };

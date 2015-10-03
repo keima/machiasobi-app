@@ -1,9 +1,11 @@
 angular.module('myApp.controller.calendarViewCtrl', [])
   .controller('CalendarViewCtrl',
-  function ($scope, $rootScope, $window, $timeout, $state, $location, $analytics, Calendar,CalendarConst, EventStore, Favorite, Tutorial) {
-    $scope.calendars = CalendarConst;
-
+  function ($scope, $rootScope, $window, $timeout, $state, $analytics, Calendar, EventStore, Favorite, Tutorial) {
     Tutorial.showAtCalendar();
+
+    $scope.calendars = Calendar.getCalendars();
+    $scope.eventSources = Calendar.getFullCalendarObjects();
+    var originEventSources = _.cloneDeep($scope.eventSources);
 
     /**
      * Return selected id
@@ -29,8 +31,6 @@ angular.module('myApp.controller.calendarViewCtrl', [])
     Favorite.retrieve().then(function () {
       $rootScope.$broadcast('eventSourceIsChanged');
     });
-    $scope.eventSources = Calendar.buildSources(CalendarConst);
-    var originEventSources = _.cloneDeep($scope.eventSources);
 
     // イベントのクリックリスナ
     $scope.calendarConfig.eventClick = function (event, jsEvent, view) {
@@ -59,7 +59,7 @@ angular.module('myApp.controller.calendarViewCtrl', [])
     // 凡例のクリックイベント
     $scope.showOnlyThisEvent = function (calendarIndex) {
       $scope.calendars.forEach(function (element, index) {
-        element.selected = (calendarIndex == index);
+        Calendar.setSelectedStatus(index, (calendarIndex == index));
       });
       $rootScope.$broadcast('eventSourceIsChanged');
     };
@@ -70,7 +70,7 @@ angular.module('myApp.controller.calendarViewCtrl', [])
 
       // selected:trueのものだけ詰め直し
       $scope.calendars.forEach(function (element, index) {
-        if (element.selected) {
+        if (Calendar.getSelectedStatus(index)) {
           $scope.eventSources.push(originEventSources[index]);
         }
       });

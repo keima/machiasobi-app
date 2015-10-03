@@ -2,6 +2,9 @@
 
 angular.module('myApp.service.favorite', [])
   .service('Favorite', function (FavoriteStore, Calendar, MachiRest, $q) {
+    function favoriteAPI() {
+      return MachiRest.all("favorite");
+    }
 
     function isFavorite(eventId) {
       var favs = FavoriteStore.get();
@@ -23,12 +26,12 @@ angular.module('myApp.service.favorite', [])
       var fav = {eventId: eventId, calendarId: calendarId};
 
       if (isFavorite(eventId)) {
-        return MachiRest.all('calendar').one(encodeURIComponent(calendarId), eventId).remove()
+        return favoriteAPI().one(encodeURIComponent(calendarId), eventId).remove()
           .then(function(){
             FavoriteStore.remove(fav)
           });
       } else {
-        return MachiRest.all('calendar').one(encodeURIComponent(calendarId), eventId).post()
+        return favoriteAPI().one(encodeURIComponent(calendarId), eventId).post()
           .then(function(){
             FavoriteStore.add(fav);
           });
@@ -36,7 +39,7 @@ angular.module('myApp.service.favorite', [])
     }
 
     function retrieve() {
-      return MachiRest.all('calendar').getList()
+      return favoriteAPI().getList()
         .then(function(result){
           result.forEach(function(item){
             FavoriteStore.add(item);

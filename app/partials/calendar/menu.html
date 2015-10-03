@@ -28,7 +28,7 @@
     </ons-list-header>
     <ons-list-item>
       <ons-switch modifier="list-item"
-                  ng-checked="someSelected"
+                  ng-checked="anythingIsSelected"
                   ng-click="toggleAllCalendars()"></ons-switch>
       一括ON/OFF
     </ons-list-item>
@@ -36,7 +36,7 @@
         ng-repeat="calendar in calendars"
         ng-if="calendar.sticky === false">
       <ons-switch modifier="list-item"
-                  ng-checked="calendar.selected"
+                  ng-checked="calendarStatuses[$index]"
                   ng-click="toggleCalendar($index)"></ons-switch>
       {{ calendar.name }}
     </ons-list-item>
