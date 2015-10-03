@@ -1,8 +1,13 @@
 "use strict";
 
-angular.module('myApp.service.machitools', [])
-  .constant('MachiBaseUrl', 'https://machiasobi-tools.appspot.com')
-  //.constant('MachiBaseUrl', 'http://localhost:8080')
+angular.module('myApp.service.machitools', ["restangular"])
+  .constant("MachiBaseUrl", function(){
+    if (window.location.hostname == "localhost") {
+      return 'http://localhost:8080';
+    }
+    return 'https://machiasobi-tools.appspot.com'
+  }())
+
   .factory('MachiRest', function (Restangular, MachiBaseUrl) {
     return Restangular.withConfig(function (config) {
       config.setBaseUrl(MachiBaseUrl + '/api/v1');
