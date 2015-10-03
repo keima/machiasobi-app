@@ -12,16 +12,12 @@ config =
   js: './app/scripts/**/*.js'
   css: './app/styles/**/*.css'
   partials: './app/partials/**/*.html'
+  image: './app/images/**/*.+(webp|png|jpg|jpeg|gif)'
   copy: [
-    '*.{ico,png,txt}',
-    'manifest.json',
-    '*.html',
-    'partials/{,*/}*.html',
-    'images/{,*/}*.{webp,png,jpg,jpeg,gif}',
-    'objects/{,*/}*.json',
-
-    'bower_components/onsenui/build/css/{font_awesome,ionicons}/css/*.min.css',
-    'bower_components/onsenui/build/css/{font_awesome,ionicons}/fonts/*.{otf,eot,svg,ttf,woff}'
+    './app/*.+(ico|png|txt)',
+    './app/manifest.json',
+    './app/bower_components/onsenui/build/css/+(font_awesome|ionicons)/css/*.min.css',
+    './app/bower_components/onsenui/build/css/+(font_awesome|ionicons)/fonts/*.+(otf|eot|svg|ttf|woff)'
   ]
   output: './dist/'
 
@@ -38,31 +34,55 @@ gulp.task 'watch', ->
 
 gulp.task 'inject', ->
   bower = gulp.src bowerFiles(), {read: false}
-  sources = gulp.src [config.js, config.css], {read: false}
+  js = gulp.src([config.js]).pipe($.angularFilesort())
+  css = gulp.src [config.css], {read: false}
 
   gulp.src config.index
   .pipe $.inject bower, {ignorePath: 'app', addRootSlash: false, name: 'bower'}
-  .pipe $.inject sources, {ignorePath: 'app', addRootSlash: false}
+  .pipe $.inject js, {ignorePath: 'app', addRootSlash: false}
+  .pipe $.inject css, {ignorePath: 'app', addRootSlash: false}
   .pipe gulp.dest config.dir
 
 gulp.task 'usemin', ->
-  cssTask = [
-    $.pleeease("autoprefixer": {"browsers": ["last 4 versions", "ios 6", "android 4.0"]}),
-    $.rev()
-  ]
-  jsTask = [
-    $.ngAnnotate(), $.uglify(), $.rev()
-  ]
+  cssTask = (files, filename) ->
+    files.pipe $.pleeease(
+      import: {path: ["dist/bower_components/onsenui/build/css","app/bower_components/onsenui/build/css"]}
+      autoprefixer: {browsers: ["last 4 versions", "ios 6", "android 4.0"]}
+#      rebaseUrls: false
+      out: config.output + filename
+    )
+    .pipe $.concat(filename)
+    .pipe $.rev()
+
+  jsTask = (files, filename) ->
+    files.pipe $.ngAnnotate()
+    .pipe $.uglify()
+    .pipe $.concat(filename)
+    .pipe $.rev()
 
   gulp.src config.index
-  .pipe $.usemin(
-    html: [$.minifyHtml(empty: true, conditionals: true)]
-    vendorcss: cssTask
-    css: cssTask
-    vendorjs: jsTask
-    js: jsTask
+  .pipe $.spa.html(
+    assetsDir: config.dir
+    pipelines:
+#  main: (files)->
+#    files.pipe $.minifyHtml(empty: true, conditionals: true)
+      vendorjs: (files)->
+        jsTask files, "vendor.js"
+      js: (files)->
+        jsTask files, "app.js"
+      vendorcss: (files)->
+        cssTask files, "vendor.css"
+      css: (files)->
+        cssTask files, "app.css"
   )
   .pipe gulp.dest(config.output)
+
+gulp.task 'imagemin', ->
+  gulp.src config.image, {base: config.dir}
+  .pipe $.imagemin({
+    progressive: true
+  })
+  .pipe gulp.dest config.output
 
 gulp.task 'copy', ->
   gulp.src config.partials, {base: config.dir}
@@ -81,6 +101,6 @@ gulp.task 'clean', (cb) ->
 gulp.task 'default', ['browser-sync', 'watch']
 
 gulp.task 'build', (cb) -> runSequence(
-  'clean', 'inject', 'usemin', 'copy'
+  'clean', 'inject', 'copy', 'usemin', 'imagemin',
   cb
 )
