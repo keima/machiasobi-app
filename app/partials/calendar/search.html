@@ -33,7 +33,7 @@
 
         <ons-row class="calendar-search-result">
           <ons-col class="plan-left" width="80px">
-            <div class="plan-date">{{ item.start | date:"HH:mm a" }}</div>
+            <div class="plan-date">{{ item.start | date:"HH:mm" }}</div>
             <div class="plan-duration">{{ ctrl.diff(item.start, item.end) }}min.</div>
           </ons-col>
           <ons-col class="plan-center"
