@@ -3,16 +3,16 @@ angular.module('myApp.controller.trafficCtrl', [])
     var self = this;
 
     this.transits = [
-      {
-        name: "橋の下美術館",
-        id: "museum",
-        places: [
-          {
-            name: '船着き場',
-            direction: 'inbound'
-          }
-        ]
-      },
+      //{
+      //  name: "橋の下美術館",
+      //  id: "museum",
+      //  places: [
+      //    {
+      //      name: '船着き場',
+      //      direction: 'inbound'
+      //    }
+      //  ]
+      //},
       {
         name: 'ロープウェイ乗り場',
         id: 'ropeway',
