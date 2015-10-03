@@ -22,8 +22,8 @@ angular.module('myApp',
   ])
   .constant('myAppSemVer', {
     major: 2,
-    minor: 0,
-    patch: 1
+    minor: 5,
+    patch: 0
   })
   .config(function (uiGmapGoogleMapApiProvider, myAppGoogleApiKey) {
     uiGmapGoogleMapApiProvider.configure({
@@ -34,7 +34,6 @@ angular.module('myApp',
     JoinUs.outputLog();
 
     $rootScope.appName = "マチ★アプリ";
-    $rootScope.volName = "vol.14";
     $rootScope.semver = myAppSemVer;
     $rootScope.appVersion = "ver." + myAppSemVer.major + "." + myAppSemVer.minor + "." + myAppSemVer.patch;
 
