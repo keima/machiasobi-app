@@ -64,8 +64,8 @@ gulp.task 'usemin', ->
   .pipe $.spa.html(
     assetsDir: config.dir
     pipelines:
-#  main: (files)->
-#    files.pipe $.minifyHtml(empty: true, conditionals: true)
+      main: (files)->
+        files.pipe $.minifyHtml(empty: true, conditionals: true)
       vendorjs: (files)->
         jsTask files, "vendor.js"
       js: (files)->
