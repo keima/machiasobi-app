@@ -30,7 +30,7 @@ angular.module('myApp',
       key: myAppGoogleApiKey
     });
   })
-  .run(function ($rootScope, $cookies, $window, myAppSemVer, myAppGoogleApiKey, Favorite, Calendar, PeriodConst, MachiRest, User, JoinUs) {
+  .run(function ($rootScope, $window, myAppSemVer, MachiRest, User, JoinUs, Periods) {
     JoinUs.outputLog();
 
     $rootScope.appName = "マチ★アプリ";
@@ -38,7 +38,7 @@ angular.module('myApp',
     $rootScope.semver = myAppSemVer;
     $rootScope.appVersion = "ver." + myAppSemVer.major + "." + myAppSemVer.minor + "." + myAppSemVer.patch;
 
-    $rootScope.periods = PeriodConst;
+    $rootScope.periods = Periods;
 
     $rootScope.favEvents = [];
 

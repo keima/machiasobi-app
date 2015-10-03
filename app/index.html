@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ja" ng-app="myApp">
+<html lang="ja"><!-- ng-app="myApp" は bootstrap.js に引っ越しました -->
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -54,6 +54,35 @@
 <!-- @formatter:on -->
 
 <ui-view></ui-view>
+
+<div id="initializerLoading">
+  <i class="fa fa-star fa-spin fa-5x machi-color"></i>
+</div>
+
+<div id="initializerFatalError" style="display: none;">
+  <div class="alert-dialog-mask"></div>
+
+  <div class="alert-dialog">
+    <div class="alert-dialog-title">
+      <i class="fa fa-frown-o"></i> 致命的なエラー
+    </div>
+    <div class="alert-dialog-content">
+      <p>
+        重要なデータの取得に失敗した為、マチアプリを起動することが出来ませんでした。<br>
+        お手数ですが、このページを更新して、再度お試し下さい。<br>
+        それでも回復しない場合は、<a href="https://twitter.com/pside" target="_blank">管理者に連絡</a>をしてください。
+      </p>
+    </div>
+
+    <div class="alert-dialog-footer">
+      <button class="alert-dialog-button alert-dialog-button--primal"
+          onclick="location.reload()">
+        ページの更新
+      </button>
+    </div>
+  </div>
+</div>
+
 
 <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
 <!-- build:vendorjs -->

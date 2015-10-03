@@ -10,8 +10,8 @@ angular.module('myApp.controller.eventCtrl', [])
       }
     }
   })
-  .controller('EventCtrl', function ($scope, $rootScope, $analytics, MachiRest, PeriodConst, EventStore) {
-    $scope.periods = PeriodConst;
+  .controller('EventCtrl', function ($scope, $rootScope, $analytics, MachiRest, Periods, EventStore) {
+    $scope.periods = Periods;
     $scope.items = [];
     $scope.now = new Date();
 
@@ -28,7 +28,7 @@ angular.module('myApp.controller.eventCtrl', [])
     };
 
     $scope.reload = function () {
-      var startAt = PeriodConst[$scope.selected].date;
+      var startAt = Periods[$scope.selected].date;
       var endAt = startAt.clone().endOf('days');
 
       $analytics.eventTrack('View', {

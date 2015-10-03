@@ -31,7 +31,7 @@
                      ng-click="setSelectedDateId($index)"
                      ng-checked="selectedDateId == $index">
 
-              <div class="button-bar__button">{{ period.name }}</div>
+              <div class="button-bar__button">{{ period.date | date:"MM月dd日(EEE)" }}</div>
             </div>
           </div>
 
@@ -41,12 +41,12 @@
       <!-- 凡例表示 -->
       <ons-row id="legends" ng-show="calendarConfig.showLegend">
         <ons-col ng-repeat="calendar in calendars"
-                 ng-show="!calendar.sticky"
+                 ng-show="!calendar.isSticky"
                  width="33.3%"
-                 class="legend gcal-{{ calendar.shortName }}"
+                 class="legend gcal-{{ calendar.id }}"
                  ng-click="showOnlyThisEvent($index)"
                  analytics-on analytics-category="Calendar--Legend" analytics-event="Click"
-                 analytics-label="{{ calendar.shortName }}">
+                 analytics-label="{{ calendar.id }}">
           {{ calendar.name }}
         </ons-col>
       </ons-row>
