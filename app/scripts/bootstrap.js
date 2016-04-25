@@ -23,6 +23,9 @@
       }),
       Restangular.all("calendars").getList().then(function(result) {
         myAppModule.constant("Calendars", result.plain());
+      }),
+      Restangular.all("menu").getList().then(function(result){
+        myAppModule.constant("AppListConst", result.plain())
       })
     ]);
   }
