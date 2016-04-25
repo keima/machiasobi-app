@@ -46,7 +46,7 @@ gulp.task 'inject', ->
 gulp.task 'usemin', ->
   cssTask = (files, filename) ->
     files.pipe $.pleeease(
-      import: {path: ["dist/bower_components/onsenui/build/css","app/bower_components/onsenui/build/css"]}
+      import: {path: ["dist/bower_components/onsenui/css","app/bower_components/onsenui/css"]}
       autoprefixer: {browsers: ["last 4 versions", "ios 6", "android 4.0"]}
 #      rebaseUrls: false
       out: config.output + filename
