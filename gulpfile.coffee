@@ -16,8 +16,8 @@ config =
   copy: [
     './app/*.+(ico|png|txt)',
     './app/manifest.json',
-    './app/bower_components/onsenui/build/css/+(font_awesome|ionicons)/css/*.min.css',
-    './app/bower_components/onsenui/build/css/+(font_awesome|ionicons)/fonts/*.+(otf|eot|svg|ttf|woff)'
+    './app/bower_components/onsenui/css/+(font_awesome|ionicons)/css/*.min.css',
+    './app/bower_components/onsenui/css/+(font_awesome|ionicons)/fonts/*.+(otf|eot|svg|ttf|woff)'
   ]
   output: './dist/'
 
