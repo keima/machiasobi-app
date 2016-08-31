@@ -12,6 +12,9 @@ angular.module('myApp.controller')
 
     $scope.$on(User.BROADCAST_NAME_CHANGED, function(){
       $scope.loggedIn = User.isLogin();
-    })
+    });
+
+    // go to sunset page (news)
+    $state.go("app.news.detail", {id: "the_sunset_of_machiappli"});
   })
 ;
