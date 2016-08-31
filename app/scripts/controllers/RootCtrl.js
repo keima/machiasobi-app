@@ -15,6 +15,6 @@ angular.module('myApp.controller')
     });
 
     // go to sunset page (news)
-    $state.go("app.news.detail", {id: "about_of_machiasobi_vol_16"});
+    $state.go("app.news.detail", {id: "the_sunset_of_machiappli"});
   })
 ;
